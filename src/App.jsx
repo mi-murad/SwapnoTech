@@ -1,118 +1,54 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
-const navItems = ['Services', 'Work', 'Products', 'About', 'Insights']
-
-function BrandMark() {
-  return (
-    <a className="brand" href="#home" aria-label="Swapno Tech home">
-      <span>swapno<span className="brand-tech">tech</span></span>
-    </a>
-  )
+const nav = [['Services','#services'],['Work','#work'],['Products','#products'],['About','#about'],['Insights','#insights']]
+const categories = [
+  {id:'case',name:'Case Studies',title:'Ideas, shaped into outcomes.',desc:'The thinking, craft and decisions behind selected work.'},
+  {id:'video',name:'Video',title:'Stories that move.',desc:'Films, motion and content built around a clear message.'},
+  {id:'graphic',name:'Graphics & Posters',title:'Visuals with a point of view.',desc:'Campaign artwork, social communication and editorial design.'},
+  {id:'brand',name:'Branding',title:'Identity with intention.',desc:'A consistent visual world for a brand to grow into.'},
+  {id:'web',name:'Websites & Technology',title:'Digital experiences, made useful.',desc:'Websites and systems that make the next step easier.'}
+]
+const products = [
+  ['01','Website Solution','A guided way to create and publish a business website.'],
+  ['02','Creator Platform','Discover creative and technical people, their skills and their work.'],
+  ['03','Hosting Packages','Compare verified hosting options and request a setup.']
+]
+function Wordmark(){return <a className="wordmark" href="#top" aria-label="Swapno Tech home">swapno<span>tech</span></a>}
+function Planet({kind,extra=''}){return <div className={'planet '+kind+' '+extra} aria-hidden="true"><i/><b/><em/></div>}
+function Intro({done}){useEffect(()=>{const t=setTimeout(done,5200);return()=>clearTimeout(t)},[done]);return <div className="cinematic-intro" role="status" aria-label="Swapno Tech introduction"><div className="intro-stars"/><div className="intro-orbit"/><div className="intro-orbit second"/><Planet kind="mars" extra="intro-planet"/><div className="intro-word">swapno<span>tech</span></div><div className="intro-caption"><span>IDEAS IN MOTION</span><span>01 — 03</span></div><div className="intro-portal"/><button onClick={done}>Skip intro ↗</button></div>}
+function Header({light,toggle}){const[open,setOpen]=useState(false);return <header className={'site-header '+(light?'header-light':'')}><div className="header-inner"><Wordmark/><nav className={open?'main-nav open':'main-nav'}>{nav.map(([n,h])=><a key={n} href={h} onClick={()=>setOpen(false)}>{n}</a>)}<a className="mobile-account" href="#contact">Sign in ↗</a></nav><div className="header-actions"><button className="theme-toggle" onClick={toggle}>{light?'Night':'Day'} <i/></button><a className="header-cta" href="#contact">Let's Talk ↗</a><button className="menu-toggle" onClick={()=>setOpen(!open)} aria-label="Toggle menu"><i/><i/></button></div></div></header>}
+function Label({n,children}){return <div className="section-label"><b>{n}</b><span>{children}</span></div>}
+export default function App(){
+ const[intro,setIntro]=useState(()=>!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&!sessionStorage.getItem('swapno-intro-seen'))
+ const[light,setLight]=useState(false),[category,setCategory]=useState('case'),[scrolled,setScrolled]=useState(false)
+ const selected=useMemo(()=>categories.find(x=>x.id===category)||categories[0],[category])
+ const done=()=>{sessionStorage.setItem('swapno-intro-seen','1');setIntro(false)}
+ useEffect(()=>{const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('[data-reveal]').forEach(x=>obs.observe(x));return()=>obs.disconnect()},[intro])
+ useEffect(()=>{const fn=()=>setScrolled(scrollY>40);addEventListener('scroll',fn,{passive:true});return()=>removeEventListener('scroll',fn)},[])
+ return <div className={'site-shell '+(light?'light':'dark')}>
+ {intro&&<Intro done={done}/>}<Header light={light} toggle={()=>setLight(!light)}/>
+ <main id="top">
+  <section className="hero-scene">
+   <div className="hero-bg"><div className="hero-grid"/><div className="hero-nebula"/></div>
+   <div className="wrap hero-copy"><div className="eyebrow"><i/> CREATIVE TECHNOLOGY · DIGITAL BUSINESS SOLUTIONS</div><h1>Make possibility<br/><em>move.</em></h1><p>We bring creative thinking and technology together to help ideas become brands, experiences and businesses that move forward.</p><div className="hero-actions"><a className="btn primary" href="#contact">Start a project ↗</a><a className="btn quiet" href="#work">Explore our work ↓</a></div><div className="hero-meta"><span>INDEPENDENT CREATIVE & TECHNOLOGY STUDIO</span><span>SCROLL TO EXPLORE ↓</span></div></div>
+   <div className="hero-cosmos"><div className="orbit orbit-a"/><div className="orbit orbit-b"/><Planet kind="mars" extra="hero-mars"/><Planet kind="earth" extra="hero-earth"/><Planet kind="moon" extra="hero-moon"/><span className="coordinate">23° 41′ N<br/>90° 21′ E</span><span className="cosmos-note">CREATE · BUILD · CONNECT</span></div><div className={'scroll-line '+(scrolled?'active':'')}/>
+  </section>
+  <section className="manifesto wrap" id="about" data-reveal><Label n="01">A DIFFERENT KIND OF PARTNER</Label><div className="manifesto-grid"><h2>Good ideas deserve<br/><em>great execution.</em></h2><div><p>From the first spark to the systems that help it grow, we connect strategy, creative craft and technology in one thoughtful process.</p><a className="under-link" href="#services">Get to know Swapno ↗</a></div></div><div className="manifesto-foot"><span>THINK WITH PURPOSE</span><span>MAKE WITH CARE</span><span>MOVE TOGETHER</span></div></section>
+  <section className="journey" id="services"><div className="wrap journey-heading" data-reveal><Label n="02">OUR UNIVERSE OF EXPERTISE</Label><h2>Three destinations.<br/><em>One direction.</em></h2><p>Each world represents a different part of how we help businesses move—from making people notice, to building what comes next.</p></div>
+   <article className="journey-row mars-row" data-reveal><div className="scene-art"><div className="orbit"/><div className="orbit second"/><Planet kind="mars" extra="scene-planet"/><small>WORLD 01 / CREATE</small></div><div className="scene-copy"><span>01 / MARS</span><h3>Create<br/>& execute.</h3><p>Creative production, branding, graphics, video, animation and campaign execution—shaped around a clear idea.</p><a className="under-link" href="#contact">Explore creative services ↗</a></div></article>
+   <article className="journey-row earth-row" data-reveal><div className="scene-art"><div className="orbit"/><div className="orbit second"/><Planet kind="earth" extra="scene-planet"/><small>WORLD 02 / BUILD</small></div><div className="scene-copy"><span>02 / EARTH</span><h3>Build<br/>& grow.</h3><p>Websites, software, platforms and digital systems that help businesses work better and take their next step.</p><a className="under-link" href="#contact">Explore technology ↗</a></div></article>
+   <article className="journey-row venus-row" data-reveal><div className="scene-art"><div className="orbit"/><div className="orbit second"/><Planet kind="venus" extra="scene-planet"/><small>WORLD 03 / CONNECT</small></div><div className="scene-copy"><span>03 / VENUS</span><h3>Brand<br/>& connect.</h3><p>Brand communication and digital experiences that bring businesses closer to the people they serve.</p><a className="under-link" href="#contact">Explore brand experiences ↗</a></div></article>
+  </section>
+  <section className="services wrap" data-reveal><Label n="03">WHAT WE CAN MAKE HAPPEN</Label><div className="split-heading"><h2>From a single need<br/>to the bigger picture.</h2><p>Bring us a challenge, a new idea or a business ready for its next chapter. We can shape the right combination of creative and technology work.</p></div><div className="service-list">{[['01','Branding & identity','Strategy · Visual identity · Brand systems'],['02','Content & production','Video · Motion · Graphics · Campaigns'],['03','Web & digital experiences','Websites · Software · Digital platforms'],['04','Marketing & growth support','Planning · Communication · Digital growth']].map(x=><a href="#contact" key={x[0]}><small>{x[0]}</small><b>{x[1]}</b><span>{x[2]}</span><i>↗</i></a>)}</div></section>
+  <section className="work-section" id="work"><div className="wrap" data-reveal><Label n="04">SELECTED WORK & IDEAS</Label><div className="split-heading work-heading"><h2>Made to mean<br/><em>something.</em></h2><p>Every project starts with a reason. Explore the kinds of work we bring together—each with its own story, thinking and craft.</p></div><div className="work-tabs" role="tablist">{categories.map(x=><button key={x.id} className={category===x.id?'selected':''} role="tab" aria-selected={category===x.id} onClick={()=>setCategory(x.id)}>{x.name}</button>)}</div><div className={'work-feature '+selected.id}><div className="work-art"><div className="art-frame"><div className="art-orbit"/><div className="art-planet"/><div className="art-satellite"/><small>SWAPNO / WORK ARCHIVE</small></div><span>SELECTED DISCIPLINES <b>0{categories.findIndex(x=>x.id===category)+1}</b></span></div><div className="work-copy"><small>PORTFOLIO / {selected.name.toUpperCase()}</small><h3>{selected.title}</h3><p>{selected.desc}</p><div className="archive-note">PROJECT STORIES WILL BE ADDED FROM APPROVED SWAPNO WORK.</div><a className="under-link" href="#contact">Discuss a similar project ↗</a></div></div></div></section>
+  <section className="process wrap" data-reveal><Label n="05">HOW WE MOVE TOGETHER</Label><div className="split-heading"><h2>Clear thinking.<br/><em>Thoughtful making.</em></h2><p>Good work is a shared process. We keep the path visible, make room for feedback and move forward with purpose.</p></div><div className="process-grid">{[['01','Understand','Listen, ask better questions and get clear on what matters.'],['02','Shape','Research, explore directions and agree on the right plan.'],['03','Create & build','Turn the agreed direction into considered, usable work.'],['04','Review & grow','Share, refine and help the work take its next step.']].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</div></section>
+  <section className="engagement"><div className="wrap engagement-inner" data-reveal><div><Label n="06">WAYS TO WORK WITH US</Label><h2>Start where<br/><em>you are.</em></h2></div><div className="engagement-list">{[['A CLEAR START','One focused project.','For a defined need, launch or creative brief with a clear outcome.'],['ONGOING PARTNERSHIP','Build momentum together.','For teams that need consistent creative, technology or growth support.'],['SOMETHING NEW','Let’s shape the idea.','For early ideas that need research, direction and a practical first step.']].map(x=><article key={x[0]}><small>{x[0]}</small><h3>{x[1]}</h3><p>{x[2]}</p><a href="#contact">Let’s talk ↗</a></article>)}</div></div></section>
+  <section className="products wrap" id="products" data-reveal><Label n="07">THE SWAPNO ECOSYSTEM</Label><div className="split-heading"><h2>Tools and people<br/>for what comes next.</h2><p>Three core products, designed to make digital business more accessible. And a separate place for founders to connect.</p></div><div className="product-list">{products.map(x=><a href="#contact" key={x[0]}><small>{x[0]}</small><div><h3>{x[1]}</h3><p>{x[2]}</p></div><b>Explore <i>↗</i></b></a>)}</div><div className="founders"><small>SEPARATE COMMUNITY</small><div><h3>Swapno Founders</h3><p>A place for aspiring entrepreneurs, founders and business owners to learn, discuss and find opportunities together.</p></div><a href="#contact">Discover the community ↗</a></div></section>
+  <section className="team-section" data-reveal><div className="wrap team-inner"><div><Label n="08">PEOPLE MAKE THE DIFFERENCE</Label><h2>Good work is<br/>made <em>together.</em></h2></div><div className="team-copy"><div className="team-orbit"/><p>Swapno is a team of skilled contributors and people who are learning by making. We believe in shared responsibility, honest collaboration and growing through real work.</p><a className="under-link" href="#contact">Meet the team ↗</a></div></div></section>
+  <section className="insights wrap" id="insights" data-reveal><Label n="09">STORIES & INSIGHTS</Label><div className="split-heading"><h2>Ideas worth<br/><em>passing on.</em></h2><p>Notes on building brands, making digital work and learning through the process.</p></div><div className="journal-empty"><small>THE JOURNAL IS TAKING SHAPE</small><p>Thoughtful perspectives and practical stories<br/>will find their place here.</p><b>S.</b></div></section>
+  <section className="newsletter"><div className="wrap newsletter-inner" data-reveal><div><small>A LITTLE INSPIRATION, NOW AND THEN</small><h2>Stay close to<br/><em>what’s next.</em></h2><p>Occasional notes, ideas and updates from Swapno Tech.</p></div><div className="newsletter-note"><b>NEWSLETTER SIGN-UP</b><p>Subscriptions will be enabled when the account and consent system is connected. Newsletter consent will always remain separate from account registration.</p><small>OPTIONAL · NEVER AUTOMATIC</small></div></div></section>
+  <section className="final-cta wrap" id="contact" data-reveal><Label n="10">HAVE SOMETHING IN MIND?</Label><h2>Let’s make<br/><em>it matter.</em></h2><p>Tell us what you’re imagining. We’ll help you find a thoughtful way forward.</p><a className="btn primary" href="#services">Explore what we can do ↗</a></section>
+ </main>
+ <footer className="footer"><div className="wrap"><div className="footer-main"><div><Wordmark/><p>Creative thinking.<br/>Technology with purpose.</p></div><div><small>EXPLORE</small><a href="#about">About</a><a href="#services">Services</a><a href="#work">Portfolio</a><a href="#insights">Insights</a></div><div><small>ECOSYSTEM</small><a href="#products">Website Solution</a><a href="#products">Creator Platform</a><a href="#products">Hosting</a><a href="#products">Swapno Founders</a></div><div><small>CONNECT</small><a href="#contact">Start a project</a><a href="#contact">Contact</a><a href="#newsletter">Newsletter</a><a href="#top">Back to top ↑</a></div></div><div className="footer-bottom"><span>© 2026 Swapno Tech. All rights reserved.</span><span>MADE FOR WHAT’S NEXT.</span></div></div></footer>
+ </div>
 }
-
-function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [introVisible, setIntroVisible] = useState(
-    () => !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  )
-
-  useEffect(() => {
-    if (!introVisible) return undefined
-    const timeout = window.setTimeout(() => setIntroVisible(false), 3600)
-    return () => window.clearTimeout(timeout)
-  }, [introVisible])
-
-  return (
-    <>
-      {introVisible && (
-        <div className="intro" role="status" aria-label="Swapno Tech introduction">
-          <div className="intro-orbit orbit-one" />
-          <div className="intro-orbit orbit-two" />
-          <div className="intro-core"><span>SWAPNO</span><b>TECH</b></div>
-          <p>Possibility is in motion.</p>
-          <button className="intro-skip" onClick={() => setIntroVisible(false)}>Skip intro <span>↗</span></button>
-        </div>
-      )}
-
-      <header className="site-header">
-        <div className="header-inner">
-          <BrandMark />
-          <button className="menu-toggle" aria-expanded={menuOpen} aria-label="Toggle navigation" onClick={() => setMenuOpen(!menuOpen)}>
-            <span /><span />
-          </button>
-          <nav className={menuOpen ? 'main-nav is-open' : 'main-nav'} aria-label="Main navigation">
-            {navItems.map((item) => <a key={item} href={item === 'Work' ? '#work' : item === 'Services' ? '#services' : '#ecosystem'} onClick={() => setMenuOpen(false)}>{item}</a>)}
-            <a className="mobile-login" href="#contact">Sign in</a>
-          </nav>
-          <a className="header-cta" href="#contact">Let's Talk <span>↗</span></a>
-        </div>
-      </header>
-
-      <main id="home">
-        <section className="hero section-wrap">
-          <div className="hero-copy">
-            <div className="eyebrow"><span className="status-dot" /> CREATIVE TECHNOLOGY · DIGITAL GROWTH</div>
-            <h1>Make possibility<br /><em>move.</em></h1>
-            <p className="hero-lead">We turn ambitious ideas into meaningful brands, digital experiences and technology that move businesses forward.</p>
-            <div className="hero-actions">
-              <a className="button button-primary" href="#contact">Start a project <span>↗</span></a>
-              <a className="text-link" href="#work">Explore our work <span>↓</span></a>
-            </div>
-            <div className="hero-note"><span>01 / 03</span><span>IDEAS INTO IMPACT</span></div>
-          </div>
-          <div className="hero-art" aria-label="Abstract orbital illustration representing connected possibilities" role="img">
-            <div className="planet planet-main"><div className="planet-shine" /></div>
-            <div className="planet planet-small" />
-            <div className="orbit-line line-a" /><div className="orbit-line line-b" />
-            <span className="orbit-label label-top">CREATE</span>
-            <span className="orbit-label label-bottom">CONNECT · BUILD · GROW</span>
-            <span className="art-cross cross-one">+</span><span className="art-cross cross-two">+</span>
-          </div>
-          <div className="hero-bottom"><span>INDEPENDENT CREATIVE & TECHNOLOGY STUDIO</span><span>SCROLL TO EXPLORE ↓</span></div>
-        </section>
-
-        <section className="intro-statement section-wrap" id="about">
-          <p className="eyebrow">A DIFFERENT KIND OF PARTNER</p>
-          <h2>Good ideas deserve<br /> <span>great execution.</span></h2>
-          <p className="statement-body">From the first spark to the systems that help it grow, we bring creative thinking and technology together—so businesses can move with purpose.</p>
-        </section>
-
-        <section className="expertise section-wrap" id="services">
-          <div className="section-heading"><p className="eyebrow">OUR UNIVERSE OF EXPERTISE</p><h2>Three ways to<br />move forward.</h2></div>
-          <div className="expertise-grid">
-            <article className="expertise-card mars"><span className="card-index">01 / MARS</span><div className="mini-planet" /><h3>Create<br />& execute.</h3><p>Creative production, branding, content and campaigns that make people pay attention.</p><a href="#contact">Explore creative <span>↗</span></a></article>
-            <article className="expertise-card earth"><span className="card-index">02 / EARTH</span><div className="mini-planet" /><h3>Build<br />& grow.</h3><p>Websites, software and digital systems that make your next stage possible.</p><a href="#contact">Explore technology <span>↗</span></a></article>
-            <article className="expertise-card venus"><span className="card-index">03 / VENUS</span><div className="mini-planet" /><h3>Brand<br />& connect.</h3><p>Brand communication and digital experiences that bring businesses closer to people.</p><a href="#contact">Explore experiences <span>↗</span></a></article>
-          </div>
-        </section>
-
-        <section className="work-section section-wrap" id="work">
-          <div className="work-heading"><div><p className="eyebrow">SELECTED WORK</p><h2>Made to mean<br /><em>something.</em></h2></div><a className="text-link" href="#contact">View all projects ↗</a></div>
-          <div className="work-placeholder"><span>PROJECT SHOWCASE</span><p>Real work. Real stories.<br />Coming into focus.</p><small>Portfolio imagery will be added from approved Swapno projects.</small></div>
-        </section>
-
-        <section className="ecosystem section-wrap" id="ecosystem">
-          <p className="eyebrow">THE SWAPNO ECOSYSTEM</p><h2>More than a service.<br /><span>A way forward.</span></h2>
-          <div className="ecosystem-list">
-            <a href="#contact"><span>01</span><b>Website Solution</b><small>Build your digital home</small><i>↗</i></a>
-            <a href="#contact"><span>02</span><b>Creator Platform</b><small>Find people who make it happen</small><i>↗</i></a>
-            <a href="#contact"><span>03</span><b>Hosting Packages</b><small>A reliable place to begin</small><i>↗</i></a>
-            <a href="#contact"><span>04</span><b>Swapno Founders</b><small>Grow alongside other builders</small><i>↗</i></a>
-          </div>
-        </section>
-
-        <section className="contact-section section-wrap" id="contact">
-          <p className="eyebrow">HAVE SOMETHING IN MIND?</p><h2>Let's make<br /><em>it happen.</em></h2>
-          <a className="button button-primary" href="#home">Start a conversation <span>↗</span></a>
-        </section>
-      </main>
-
-      <footer className="site-footer section-wrap">
-        <div className="footer-top"><BrandMark /><p>Creative thinking.<br />Technology with purpose.</p><a href="#home">Back to top ↑</a></div>
-        <div className="footer-bottom"><span>© 2026 Swapno Tech. All rights reserved.</span><span>MADE FOR WHAT'S NEXT.</span></div>
-      </footer>
-    </>
-  )
-}
-
-export default App
