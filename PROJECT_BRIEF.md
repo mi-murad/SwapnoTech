@@ -1,43 +1,73 @@
 # Swapno Tech — Project Brief
 
-## Vision
-A creative technology and digital business solutions company. The experience should be modern, futuristic, confident and human—not a generic agency template, overcomplicated SaaS dashboard or gaming/space website. Clarity first; every visual and animation must serve a purpose.
+## Business and positioning
+Swapno Tech is a digital marketing, creative and technology agency. It helps entrepreneurs, startups, ecommerce/F-commerce businesses and growing companies build brands, produce content, market their offers and create the digital systems that support business growth.
 
-## Approved product scope
-1. Website Solution: beginner-friendly template/section-based builder. Select template and structure, edit content, reorder supported sections, preview and publish. Optional add-ons: payment, Meta Pixel, analytics, automation, courier API, chatbot and custom features. Some add-ons are agency-assisted.
-2. Creator Platform: professional profiles, portfolios, discovery, search/filter and contact requests routed through Swapno. Hide private contact details and private metrics. Profile completion and eligibility verified server-side. CV builder with reviewed AI assistance and PDF export is later.
-3. Hosting: verified provider plans and terms, enquiry and manual coordination. Swapno is a reseller/referral agency, not its own hosting infrastructure provider.
-4. Swapno Founders: separate community for aspiring entrepreneurs, founders and business owners.
+The website must communicate a real business partner—not a generic technology startup, a space-themed product, or a fictional creative studio. The core story is the connection between strategy, brand, content, campaigns, websites and useful digital systems. Explain what Swapno does, who it helps, what a client can engage the team to do, how the work proceeds, and how to start a project.
 
-## Founder groups
-- Founder Announcements: admin/moderator posts; members read/react.
-- Open Discussion: member conversations, questions, introductions and networking.
-- Founders' Circle: focused business problem-solving.
-- Opportunities & Collaboration: partnerships, projects, referrals and events; moderate spam.
-Membership and verified-founder status are separate. Include applications, approval, permissions, reporting, moderation, privacy and guidelines.
+Use the approved brand promise from the official identity deck: **Building Brands. Growing Systems.** Do not invent client results, guaranteed outcomes, prices, testimonials, team biographies or service promises.
 
-## Website experience
-- Intro is a simplified, skippable planetary journey with logo reveal and portal-style transition, targeting a maximum of 8 seconds. It must never block usability while assets load.
-- Intro transitions directly into homepage hero.
-- Mars, Earth and Venus are narrative destinations for expertise; map to verified service taxonomy, not invented claims.
-- Portfolio categories: Case Studies, Video, Graphics & Posters, Branding, Websites & Technology. Case studies use transformation storytelling; video cinematic; graphics editorial; branding identity presentation; technology previews/screenshots. Provide accessible project links and non-3D fallback.
-- Connected process timeline; individual team introductions using real approved assets; minimal product previews; newsletter near footer.
-- Signup popup presents two separate choices: account registration and optional newsletter subscription. Account creation never subscribes automatically. It is dismissible, non-blocking and hidden for authenticated users; timing/cooldown will be implemented after the core site.
+## Approved brand and experience
+- Mobile-first, professional, modern, futuristic, confident and human.
+- Warm light #FFF7CE and orange #FF6300 are the core colours.
+- Use the official logo artwork as supplied. Never redraw, stretch, rotate or recolour it.
+- Bold modern display typography, clean readable sans-serif supporting text, clear hierarchy, structured grids, sharp alignment and purposeful negative space.
+- Day and night themes must both be intentionally designed.
+- Cinematic motion and 3D are welcome when they tell the story and remain fast, readable and useful. No cartoon, toy-like, childish or clip-art visuals.
+- Never allow text to overlap, clip, collide with controls or become unreadable over moving imagery.
+- Phone experience is the primary design target. Desktop may add richer visual depth but must not change the clarity or content hierarchy.
+
+## Agency service scope
+Build the service taxonomy from Swapno Tech's known capabilities:
+1. Brand strategy and identity.
+2. Graphic design, campaign creatives and social media design.
+3. Video editing, short-form content, animation and motion graphics.
+4. Content planning and production.
+5. Social media management and digital marketing campaigns.
+6. Website design/development, software and digital platforms.
+7. Business/page launch support and related digital services.
+
+Present services as connected capabilities, not as unrelated menu items. Marketing is a business system: clear offer and audience → brand and content → distribution/campaigns → website or conversion destination → review and improvement. Only describe a channel or deliverable when Swapno actually offers it. Do not add SEO, PPC, influencer management, guarantees or specialist services as fact unless verified.
+
+## Approved products and community
+Exactly three core products:
+1. Website Solution — guided template/section-based website builder, content editing, responsive preview, drafts and publishing; optional add-ons are scoped and reviewed.
+2. Creator Platform — searchable directory and professional profiles/portfolios, with private contact information protected and client enquiries routed through Swapno.
+3. Hosting Packages — verified third-party provider plans, transparent renewal terms, enquiry and manual coordination. Swapno is not an infrastructure provider.
+
+Swapno Founders is a separate community area, not a fourth core product and not part of the Creator community. It supports aspiring entrepreneurs, founders and business owners through four moderated groups: Founder Announcements, Open Discussion, Founders' Circle, and Opportunities & Collaboration.
+
+## Homepage experience
+The homepage sequence is specified in WEBSITE_SPEC.md. It begins with a simplified cinematic intro and connected hero, then explains the agency, its three expertise narratives, services, selected work, process, packages, products, team, insights and contact.
+
+Mars, Earth and Venus are narrative destinations—not literal science content or game levels:
+- Mars — Create & Execute.
+- Earth — Build & Grow.
+- Venus — Brand & Connect.
+These labels must be supported by Swapno's actual services and should not invent new offers.
 
 ## Public pages
-Home; About; Services and details; Packages; Portfolio, categories and case studies; Blog, categories and articles; Contact; Website Solution; Creator Platform; Hosting; Swapno Founders; Login; Registration; Privacy; Terms; Community Guidelines.
+Home; About; Services overview and individual service details; Packages; Work/Portfolio, categories and case studies; Insights/Blog, categories and articles; Contact; Website Solution; Creator Platform; Hosting; Swapno Founders; Login; Registration; Privacy; Terms; Community Guidelines.
 
-## Bilingual content
-English and Bangla are first-class editorial versions, not automatic translations. Bangla must be natural, fluent, approachable, engaging and professional, preserving intent rather than English sentence structure. Review navigation, pages, forms, validation, notifications and metadata in both languages.
+## Authenticated and admin areas
+Customer and creator dashboards, creator profiles/portfolios/CV builder, customer website management, founder community, and staff admin are separate protected experiences. Build these in the approved product phases; do not fake a working backend or present static UI as functional account management.
 
-## Performance and UX
-Fast loading over visual complexity. Lazy-load below-fold media, optimize responsive images/video, defer 3D, avoid excessive blur and heavy filters, respect reduced motion and keyboard access, maintain readable text, and keep navigation usable without WebGL/video. Test mobile and constrained networks.
+## Intro and motion
+Use the supplied planet-jumping.html as a motion/interaction reference. Preserve its core choreography in a brand-appropriate, simplified form: cinematic video preloader, progress indication, logo reveal and dock into the header, masked portal reveal into the hero, and connected planetary scenes. The intro must be skippable, capped at about 8 seconds, mobile-aware, reduced-motion-aware and must never wait indefinitely for media.
 
-## Brand source
-Official brand source: Canva design “Swapno Tech | Brand Identity & Visual System” (36-page brand identity deck, 2026). Use latest official logo artwork; do not redraw, stretch, rotate or recolour. Known brand colours: warm light #FFF7CE and orange #FF6300. Verify variants and typography against the brand source.
+The hero must feel like the next scene of the intro—not a disconnected template. Scroll transitions should feel continuous and intentional without hijacking normal scrolling. Do not reuse the unrelated brand's logo, labels, facts or identity.
 
-## References
-Primary experience reference: https://www.apexmotions.studio/. Supporting references are listed in DESIGN_SYSTEM.md. Study for inspiration, not copying.
+## Content and truth
+- Use authentic Swapno business information and approved brand language.
+- Do not invent portfolio entries, client logos, case-study metrics, testimonial quotes, team members, contact details, package prices or partner hosting claims.
+- A portfolio item must have real source material and an approved summary before publication. Performance figures need a verified reporting period and source.
+- English and Bangla are first-class editorial versions. Bangla is separately authored in natural, fluent and professional language—not literal machine translation.
+- Account registration and newsletter subscription remain separate. Account creation never auto-subscribes.
 
-## Open decisions
-Final service taxonomy and planet mapping; final English/Bangla copy; approved logo asset export; Supabase environment/schema; Vercel preview/domain configuration.
+## Performance, accessibility and security
+Prioritise fast initial rendering. Load the intro asset progressively; defer below-fold media and 3D; optimise images/video; code-split heavy experiences; respect reduced motion; maintain keyboard navigation, visible focus, contrast, semantic structure and labelled forms. Test on 360–390px phones and desktop widths, both themes and both languages. Protect data and permissions server-side when the backend is introduced.
+
+## Technology and release
+React + Vite, GitHub and Vercel feature-branch previews are the current approved foundation. Supabase is the backend direction but is not yet configured. Keep production `main` unchanged until a complete review and explicit production approval.
+
+See DESIGN_SYSTEM.md, WEBSITE_SPEC.md, ARCHITECTURE.md, ROADMAP.md and DEVELOPMENT_RULES.md.
