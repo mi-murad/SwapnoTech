@@ -5,7 +5,6 @@ const navItems = ['Services', 'Work', 'Products', 'About', 'Insights']
 function BrandMark() {
   return (
     <a className="brand" href="#home" aria-label="Swapno Tech home">
-      <span className="brand-symbol" aria-hidden="true"><i /><i /><i /></span>
       <span>swapno<span className="brand-tech">tech</span></span>
     </a>
   )
@@ -104,7 +103,7 @@ function App() {
 
         <section className="contact-section section-wrap" id="contact">
           <p className="eyebrow">HAVE SOMETHING IN MIND?</p><h2>Let's make<br /><em>it happen.</em></h2>
-          <a className="button button-primary" href="mailto:hello@swapnotech.com">Start a conversation <span>↗</span></a>
+          <a className="button button-primary" href="#home">Start a conversation <span>↗</span></a>
         </section>
       </main>
 
