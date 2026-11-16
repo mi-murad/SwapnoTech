@@ -15,7 +15,8 @@ The three core products are Website Solution, Creator Platform and Hosting. Swap
 - Mobile-first responsive layout.
 - CSS-led lightweight motion and visual effects; no heavy 3D dependency in the initial load.
 - GitHub source control.
-- Supabase backend and Vercel deployment are planned, not yet configured.
+- Vercel Git integration connected; feature-branch previews are used for review. Production remains on `main`.
+- Supabase backend is planned, not yet configured.
 
 ## Run locally
 1. Install Node.js (LTS).
