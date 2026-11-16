@@ -1,7 +1,7 @@
 # Technical Architecture
 
 ## Approved direction
-React + Vite frontend; Supabase backend direction; GitHub source control; Vercel preview/deployment direction; Figma design and Canva brand assets. This is not evidence that services are configured or deployed.
+React + Vite frontend; Supabase backend direction; GitHub source control; Vercel preview/deployment direction; Canva is the brand source. Figma is optional for editable design work and is not a development prerequisite. This is not evidence that services are configured or deployed.
 
 ## Application areas
 Public agency website; authenticated customer/creator experiences; Swapno Founders; staff admin; Website Solution builder/publishing; shared identity, permissions, notifications and content services. Keep modules separated.

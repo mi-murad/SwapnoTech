@@ -1,13 +1,13 @@
 # Roadmap & Approval Gates
 
-## Phase 0 — Foundation
-Confirm repository settings, preserve requirements, inspect supplied intro/logo assets and identify design assets. No production/backend changes.
+## Phase 0 — Foundation (in progress)
+Preserve requirements and existing documentation; inspect supplied intro/logo assets; establish a React + Vite application on a feature branch. Keep main protected from unreviewed work.
 
-## Phase 1 — Design
-Finalize sitemap and journeys; verify brand tokens; create Figma design system, desktop/mobile wireframes, intro-to-hero storyboard, homepage and portfolio interactions, bilingual content model. Obtain approval.
+## Phase 1 — Visual foundation
+Verify brand tokens and official logo artwork; storyboard simplified intro-to-hero; refine mobile-first header, hero, navigation and footer in the live browser preview. Review desktop and mobile before expanding the page.
 
 ## Phase 2 — Agency website
-Shared layout/navigation, day/night themes, language switching, homepage, services, packages, portfolio/case studies, blog/articles, about/contact, newsletter and signup popup after purpose confirmation. Test responsive behaviour, accessibility, SEO and performance.
+Build homepage sections, services, packages, portfolio/case studies, blog/articles, about/contact, newsletter and the two-choice account/newsletter popup. Test responsive behaviour, accessibility, SEO and performance.
 
 ## Phase 3 — Backend/admin
 Confirm Supabase project/environment; auth, roles, initial schema, RLS, storage, admin content and lead management; security tests.
@@ -30,4 +30,4 @@ Creator CV builder, reviewed AI writing, PDF export and advanced community featu
 ## Phase 9 — Launch
 Functional, responsive, accessibility, SEO, security and performance verification; staging review, backup/recovery and explicit production approval.
 
-Approval required for major architecture changes, paid services, external integrations, security-sensitive changes, destructive actions, material database migrations and production releases.
+Approval required for major architecture changes, paid services, external integrations, destructive actions, material database migrations and production releases.
