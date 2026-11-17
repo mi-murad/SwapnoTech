@@ -1,33 +1,61 @@
-# Roadmap & Approval Gates
+# Swapno Tech — Active Delivery Roadmap
 
-## Phase 0 — Foundation
-Confirm repository settings, preserve requirements, inspect supplied intro/logo assets and identify design assets. No production/backend changes.
+This roadmap follows the owner-approved delivery sequence for the current website build. Work is performed on `swapnotech-site-build`; production remains protected until explicit approval.
 
-## Phase 1 — Design
-Finalize sitemap and journeys; verify brand tokens; create Figma design system, desktop/mobile wireframes, intro-to-hero storyboard, homepage and portfolio interactions, bilingual content model. Obtain approval.
+## Phase 2 — Cinematic introduction
+**Status: Implemented; preview build verified.**
+- Adapt the supplied planetary/portal experience for Swapno Tech.
+- Creative → Technology → Growth chapter labels.
+- Desktop scene transition, mobile fallback, skip, reduced-motion bypass and first-visit behaviour.
+- Target opening duration under 8.2 seconds; intro must never block access to the site.
 
-## Phase 2 — Agency website
-Shared layout/navigation, day/night themes, language switching, homepage, services, packages, portfolio/case studies, blog/articles, about/contact, newsletter and signup popup after purpose confirmation. Test responsive behaviour, accessibility, SEO and performance.
+## Phase 3 — Homepage storytelling
+**Status: Implemented in the current frontend; visual review pending.**
+- Intro-to-hero handoff and scroll storytelling.
+- Expertise destinations, service preview, portfolio category gallery, process, products, insights and collaboration model.
+- Portfolio categories: Case Studies, Video, Graphics & Posters, Branding, Websites & Technology.
+- Concept studies are clearly labelled; no invented client results or testimonials.
 
-## Phase 3 — Backend/admin
-Confirm Supabase project/environment; auth, roles, initial schema, RLS, storage, admin content and lead management; security tests.
+## Phase 4 — Complete public website
+**Status: Core page routes implemented; content/design review pending.**
+- Home, About, Services and service details, Packages, Portfolio, Blog and article pages, Contact.
+- Website Solution, Creator Platform, Hosting and Swapno Founders.
+- Privacy, Terms and Community Guidelines draft pages.
+- Login and Registration remain clearly marked as inactive until backend and privacy workflows exist.
+- English is the current published UI. Natural Bangla edition and editorial review remain outstanding.
+- Final team profiles, approved logo artwork, real portfolio assets and approved published case studies remain content dependencies.
 
-## Phase 4 — Creator MVP
-Profiles, portfolios, directory/search, routed contact, moderation and verified completion.
+## Phase 5 — Functional implementation
+**Status: Frontend interactions added; backend blocked pending correct project.**
+- Portfolio category filters and article/service navigation are interactive.
+- Contact form validates and prepares/copies an enquiry; it does not transmit or store a lead.
+- Authentication, admin/CMS, newsletter, creator profiles, community membership/moderation, hosting plan management and Website Solution publishing are not active.
+- The connected Supabase accounts currently expose a project named **Swapno AI**, not a verified Swapno Tech project. Do not connect or modify Swapno AI as a substitute.
+- Before backend work: identify/create the correct Swapno Tech Supabase project, confirm environments, schema, roles, RLS, storage and data ownership. Any paid project, schema migration or production integration requires explicit approval.
 
-## Phase 5 — Hosting MVP
-Verified plans, enquiries, manual coordination and status history.
+## Phase 6 — Quality assurance
+**Status: Build verified; full visual and device QA pending.**
+- Latest Vercel preview build completed successfully.
+- Latest measured build output: JS 186.01 kB (58.35 kB gzip); CSS 32.49 kB (7.65 kB gzip).
+- Responsive and reduced-motion rules are present in source.
+- Still required: real phone/desktop review, route and interaction checks, accessibility review, SEO metadata audit, media/network testing and browser console review.
 
-## Phase 6 — Swapno Founders MVP
-Application/approval, four groups, permissions, posts/comments, reports, moderation and privacy.
+## Phase 7 — Production readiness
+**Status: Not approved / not released.**
+- Confirm domain, contact channels, final legal copy, analytics/consent requirements, environment variables, security and backups.
+- Complete backend and operational readiness checks.
+- Run final staging review and obtain explicit owner approval before production deployment.
 
-## Phase 7 — Website Solution MVP
-Templates, guided setup, structured section editor, responsive preview, drafts, publishing and add-on requests.
+## Product MVP scope after the public site
+- **Website Solution:** templates, guided setup, structured section editor, responsive preview, drafts, safe publishing and add-on requests.
+- **Creator Platform:** profiles, portfolios, discovery/search, routed contact, moderation and server-side eligibility.
+- **Hosting:** verified provider plans, clear terms, enquiries and manual coordination.
+- **Swapno Founders:** application/approval, four groups, permissions, posts/comments, reports, moderation and privacy.
+- Advanced CV builder, reviewed AI writing, PDF export and expanded community features remain later enhancements.
 
-## Phase 8 — Advanced features
-Creator CV builder, reviewed AI writing, PDF export and advanced community features.
-
-## Phase 9 — Launch
-Functional, responsive, accessibility, SEO, security and performance verification; staging review, backup/recovery and explicit production approval.
-
-Approval required for major architecture changes, paid services, external integrations, security-sensitive changes, destructive actions, material database migrations and production releases.
+## Working rules
+- Preserve existing work and make small, testable changes.
+- Prefer existing subscriptions and lightweight dependencies.
+- Do not invent prices, clients, testimonials, team credentials, metrics or provider claims.
+- Do not expose secrets or service-role keys in browser code.
+- Ask before major architecture changes, paid services, external integrations, security-sensitive changes, destructive operations, material database migrations and production releases.
