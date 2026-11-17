@@ -88,21 +88,16 @@ function IntroGate() {
   const [visible,setVisible] = useState(false);
   useEffect(() => {
     if (window.location.pathname !== '/') return;
-    try { if (localStorage.getItem('swapno-intro-seen-v1') === '1') return; } catch {}
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      try { localStorage.setItem('swapno-intro-seen-v1','1'); } catch {}
-      return;
-    }
+    // Keep the intro visible on every homepage load while it is being tested.
+    // Do not use a first-visit localStorage flag: it can hide the intro after an
+    // interrupted preview or after a browser has cached an earlier attempt.
     setVisible(true);
-    const finish = () => {
-      try { localStorage.setItem('swapno-intro-seen-v1','1'); } catch {}
-      setVisible(false);
-    };
+    const finish = () => setVisible(false);
     const onMessage = event => {
       if (event.origin === window.location.origin && event.data?.type === 'SWAPNO_INTRO_DONE') finish();
     };
     window.addEventListener('message',onMessage);
-    const fallback = window.setTimeout(finish,9000);
+    const fallback = window.setTimeout(finish,15000);
     return () => { window.removeEventListener('message',onMessage); window.clearTimeout(fallback); };
   },[]);
   if (!visible) return null;
