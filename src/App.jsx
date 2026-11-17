@@ -92,13 +92,20 @@ function IntroGate() {
     // Do not use a first-visit localStorage flag: it can hide the intro after an
     // interrupted preview or after a browser has cached an earlier attempt.
     setVisible(true);
-    const finish = () => setVisible(false);
+    let finished = false;
+    let revealTimer;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      // Let the intro's final fade complete before revealing the homepage.
+      revealTimer = window.setTimeout(() => setVisible(false), 420);
+    };
     const onMessage = event => {
       if (event.origin === window.location.origin && event.data?.type === 'SWAPNO_INTRO_DONE') finish();
     };
     window.addEventListener('message',onMessage);
-    const fallback = window.setTimeout(finish,15000);
-    return () => { window.removeEventListener('message',onMessage); window.clearTimeout(fallback); };
+    const fallback = window.setTimeout(() => setVisible(false),15000);
+    return () => { window.removeEventListener('message',onMessage); window.clearTimeout(fallback); window.clearTimeout(revealTimer); };
   },[]);
   if (!visible) return null;
   return <div style={{position:'fixed',inset:0,zIndex:2000,background:'#050505'}}>
