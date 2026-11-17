@@ -85,7 +85,6 @@ async function start(){
  await new Promise(function(r){setTimeout(r,320)});
  finish();
 }
-if(matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return}
 var began=false;
 function begin(){if(began||done)return;began=true;var duration=pre.duration||6;pre.playbackRate=Math.max(1.8,duration/2.35);pre.play().catch(function(){});var startAt=performance.now();function count(){if(done)return;var p=Math.min(100,Math.round((performance.now()-startAt)/2350*100));progress.innerHTML=p+'<small>%</small>';if(p<100)requestAnimationFrame(count)}requestAnimationFrame(count);setTimeout(start,2450)}
 if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}
