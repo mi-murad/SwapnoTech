@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090807">
+<title>Swapno Tech — Introduction</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#050505;font-family:Arial,sans-serif}
+.stage{position:fixed;inset:0;overflow:hidden;background:#050505;color:#fff}
+.scene,.preloader{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scene{opacity:0;transition:opacity .3s ease}
+.scene.active{opacity:1}
+.preloader{z-index:5;transition:opacity .45s ease}
+.preloader.done{opacity:0;pointer-events:none}
+.portal{position:absolute;z-index:4;inset:0;width:100%;height:100%;pointer-events:none}
+.brand{position:absolute;z-index:8;left:50%;top:50%;transform:translate(-50%,-50%);color:white;font-weight:800;font-size:clamp(17px,2.2vw,22px);letter-spacing:.14em;white-space:nowrap;transition:left .72s cubic-bezier(.16,1,.3,1),top .72s cubic-bezier(.16,1,.3,1),transform .72s cubic-bezier(.16,1,.3,1);text-shadow:0 2px 20px #0008}
+.brand span{display:block;margin-top:5px;color:#ff7a00;font-size:9px;letter-spacing:.38em}
+.brand.docked{left:5vw;top:23px;transform:none}
+.skip{position:absolute;z-index:10;right:22px;top:20px;padding:10px 16px;border:1px solid #ffffff80;border-radius:999px;background:#09080770;color:#fff;backdrop-filter:blur(12px);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.skip:focus-visible{outline:2px solid #ff7a00;outline-offset:3px}
+.progress{position:absolute;z-index:7;left:50%;bottom:28px;transform:translateX(-50%);font-size:48px;font-weight:200;letter-spacing:-.06em;color:#fff}
+.progress small{font-size:18px;letter-spacing:0}
+.shade{position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(transparent 50%,#0008)}
+@media(max-width:640px){.skip{top:14px;right:14px;padding:9px 13px}.brand.docked{left:5vw;top:19px}}
+@media(prefers-reduced-motion:reduce){.scene,.preloader,.brand{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+<video class="scene active" id="mars" muted playsinline preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/3c83091e-4046-4fd6-adbb-2edb728be79a.mp4"></video>
+<video class="scene" id="earth" muted playsinline preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/fc3ded42-e845-41f3-a830-5cab512d79cd.mp4"></video>
+<video class="scene" id="venus" muted playsinline preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/b30f64d9-1637-477a-83df-d0fc6461a422.mp4"></video>
+<video class="preloader" id="preloader" muted playsinline preload="metadata" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/5fc5651c-3b5d-4171-b507-87f7e635d1b4.mp4"></video>
+<canvas class="portal" id="portal"></canvas>
+<div class="shade"></div>
+<div class="brand" id="brand">SWAPNO<span>TECH</span></div>
+<div class="progress" id="progress">0<small>%</small></div>
+<button class="skip" id="skip" type="button">Skip intro ↗</button>
+</div>
+<script>
+(function(){
+'use strict';
+var done=false,stage=document.getElementById('stage'),pre=document.getElementById('preloader'),brand=document.getElementById('brand'),progress=document.getElementById('progress'),canvas=document.getElementById('portal'),ctx=canvas.getContext('2d');
+var scenes=[document.getElementById('mars'),document.getElementById('earth'),document.getElementById('venus')],w=0,h=0,dpr=1,active=0,raf=0;
+function finish(){if(done)return;done=true;cancelAnimationFrame(raf);stage.style.transition='opacity .38s ease';stage.style.opacity='0';try{parent.postMessage({type:'SWAPNO_INTRO_DONE'},location.origin)}catch(e){}}
+document.getElementById('skip').addEventListener('click',finish);
+function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
+addEventListener('resize',resize);resize();
+function cover(video){var vw=video.videoWidth||w,vh=video.videoHeight||h,s=Math.max(w/vw,h/vh),dw=vw*s,dh=vh*s;ctx.drawImage(video,(w-dw)/2,(h-dh)/2,dw,dh)}
+function rounded(x,y,rw,rh,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+rw,y,x+rw,y+rh,r);ctx.arcTo(x+rw,y+rh,x,y+rh,r);ctx.arcTo(x,y+rh,x,y,r);ctx.arcTo(x,y,x+rw,y,r);ctx.closePath()}
+function portalTransition(nextIndex){
+ return new Promise(function(resolve){
+  var outgoing=scenes[active],incoming=scenes[nextIndex],start=performance.now(),duration=850,videoReady=false;
+  incoming.pause();incoming.currentTime=0;incoming.playbackRate=2.1;incoming.load();
+  var settle=setTimeout(function(){videoReady=true;incoming.play().catch(function(){});},120);
+  function frame(now){
+   if(done){clearTimeout(settle);resolve();return}
+   var t=Math.min(1,(now-start)/duration),e=1-Math.pow(1-t,3);
+   ctx.clearRect(0,0,w,h);
+   var rw=Math.min(330,w*.66),rh=Math.min(360,h*.58),x=(w-rw)/2,y=(h-rh)/2;
+   var cx=w/2,cy=h/2,ww=rw+(w-rw)*e,hh=rh+(h-rh)*e,xx=cx-ww/2,yy=cy-hh/2,rad=86*(1-e);
+   ctx.save();ctx.translate(cx,cy);ctx.rotate((1-e)*-.055);ctx.translate(-cx,-cy);
+   rounded(xx,yy,ww,hh,rad);ctx.clip();ctx.fillStyle='#050505';ctx.fillRect(0,0,w,h);
+   if(incoming.readyState>=2)cover(incoming);
+   ctx.restore();
+   if(t<1)requestAnimationFrame(frame);
+   else{outgoing.pause();outgoing.classList.remove('active');incoming.classList.add('active');active=nextIndex;canvas.style.opacity='0';setTimeout(function(){ctx.clearRect(0,0,w,h);canvas.style.opacity='1';resolve()},100)}
+  }
+  canvas.style.opacity='1';requestAnimationFrame(frame);
+ });
+}
+async function start(){
+ if(done)return;
+ pre.classList.add('done');brand.classList.add('docked');
+ scenes[0].play().catch(function(){});
+ await new Promise(function(r){setTimeout(r,220)});
+ await portalTransition(1);
+ if(done)return;
+ scenes[1].play().catch(function(){});
+ await new Promise(function(r){setTimeout(r,100)});
+ await portalTransition(2);
+ if(done)return;
+ scenes[2].play().catch(function(){});
+ await new Promise(function(r){setTimeout(r,320)});
+ finish();
+}
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return}
+var began=false;
+function begin(){if(began||done)return;began=true;var duration=pre.duration||6;pre.playbackRate=Math.max(1.8,duration/2.35);pre.play().catch(function(){});var startAt=performance.now();function count(){if(done)return;var p=Math.min(100,Math.round((performance.now()-startAt)/2350*100));progress.innerHTML=p+'<small>%</small>';if(p<100)requestAnimationFrame(count)}requestAnimationFrame(count);setTimeout(start,2450)}
+if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}
+setTimeout(finish,8200);
+})();
+</script>
+</body>
+</html>
