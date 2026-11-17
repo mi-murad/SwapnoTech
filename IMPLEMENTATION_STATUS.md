@@ -3,7 +3,7 @@
 Last updated: 17 November 2026  
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
-Preview: https://swapnotech-q7hsllobg-swapno3.vercel.app
+Preview: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Delivered in this build
 - Phase 2 cinematic intro integrated with first-visit handling, mobile fallback, skip, reduced-motion bypass and chapter labels.
@@ -14,7 +14,7 @@ Preview: https://swapnotech-q7hsllobg-swapno3.vercel.app
 - Added policy and community-guideline draft pages.
 - Added account access placeholders that explicitly remain inactive.
 - Contact form now validates and prepares/copies an enquiry draft; it does not submit to a server.
-- No new runtime dependencies added.
+- Added route-specific document titles and meta descriptions.\n- Completed day/night theme token and component contrast overrides, plus visible keyboard focus states.\n- No new runtime dependencies added.
 
 ## Verification completed
 - Vercel production-mode build completed successfully on the development branch.
