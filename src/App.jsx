@@ -84,6 +84,33 @@ function GenericPage({path}) {
 }
 function PageHero({eyebrow,title,desc}) { return <section className="page-hero"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{desc}</p><div className="page-hero-mark">S<span>.</span></div></section>; }
 function ProductStrip() { return <section className="section products-preview"><SectionHeading eyebrow="THE ECOSYSTEM" title="More ways to move forward."/><div className="product-grid">{products.map(p=><a href={p.href} className="product-card" key={p.number}><span className="product-no">{p.number}</span><h3>{p.name}</h3><p>{p.desc}</p><span className="card-link">Explore <Arrow diagonal/></span></a>)}</div></section>; }
+function IntroGate() {
+  const [visible,setVisible] = useState(false);
+  useEffect(() => {
+    if (window.location.pathname !== '/') return;
+    try { if (localStorage.getItem('swapno-intro-seen-v1') === '1') return; } catch {}
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      try { localStorage.setItem('swapno-intro-seen-v1','1'); } catch {}
+      return;
+    }
+    setVisible(true);
+    const finish = () => {
+      try { localStorage.setItem('swapno-intro-seen-v1','1'); } catch {}
+      setVisible(false);
+    };
+    const onMessage = event => {
+      if (event.origin === window.location.origin && event.data?.type === 'SWAPNO_INTRO_DONE') finish();
+    };
+    window.addEventListener('message',onMessage);
+    const fallback = window.setTimeout(finish,9000);
+    return () => { window.removeEventListener('message',onMessage); window.clearTimeout(fallback); };
+  },[]);
+  if (!visible) return null;
+  return <div style={{position:'fixed',inset:0,zIndex:2000,background:'#050505'}}>
+    <iframe title="Swapno Tech introduction" src="/intro.html" style={{width:'100%',height:'100%',border:0,display:'block'}} />
+  </div>;
+}
+
 export default function App() {
   const [theme,setTheme]=useState(()=>{try{return localStorage.getItem('swapno-theme')||'dark'}catch{return 'dark'}});
   const [lang,setLang]=useState('EN');
@@ -108,5 +135,5 @@ export default function App() {
     update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
     return ()=>{window.removeEventListener('scroll',update);window.removeEventListener('resize',update);};
   },[path]);
-  return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home/>:<GenericPage path={path}/>}<Footer/></div>;
+  return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><IntroGate/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home/>:<GenericPage path={path}/>}<Footer/></div>;
 }
