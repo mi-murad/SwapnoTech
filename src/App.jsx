@@ -164,7 +164,7 @@ export default function App() {
   const [lang,setLang]=useState('EN');
   const path=window.location.pathname.replace(/\/$/,'')||'/';
   useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);
-  useEffect(()=>{document.title=(pageCopy[path]?.[0]||'Build what comes next')+' — Swapno Tech';window.scrollTo(0,0)},[path]);
+  useEffect(()=>{const title=pageCopy[path]?.[0]||serviceDetails[path]?.[0]||articleDetails[path]?.[0]||'Build what comes next';const description=pageCopy[path]?.[1]||serviceDetails[path]?.[2]||articleDetails[path]?.[2]||'Swapno Tech — creative technology and digital business solutions.';document.title=title+' — Swapno Tech';document.documentElement.lang='en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path]);
   useEffect(()=>{
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero, .footer')];
