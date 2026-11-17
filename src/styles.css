@@ -263,3 +263,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  .story-step{opacity:1;transform:none}
  .apex-hero-copy *{animation:none!important}
 }
+
+
+/* Apex homepage motion alignment: parallax layers and responsive pointer depth. */
+.hero-art-core{
+  transform:translateZ(55px) rotate(8deg) rotateY(var(--tilt-x,0deg)) rotateX(var(--tilt-y,0deg));
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  will-change:transform;
+}
+@media(max-width:700px){
+  .hero-art-core{will-change:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  [data-motion-depth]{translate:none!important;will-change:auto!important}
+  .hero-art-core{transform:translateZ(0) rotate(8deg)!important;will-change:auto}
+}
