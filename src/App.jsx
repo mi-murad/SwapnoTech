@@ -121,7 +121,7 @@ export default function App() {
   useEffect(()=>{document.title=(pageCopy[path]?.[0]||'Build what comes next')+' — Swapno Tech';window.scrollTo(0,0)},[path]);
   useEffect(()=>{
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero')];
+    const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero, .footer')];
     if(reduce || !('IntersectionObserver' in window)){targets.forEach(el=>el.classList.add('is-visible'));return;}
     targets.forEach(el=>el.classList.add('reveal-ready'));
     const observer=new IntersectionObserver(entries=>{
@@ -136,6 +136,74 @@ export default function App() {
     const update=()=>{const max=document.documentElement.scrollHeight-window.innerHeight;bar.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';};
     update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
     return ()=>{window.removeEventListener('scroll',update);window.removeEventListener('resize',update);};
+  },[path]);
+  useEffect(()=>{
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce)return;
+    const depthRules=[
+      ['.intro-band p',0.075],['.intro-aside',0.04],['.section-heading',0.035],
+      ['.sphere',0.15],['.destination-card > div:last-child',0.035],
+      ['.work-visual .visual-shape',0.12],['.process-steps > div',0.045],
+      ['.product-icon',0.09],['.article-card h3',0.035],['.cta-orbit',0.12],
+      ['.page-hero-mark',0.04],['.product-detail-visual .product-orbit',0.12],
+      ['.detail-step',0.025],['.founder-groups article',0.025]
+    ];
+    const layers=[];
+    depthRules.forEach(([selector,depth])=>{
+      document.querySelectorAll(selector).forEach(el=>{
+        el.dataset.motionDepth=String(depth);
+        layers.push({el,depth});
+      });
+    });
+    let frame=0;
+    const paint=()=>{
+      frame=0;
+      const height=window.innerHeight||1;
+      layers.forEach(({el,depth})=>{
+        const rect=el.getBoundingClientRect();
+        if(rect.bottom < -120 || rect.top > height+120)return;
+        const offset=(rect.top+rect.height/2-height/2)/height;
+        const y=Math.max(-34,Math.min(34,-offset*depth*height));
+        el.style.setProperty('--motion-y',y.toFixed(1)+'px');
+      });
+    };
+    const requestPaint=()=>{if(!frame)frame=window.requestAnimationFrame(paint);};
+    requestPaint();
+    window.addEventListener('scroll',requestPaint,{passive:true});
+    window.addEventListener('resize',requestPaint);
+    const hero=document.querySelector('.hero');
+    const planet=document.querySelector('.planet-main');
+    const finePointer=window.matchMedia('(pointer:fine)').matches;
+    const onPointerMove=e=>{
+      if(!hero||!planet)return;
+      const rect=hero.getBoundingClientRect();
+      const x=(e.clientX-rect.left)/rect.width-.5;
+      const y=(e.clientY-rect.top)/rect.height-.5;
+      planet.style.setProperty('--tilt-x',(x*7).toFixed(2)+'deg');
+      planet.style.setProperty('--tilt-y',(-y*7).toFixed(2)+'deg');
+      hero.style.setProperty('--pointer-x',(x*12).toFixed(1)+'px');
+      hero.style.setProperty('--pointer-y',(y*12).toFixed(1)+'px');
+    };
+    const onPointerLeave=()=>{
+      if(!planet||!hero)return;
+      planet.style.setProperty('--tilt-x','0deg');
+      planet.style.setProperty('--tilt-y','0deg');
+      hero.style.setProperty('--pointer-x','0px');
+      hero.style.setProperty('--pointer-y','0px');
+    };
+    if(hero&&finePointer){
+      hero.addEventListener('pointermove',onPointerMove,{passive:true});
+      hero.addEventListener('pointerleave',onPointerLeave);
+    }
+    return ()=>{
+      window.removeEventListener('scroll',requestPaint);
+      window.removeEventListener('resize',requestPaint);
+      if(frame)window.cancelAnimationFrame(frame);
+      if(hero&&finePointer){
+        hero.removeEventListener('pointermove',onPointerMove);
+        hero.removeEventListener('pointerleave',onPointerLeave);
+      }
+    };
   },[path]);
   return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><IntroGate/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home/>:<GenericPage path={path}/>}<Footer/></div>;
 }
