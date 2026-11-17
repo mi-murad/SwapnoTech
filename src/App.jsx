@@ -265,12 +265,18 @@ export default function App() {
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(reduce)return;
     const depthRules=[
-      ['.intro-band p',0.075],['.intro-aside',0.04],['.section-heading',0.035],
-      ['.sphere',0.15],['.destination-card > div:last-child',0.035],
-      ['.work-visual .visual-shape',0.12],['.process-steps > div',0.045],
-      ['.product-icon',0.09],['.article-card h3',0.035],['.cta-orbit',0.12],
-      ['.page-hero-mark',0.04],['.product-detail-visual .product-orbit',0.12],
-      ['.detail-step',0.025],['.founder-groups article',0.025]
+      // Homepage layers: measured, subtle movement that follows the scroll.
+      ['.apex-hero-art',0.055],['.brand-story-grid h2',0.025],
+      ['.brand-story-grid > div',0.018],['.story-stage-art',0.045],
+      ['.story-art-ring',0.025],['.story-art-panel.panel-back',0.018],
+      ['.story-art-panel.panel-front',0.032],['.service-row h3',0.012],
+      ['.work-visual .visual-shape',0.065],['.process-steps > div',0.025],
+      ['.package-card',0.018],['.product-icon',0.035],
+      ['.team-story-mark',0.025],['.article-card h3',0.015],
+      ['.newsletter-story h2',0.02],['.cta-orbit',0.055],
+      // Shared detail-page depth.
+      ['.page-hero-mark',0.025],['.product-detail-visual .product-orbit',0.06],
+      ['.detail-step',0.015],['.founder-groups article',0.015]
     ];
     const layers=[];
     depthRules.forEach(([selector,depth])=>{
@@ -295,27 +301,27 @@ export default function App() {
     requestPaint();
     window.addEventListener('scroll',requestPaint,{passive:true});
     window.addEventListener('resize',requestPaint);
-    const hero=document.querySelector('.hero');
-    const planet=document.querySelector('.planet-main');
+    const hero=document.querySelector('.apex-hero');
+    const artwork=document.querySelector('.hero-art-frame');
     const finePointer=window.matchMedia('(pointer:fine)').matches;
     const onPointerMove=e=>{
-      if(!hero||!planet)return;
+      if(!hero||!artwork)return;
       const rect=hero.getBoundingClientRect();
       const x=(e.clientX-rect.left)/rect.width-.5;
       const y=(e.clientY-rect.top)/rect.height-.5;
-      planet.style.setProperty('--tilt-x',(x*7).toFixed(2)+'deg');
-      planet.style.setProperty('--tilt-y',(-y*7).toFixed(2)+'deg');
-      hero.style.setProperty('--pointer-x',(x*12).toFixed(1)+'px');
-      hero.style.setProperty('--pointer-y',(y*12).toFixed(1)+'px');
+      artwork.style.setProperty('--tilt-x',(x*5).toFixed(2)+'deg');
+      artwork.style.setProperty('--tilt-y',(-y*5).toFixed(2)+'deg');
+      hero.style.setProperty('--pointer-x',(x*9).toFixed(1)+'px');
+      hero.style.setProperty('--pointer-y',(y*9).toFixed(1)+'px');
     };
     const onPointerLeave=()=>{
-      if(!planet||!hero)return;
-      planet.style.setProperty('--tilt-x','0deg');
-      planet.style.setProperty('--tilt-y','0deg');
+      if(!artwork||!hero)return;
+      artwork.style.setProperty('--tilt-x','0deg');
+      artwork.style.setProperty('--tilt-y','0deg');
       hero.style.setProperty('--pointer-x','0px');
       hero.style.setProperty('--pointer-y','0px');
     };
-    if(hero&&finePointer){
+    if(hero&&artwork&&finePointer){
       hero.addEventListener('pointermove',onPointerMove,{passive:true});
       hero.addEventListener('pointerleave',onPointerLeave);
     }
@@ -323,7 +329,7 @@ export default function App() {
       window.removeEventListener('scroll',requestPaint);
       window.removeEventListener('resize',requestPaint);
       if(frame)window.cancelAnimationFrame(frame);
-      if(hero&&finePointer){
+      if(hero&&artwork&&finePointer){
         hero.removeEventListener('pointermove',onPointerMove);
         hero.removeEventListener('pointerleave',onPointerLeave);
       }
