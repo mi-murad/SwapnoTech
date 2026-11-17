@@ -50,7 +50,8 @@ document.getElementById('skip').addEventListener('click',finish);
 function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
 addEventListener('resize',resize);resize();
 function cover(video){var vw=video.videoWidth||w,vh=video.videoHeight||h,s=Math.max(w/vw,h/vh),dw=vw*s,dh=vh*s;ctx.drawImage(video,(w-dw)/2,(h-dh)/2,dw,dh)}
-function roundedRectPoints(w,h,r){r=Math.max(0,Math.min(r,w/2,h/2));var corners=[[w/2-r,-h/2+r,-Math.PI/2,0],[w/2-r,h/2-r,0,Math.PI/2],[-w/2+r,h/2-r,Math.PI/2,Math.PI],[-w/2+r,-h/2+r,Math.PI,Math.PI*1.5]],points=[];corners.forEach(function(c){for(var i=0;i<=10;i++){var a=c[2]+(c[3]-c[2])*i/10;points.push([c[0]+Math.cos(a)*r,c[1]+Math.sin(a)*r])}});return points}\nfunction rounded(x,y,rw,rh,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+rw,y,x+rw,y+rh,r);ctx.arcTo(x+rw,y+rh,x,y+rh,r);ctx.arcTo(x,y+rh,x,y,r);ctx.arcTo(x,y,x+rw,y,r);ctx.closePath()}
+function roundedRectPoints(w,h,r){r=Math.max(0,Math.min(r,w/2,h/2));var corners=[[w/2-r,-h/2+r,-Math.PI/2,0],[w/2-r,h/2-r,0,Math.PI/2],[-w/2+r,h/2-r,Math.PI/2,Math.PI],[-w/2+r,-h/2+r,Math.PI,Math.PI*1.5]],points=[];corners.forEach(function(c){for(var i=0;i<=10;i++){var a=c[2]+(c[3]-c[2])*i/10;points.push([c[0]+Math.cos(a)*r,c[1]+Math.sin(a)*r])}});return points}
+function rounded(x,y,rw,rh,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+rw,y,x+rw,y+rh,r);ctx.arcTo(x+rw,y+rh,x,y+rh,r);ctx.arcTo(x,y+rh,x,y,r);ctx.arcTo(x,y,x+rw,y,r);ctx.closePath()}
 function portalTransition(nextIndex){
  return new Promise(function(resolve){
   var outgoing=scenes[active],incoming=scenes[nextIndex],start=performance.now(),duration=850,videoReady=false;
