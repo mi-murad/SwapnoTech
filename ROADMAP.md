@@ -10,9 +10,12 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Target opening duration under 8.2 seconds; intro must never block access to the site.
 
 ## Phase 3 — Homepage storytelling
-**Status: Implemented in the current frontend; visual review pending.**
-- Intro-to-hero handoff and scroll storytelling.
-- Expertise destinations, service preview, portfolio category gallery, process, products, insights and collaboration model.
+**Status: First cinematic storytelling pass implemented; visual/device review pending.**
+- Mars/Earth/Venus narrative is confined to the intro; homepage no longer repeats planetary destinations or space imagery.
+- Rebuilt homepage hero with layered abstract composition, expressive typography and branded motion.
+- Added connected scroll story: Understand → Make → Move, with a sticky visual stage and active-step transitions.
+- Homepage sequence now includes identity, services, portfolio, process, packages, three products, team approach, insights, newsletter information and final CTA.
+- Apex Motion Studio is used as a motion/storytelling reference, not copied assets or layouts.
 - Portfolio categories: Case Studies, Video, Graphics & Posters, Branding, Websites & Technology.
 - Concept studies are clearly labelled; no invented client results or testimonials.
 
