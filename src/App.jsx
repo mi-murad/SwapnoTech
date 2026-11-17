@@ -302,7 +302,7 @@ export default function App() {
     window.addEventListener('scroll',requestPaint,{passive:true});
     window.addEventListener('resize',requestPaint);
     const hero=document.querySelector('.apex-hero');
-    const artwork=document.querySelector('.hero-art-frame');
+    const artwork=document.querySelector('.hero-art-core');
     const finePointer=window.matchMedia('(pointer:fine)').matches;
     const onPointerMove=e=>{
       if(!hero||!artwork)return;
