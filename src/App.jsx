@@ -90,5 +90,23 @@ export default function App() {
   const path=window.location.pathname.replace(/\/$/,'')||'/';
   useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);
   useEffect(()=>{document.title=(pageCopy[path]?.[0]||'Build what comes next')+' — Swapno Tech';window.scrollTo(0,0)},[path]);
-  return <div className="app-shell"><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home/>:<GenericPage path={path}/>}<Footer/></div>;
+  useEffect(()=>{
+    const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero')];
+    if(reduce || !('IntersectionObserver' in window)){targets.forEach(el=>el.classList.add('is-visible'));return;}
+    targets.forEach(el=>el.classList.add('reveal-ready'));
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});
+    },{threshold:0.12,rootMargin:'0px 0px -5% 0px'});
+    targets.forEach(el=>observer.observe(el));
+    return ()=>observer.disconnect();
+  },[path]);
+  useEffect(()=>{
+    const bar=document.querySelector('.scroll-progress');
+    if(!bar)return;
+    const update=()=>{const max=document.documentElement.scrollHeight-window.innerHeight;bar.style.transform='scaleX('+(max>0?window.scrollY/max:0)+')';};
+    update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
+    return ()=>{window.removeEventListener('scroll',update);window.removeEventListener('resize',update);};
+  },[path]);
+  return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home/>:<GenericPage path={path}/>}<Footer/></div>;
 }
