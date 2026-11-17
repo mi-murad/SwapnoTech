@@ -16,3 +16,31 @@
 @keyframes planet-breathe{from{filter:saturate(.88) brightness(.94)}to{filter:saturate(1.12) brightness(1.08)}}
 @keyframes orbit-drift{to{rotate:360deg}}
 @media(prefers-reduced-motion:reduce){.reveal-ready{opacity:1;transform:none;transition:none}.hero-art,.planet-main,.orbit-one,.orbit-two{animation:none}.scroll-progress{display:none}}
+
+
+/* Phase 2A — cinematic handoff and hero depth */
+.hero-content{animation:hero-copy-arrive .9s .12s cubic-bezier(.2,.7,.2,1) both}
+.hero-content .eyebrow{animation:hero-copy-arrive .7s .05s both}
+.hero-content h1{animation:hero-copy-arrive .9s .16s both}
+.hero-content .hero-copy{animation:hero-copy-arrive .9s .28s both}
+.hero-content .hero-actions{animation:hero-copy-arrive .9s .4s both}
+.hero-art{perspective:1100px;transform-style:preserve-3d}
+.hero-art:before{content:'';position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle,rgba(255,111,34,.16),rgba(255,111,34,.035) 42%,transparent 70%);filter:blur(18px);transform:translateZ(-35px) scale(1.12);pointer-events:none}
+.planet-main{transform:translateZ(24px);background:radial-gradient(circle at 29% 23%,#ffd19a 0,#e27a3f 12%,#9c421e 30%,#4b2118 55%,#161316 78%);box-shadow:inset -48px -32px 75px #050505,inset 12px 10px 28px rgba(255,223,183,.18),0 0 100px rgba(255,99,0,.18)}
+.planet-shade{background:radial-gradient(ellipse at 28% 24%,rgba(255,238,208,.22),transparent 28%),linear-gradient(115deg,transparent 24%,rgba(0,0,0,.12) 44%,rgba(0,0,0,.78) 88%)}
+.planet-ring{border-width:1px;box-shadow:0 0 18px rgba(255,178,112,.08)}
+.orbit-one{border-color:rgba(255,190,143,.17)}
+.orbit-two{border-color:rgba(255,255,255,.075)}
+.hero-grid{opacity:.72}
+.hero-foot{animation:hero-foot-arrive .8s .65s both}
+@keyframes hero-copy-arrive{from{opacity:0;transform:translate3d(0,22px,0);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+@keyframes hero-foot-arrive{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:760px){
+  .hero-content{max-width:100%}
+  .hero-art{transform:translateY(-50%) scale(.94);transform-origin:center}
+  .hero-art:before{inset:14%}
+  .planet-main{box-shadow:inset -35px -24px 55px #050505,inset 10px 8px 22px rgba(255,223,183,.14),0 0 65px rgba(255,99,0,.14)}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-content,.hero-content .eyebrow,.hero-content h1,.hero-content .hero-copy,.hero-content .hero-actions,.hero-foot{animation:none}
+}
