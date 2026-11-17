@@ -90,18 +90,96 @@ function WorkGallery({featured=false}) {
 }
 function CollaborationSection(){return <section className="section collaboration-section"><div className="section-split"><SectionHeading eyebrow="09 / HOW WE COLLABORATE" title="A team around the work." copy="The right people, skills and learning paths come together around each project—without pretending every project needs the same team."/></div><div className="collaboration-grid"><article><span>01 / ALIGN</span><h3>Shared direction</h3><p>Agree on the goal, audience, responsibilities and definition of done before production begins.</p></article><article><span>02 / CONTRIBUTE</span><h3>Skills in action</h3><p>Bring skilled contributors and learners into clearly scoped tasks with review and support.</p></article><article><span>03 / IMPROVE</span><h3>Learn as we build</h3><p>Review progress, share feedback and document what the next person needs to know.</p></article></div></section>}
 function Home() {
+  const [storyActive, setStoryActive] = useState(0);
+
+  useEffect(() => {
+    const steps = [...document.querySelectorAll('[data-story-step]')];
+    if (!steps.length || !('IntersectionObserver' in window)) return undefined;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setStoryActive(Number(entry.target.dataset.storyStep));
+      });
+    }, { rootMargin: '-38% 0px -38% 0px', threshold: 0 });
+    steps.forEach((step) => observer.observe(step));
+    return () => observer.disconnect();
+  }, []);
+
+  const story = [
+    { number: '01', title: 'See the possibility.', copy: 'Every meaningful project starts with a better question. We look at the business, the people it serves and the opportunity in front of it.', label: 'START WITH UNDERSTANDING', visual: 'DISCOVER' },
+    { number: '02', title: 'Make it tangible.', copy: 'Strategy becomes a clear direction. Creative ideas become a visual language. Technology becomes an experience people can actually use.', label: 'TURN THINKING INTO MAKING', visual: 'CREATE' },
+    { number: '03', title: 'Move it forward.', copy: 'The work connects across channels and touchpoints—so every part has a purpose and the next step feels clear.', label: 'BUILD MOMENTUM', visual: 'CONNECT' },
+  ];
+
   return <>
-    <section className="hero"><div className="hero-grid"></div><div className="hero-orbit orbit-one"></div><div className="hero-orbit orbit-two"></div><div className="hero-content"><div className="eyebrow eyebrow-line"><span></span> CREATIVE TECHNOLOGY · DIGITAL GROWTH</div><h1>Build what<br/>comes <em>next.</em></h1><p className="hero-copy">We turn possibilities into progress through creative thinking, digital experiences and technology that moves businesses forward.</p><div className="hero-actions"><a className="button button-orange" href="/contact">Start a conversation <Arrow diagonal/></a><a className="button button-ghost" href="/services">Explore what we do <Arrow/></a></div><div className="hero-foot"><span>INDEPENDENT CREATIVE & TECHNOLOGY PARTNER</span><span>SCROLL TO EXPLORE ↓</span></div></div><div className="hero-art" aria-hidden="true"><div className="planet planet-main"><div className="planet-shade"></div><div className="planet-ring"></div><div className="planet-glow"></div></div><div className="orbit-label label-top">IDEAS / 01</div><div className="orbit-label label-bottom">POSSIBILITY IN MOTION</div><div className="float-dot"></div></div></section>
-    <section className="intro-band"><span className="eyebrow">01 / THE BIGGER PICTURE</span><p>Good ideas deserve more than a launch.<br/><strong>They deserve a system to grow.</strong></p><span className="intro-aside">Strategy. Creativity. Technology.<br/>Connected by purpose.</span></section>
-    <section className="section destinations"><SectionHeading eyebrow="02 / OUR EXPERTISE" title="Three directions.<br/>One connected ambition." copy="From the first spark to the next stage of growth, we bring the right capabilities together."/><div className="destination-grid"><a href="/services" className="destination-card mars"><span className="destination-number">01 / CREATE</span><div className="sphere sphere-mars"></div><div><h3>Make it<br/><em>matter.</em></h3><p>Brand, content and creative experiences that make your business clear and memorable.</p><span className="card-link">Explore creative <Arrow diagonal/></span></div></a><a href="/products/website-solution" className="destination-card earth"><span className="destination-number">02 / BUILD</span><div className="sphere sphere-earth"></div><div><h3>Build for<br/><em>tomorrow.</em></h3><p>Websites, platforms and useful technology shaped around real business needs.</p><span className="card-link">Explore technology <Arrow diagonal/></span></div></a><a href="/services" className="destination-card venus"><span className="destination-number">03 / GROW</span><div className="sphere sphere-venus"></div><div><h3>Move with<br/><em>purpose.</em></h3><p>Research-led marketing and connected systems that support sustainable progress.</p><span className="card-link">Explore growth <Arrow diagonal/></span></div></a></div></section>
-    <section className="section services-preview"><div className="section-split"><SectionHeading eyebrow="03 / WHAT WE DO" title="A connected<br/>creative engine." copy="One partner across the work that makes a business more visible, useful and ready for what’s next."/><a className="text-link" href="/services">All services <Arrow diagonal/></a></div><div className="service-list">{services.map(([n,t,d])=><a href="/services" className="service-row" key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><Arrow diagonal/></a>)}</div></section>
-    <section className="section work-preview"><div className="section-split"><SectionHeading eyebrow="04 / SELECTED WORK" title="Ideas made visible." copy="Explore the kinds of work we create across identity, film, editorial design and digital experiences."/><a className="text-link" href="/portfolio">Explore the work <Arrow diagonal/></a></div><WorkGallery featured/></section>
-    <section className="process-band"><span className="eyebrow">05 / HOW WE MOVE</span><h2>Clarity before<br/><em>complexity.</em></h2><div className="process-steps"><div><b>01</b><h3>Understand</h3><p>Start with your goal, audience and the real challenge.</p></div><div><b>02</b><h3>Shape</h3><p>Turn insight into a focused direction and practical plan.</p></div><div><b>03</b><h3>Create</h3><p>Build, test and refine the experience with care.</p></div><div><b>04</b><h3>Move forward</h3><p>Launch with a clear next step and room to improve.</p></div></div></section>
-    <section className="section products-preview"><SectionHeading eyebrow="06 / THE SWAPNO ECOSYSTEM" title="Tools and connections<br/>for the next step." copy="A growing set of practical digital products—designed to work as part of a bigger journey."/><div className="product-grid">{products.map(p=><a href={p.href} className="product-card" key={p.number}><span className="product-no">{p.number}</span><span className="product-icon">{p.number==='01'?'⌘':p.number==='02'?'◈':'⌁'}</span><div><span className="eyebrow">{p.tag}</span><h3>{p.name}</h3><p>{p.desc}</p></div><span className="card-link">Discover product <Arrow diagonal/></span></a>)}</div></section>
-    <section className="section insight-preview"><div className="section-split"><SectionHeading eyebrow="08 / FIELD NOTES" title="Thoughts that move things forward."/><a className="text-link" href="/blog">All insights <Arrow diagonal/></a></div><div className="article-grid">{articles.map((a,i)=><a className="article-card" href={['/blog/clearer-digital-foundation','/blog/design-that-earns-attention','/blog/from-idea-to-useful-product'][i]} key={a[0]}><span className="article-index">0{i+1} / {a[1]}</span><h3>{a[0]}</h3><p>{a[2]}</p><span className="card-link">Read insight <Arrow diagonal/></span></a>)}</div></section>
-    <CollaborationSection/><section className="final-cta"><span className="eyebrow">HAVE A POSSIBILITY IN MIND?</span><h2>Let’s make<br/><em>it happen.</em></h2><a className="button button-orange" href="/contact">Start your project <Arrow diagonal/></a><span className="cta-orbit"></span></section>
+    <section className="apex-hero" id="top">
+      <div className="apex-hero-grid" aria-hidden="true" />
+      <div className="apex-hero-glow" aria-hidden="true" />
+      <div className="apex-hero-copy">
+        <span className="eyebrow eyebrow-line"><span /> INDEPENDENT CREATIVE & TECHNOLOGY PARTNER</span>
+        <h1>Possibilities<br />into <em>progress.</em></h1>
+        <p>We connect strategy, creative thinking and technology to help businesses build what comes next.</p>
+        <div className="hero-actions">
+          <a className="button button-orange" href="/contact">Start a project <Arrow diagonal /></a>
+          <a className="button button-ghost" href="#story">Explore our approach <Arrow /></a>
+        </div>
+      </div>
+      <div className="apex-hero-art" aria-hidden="true">
+        <div className="hero-art-frame"><div className="hero-art-core"><span>S</span><i>ST</i></div><div className="hero-art-ribbon ribbon-one" /><div className="hero-art-ribbon ribbon-two" /><div className="hero-art-orbit orbit-a" /><div className="hero-art-orbit orbit-b" /></div>
+        <span className="hero-art-note note-top">IDEAS / IN MOTION</span><span className="hero-art-note note-bottom">SWAPNO TECH — 2026</span>
+      </div>
+      <div className="apex-hero-footer"><span>STRATEGY / CREATIVE / TECHNOLOGY</span><a href="#story">SCROLL TO DISCOVER <b>↓</b></a></div>
+      <div className="apex-hero-index">01 <i /> 04</div>
+    </section>
+
+    <section className="brand-story section" id="about">
+      <div className="brand-story-top"><span className="eyebrow">01 / THE SWAPNO APPROACH</span><span className="brand-story-side">ONE CONNECTED TEAM<br />FOR THE WHOLE PICTURE</span></div>
+      <div className="brand-story-grid">
+        <h2>Good work<br />starts with <em>clarity.</em></h2>
+        <div><p className="brand-story-lead">Growing a business takes more than a good-looking post or a website on its own.</p><p>It takes a clear offer, a recognisable brand, useful content, thoughtful marketing and digital tools that work together. Swapno Tech brings those capabilities into one connected process—from the first conversation to the work people see and use.</p><a className="text-link" href="/about">Discover Swapno Tech <Arrow diagonal /></a></div>
+      </div>
+      <div className="brand-story-ribbon"><span>STRATEGY BEFORE OUTPUT</span><i /><span>CREATIVE WITH CONTEXT</span><i /><span>TECHNOLOGY WITH PURPOSE</span></div>
+    </section>
+
+    <section className="story-section" id="story" data-active={storyActive}>
+      <div className="story-stage-wrap">
+        <div className="story-stage">
+          <div className="story-stage-grid" />
+          <div className="story-stage-art">
+            <div className="story-art-ring ring-one" /><div className="story-art-ring ring-two" />
+            <div className="story-art-panel panel-back" /><div className="story-art-panel panel-front" />
+            <div className="story-art-word">{story[storyActive].visual}</div>
+            <span className="story-art-index">0{storyActive + 1} — 03</span>
+          </div>
+          <div className="story-stage-caption"><span>THE SWAPNO METHOD</span><b>THINK / MAKE / MOVE</b></div>
+        </div>
+      </div>
+      <div className="story-steps">
+        <div className="story-intro"><span className="eyebrow">02 / A CONNECTED WAY OF WORKING</span><h2>From first thought<br />to <em>real momentum.</em></h2><p>Different disciplines. One shared direction. Follow the thinking behind the work.</p></div>
+        {story.map((item, index) => <article className={'story-step' + (storyActive === index ? ' is-active' : '')} data-story-step={index} key={item.number}>
+          <span className="story-step-number">{item.number} / {item.label}</span><h3>{item.title}</h3><p>{item.copy}</p><span className="story-step-line"><i /></span>
+        </article>)}
+      </div>
+    </section>
+
+    <section className="section services-preview" id="services"><div className="section-split"><SectionHeading eyebrow="03 / WHAT WE DO" title="A connected<br/>creative engine." copy="Choose the capability you need, or bring us the bigger challenge. We’ll shape the right combination of creative and technology work."/><a className="text-link" href="/services">All services <Arrow diagonal /></a></div><div className="service-list">{services.map(([n,t,d])=><a href="/services" className="service-row" key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p><Arrow diagonal /></a>)}</div></section>
+
+    <section className="section work-preview" id="work"><div className="section-split"><SectionHeading eyebrow="04 / SELECTED WORK" title="Work made<br/><em>with intent.</em>" copy="A growing collection of brand, content and digital explorations. Published case studies will include verified project context and outcomes."/><a className="text-link" href="/portfolio">Explore the work <Arrow diagonal /></a></div><WorkGallery featured /></section>
+
+    <section className="process-band" id="process"><div className="process-band-inner"><span className="eyebrow">05 / HOW WE WORK</span><div className="process-heading"><h2>Clear thinking.<br/><em>Thoughtful making.</em></h2><p>You know what we’re solving, what we’re making and what needs your review before work moves forward.</p></div><div className="process-steps"><div><b>01</b><h3>Understand</h3><p>Learn the business, audience, challenge and desired outcome.</p></div><div><b>02</b><h3>Shape</h3><p>Research the brief, agree priorities and set a focused direction.</p></div><div><b>03</b><h3>Create</h3><p>Build, test and refine the approved creative or digital experience.</p></div><div><b>04</b><h3>Improve</h3><p>Review together, learn from the work and define the next step.</p></div></div></div></section>
+
+    <section className="section packages-preview" id="packages"><div className="section-split"><SectionHeading eyebrow="06 / WAYS TO WORK TOGETHER" title="Start where<br/><em>you are.</em>" copy="Not every business needs everything at once. Start with the work that matters now, then build from there."/><a className="text-link" href="/packages">Explore packages <Arrow diagonal /></a></div><div className="package-grid">{[['01','Essentials','A focused starting point','One important business need, clearly scoped.'],['02','Growth','A connected monthly rhythm','Ongoing creative and digital support around agreed priorities.'],['03','Custom','Built around your brief','A tailored combination of strategy, production and technology.']].map((p)=><article className="package-card" key={p[0]}><span className="eyebrow">OPTION {p[0]}</span><h3>{p[1]}</h3><h4>{p[2]}</h4><p>{p[3]}</p><a className="text-link" href="/packages">Explore option <Arrow diagonal /></a></article>)}</div></section>
+
+    <section className="section products-preview" id="products"><SectionHeading eyebrow="07 / THE SWAPNO ECOSYSTEM" title="Useful tools.<br/><em>Better connections.</em>" copy="Alongside agency services, Swapno is building three core products to make digital business, creative discovery and getting online more accessible."/><div className="product-grid">{products.map(p=><a href={p.href} className="product-card" key={p.number}><span className="product-no">{p.number}</span><span className="product-icon">{p.number==='01'?'⌘':p.number==='02'?'◈':'⌁'}</span><div><span className="eyebrow">{p.tag}</span><h3>{p.name}</h3><p>{p.desc}</p></div><span className="card-link">Discover product <Arrow diagonal /></span></a>)}</div></section>
+
+    <section className="team-story section" id="team"><div><span className="eyebrow">08 / THE PEOPLE BEHIND THE WORK</span><h2>Good work is<br/>made <em>together.</em></h2></div><div className="team-story-copy"><p>Swapno is built around skilled contributors and people learning through real work. We value shared responsibility, practical learning and clear communication—not a distant hand-off between departments.</p><a className="text-link" href="/about">How our team works <Arrow diagonal /></a></div><div className="team-story-mark" aria-hidden="true">S<span>.</span></div></section>
+
+    <section className="section insight-preview" id="insights"><div className="section-split"><SectionHeading eyebrow="09 / INSIGHTS & IDEAS" title="Keep learning.<br/><em>Keep moving.</em>" copy="Practical thinking on brand, content, marketing and digital systems—grounded in the questions businesses face while growing."/><a className="text-link" href="/blog">All insights <Arrow diagonal /></a></div><div className="article-grid">{articles.map((a,i)=><a className="article-card" href={['/blog/clearer-digital-foundation','/blog/design-that-earns-attention','/blog/from-idea-to-useful-product'][i]} key={a[0]}><span className="article-index">0{i+1} / {a[1]}</span><h3>{a[0]}</h3><p>{a[2]}</p><span className="card-link">Read insight <Arrow diagonal /></span></a>)}</div></section>
+
+    <section className="newsletter-story"><div><span className="eyebrow">10 / NOTES FROM SWAPNO</span><h2>Ideas worth<br/><em>keeping close.</em></h2></div><p>Occasional notes on creative work, business and useful technology. Our newsletter is being prepared; in the meantime, explore the latest insights.</p><a className="button button-ghost" href="/blog">Explore insights <Arrow diagonal /></a></section>
+    <section className="final-cta"><span className="eyebrow">11 / HAVE SOMETHING IN MIND?</span><h2>Let’s make<br/><em>it matter.</em></h2><p>Tell us what you’re building, what needs to change or where you want to go next. We’ll find a practical way to begin.</p><a className="button button-orange" href="/contact">Start a conversation <Arrow diagonal /></a><span className="cta-orbit" /></section>
   </>;
 }
+
 function GenericPage({path}) {
   const [title,desc]=pageCopy[path]||['Page coming into focus','We are shaping this experience with the same care as the rest of the Swapno ecosystem.'];
   const [sent,setSent]=useState(''); const [draft,setDraft]=useState('');
