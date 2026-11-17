@@ -22,6 +22,7 @@
 .progress{position:absolute;z-index:7;left:50%;bottom:28px;transform:translateX(-50%);font-size:48px;font-weight:200;letter-spacing:-.06em;color:#fff}
 .progress small{font-size:18px;letter-spacing:0}
 .shade{position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(transparent 50%,#0008)}
+.scene-caption{position:absolute;z-index:7;left:50%;bottom:clamp(76px,11vh,112px);transform:translateX(-50%);width:min(560px,86vw);text-align:center;text-shadow:0 2px 22px #000;opacity:0;transition:opacity .45s ease;pointer-events:none}.scene-caption.visible{opacity:1}.scene-caption small{display:block;color:#ffb36f;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px}.scene-caption strong{display:block;font-size:clamp(20px,3.2vw,34px);font-weight:600;letter-spacing:-.035em}.stage.mobile-mode{background:radial-gradient(ellipse at 50% 44%,#743b20 0%,#21130f 34%,#050505 74%)}.stage.mobile-mode .scene,.stage.mobile-mode .preloader,.stage.mobile-mode .portal{display:none}.stage.mobile-mode .brand{font-size:clamp(20px,6vw,28px)}.stage.mobile-mode .brand span{font-size:10px}.stage.mobile-mode .progress{display:none}.stage.mobile-mode .scene-caption{bottom:calc(50% - 94px);opacity:1}.stage.mobile-mode .brand{top:50%;}
 @media(max-width:640px){.skip{top:14px;right:14px;padding:9px 13px}.brand.docked{left:5vw;top:19px}}
 @media(prefers-reduced-motion:reduce){.scene,.preloader,.brand{transition:none!important}}
 </style>
@@ -34,6 +35,7 @@
 <video class="preloader" id="preloader" muted playsinline preload="metadata" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/5fc5651c-3b5d-4171-b507-87f7e635d1b4.mp4"></video>
 <canvas class="portal" id="portal"></canvas>
 <div class="shade"></div>
+<div class="scene-caption" id="sceneCaption" aria-live="polite"><small id="sceneKicker">CREATIVE / 01</small><strong id="sceneTitle">Make it matter.</strong></div>
 <div class="brand" id="brand">SWAPNO<span>TECH</span></div>
 <div class="progress" id="progress">0<small>%</small></div>
 <button class="skip" id="skip" type="button">Skip intro ↗</button>
@@ -41,7 +43,7 @@
 <script>
 (function(){
 'use strict';
-var done=false,stage=document.getElementById('stage'),pre=document.getElementById('preloader'),brand=document.getElementById('brand'),progress=document.getElementById('progress'),canvas=document.getElementById('portal'),ctx=canvas.getContext('2d');
+var done=false,stage=document.getElementById('stage'),pre=document.getElementById('preloader'),brand=document.getElementById('brand'),progress=document.getElementById('progress'),caption=document.getElementById('sceneCaption'),captionKicker=document.getElementById('sceneKicker'),captionTitle=document.getElementById('sceneTitle'),canvas=document.getElementById('portal'),ctx=canvas.getContext('2d');
 var scenes=[document.getElementById('mars'),document.getElementById('earth'),document.getElementById('venus')],w=0,h=0,dpr=1,active=0,raf=0;
 function finish(){if(done)return;done=true;cancelAnimationFrame(raf);stage.style.transition='opacity .38s ease';stage.style.opacity='0';try{parent.postMessage({type:'SWAPNO_INTRO_DONE'},location.origin)}catch(e){}}
 document.getElementById('skip').addEventListener('click',finish);
@@ -70,24 +72,29 @@ function portalTransition(nextIndex){
   canvas.style.opacity='1';requestAnimationFrame(frame);
  });
 }
+function setChapter(index){var chapters=[['CREATIVE / 01','Make it matter.'],['TECHNOLOGY / 02','Build for tomorrow.'],['GROWTH / 03','Move with purpose.']];var item=chapters[index]||chapters[0];captionKicker.textContent=item[0];captionTitle.textContent=item[1];caption.classList.add('visible');}
 async function start(){
  if(done)return;
- pre.classList.add('done');brand.classList.add('docked');
+ pre.classList.add('done');brand.classList.add('docked');setChapter(0);
  scenes[0].play().catch(function(){});
  await new Promise(function(r){setTimeout(r,220)});
  await portalTransition(1);
  if(done)return;
- scenes[1].play().catch(function(){});
+ setChapter(1);scenes[1].play().catch(function(){});
  await new Promise(function(r){setTimeout(r,100)});
  await portalTransition(2);
  if(done)return;
- scenes[2].play().catch(function(){});
+ setChapter(2);scenes[2].play().catch(function(){});
  await new Promise(function(r){setTimeout(r,320)});
  finish();
 }
 var began=false;
 function begin(){if(began||done)return;began=true;var duration=pre.duration||6;pre.playbackRate=Math.max(1.8,duration/2.35);pre.play().catch(function(){});var startAt=performance.now();function count(){if(done)return;var p=Math.min(100,Math.round((performance.now()-startAt)/2350*100));progress.innerHTML=p+'<small>%</small>';if(p<100)requestAnimationFrame(count)}requestAnimationFrame(count);setTimeout(start,2450)}
-if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}
+var isSmall=window.matchMedia('(max-width: 760px)').matches;
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduced){finish();return;}
+if(isSmall){stage.classList.add('mobile-mode');caption.classList.add('visible');captionKicker.textContent='CREATIVE TECHNOLOGY';captionTitle.textContent='Possibilities into progress.';setTimeout(function(){brand.classList.add('docked');},180);setTimeout(finish,2100);}
+else{if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}}
 setTimeout(finish,8200);
 })();
 </script>
