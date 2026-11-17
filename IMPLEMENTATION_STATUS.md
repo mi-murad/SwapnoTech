@@ -6,6 +6,10 @@ Working branch: `swapnotech-site-build`
 Preview: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Delivered in this build
+- Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
+- Added responsive abstract 3D-style composition, sticky scroll-story stage, active-step transitions and reduced-motion fallbacks.
+- Added homepage packages, team story and newsletter-information sections while retaining existing service, work and product components.
+- Added the missing `WEBSITE_SPEC.md` to this branch and updated it to state that planetary imagery is intro-only.
 - Phase 2 cinematic intro integrated with first-visit handling, mobile fallback, skip, reduced-motion bypass and chapter labels.
 - Homepage work gallery with interactive category filters.
 - Added collaboration/process section without inventing team identities.
@@ -17,10 +21,14 @@ Preview: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 - Added route-specific document titles and meta descriptions.\n- Completed day/night theme token and component contrast overrides, plus visible keyboard focus states.\n- No new runtime dependencies added.
 
 ## Verification completed
+- Vercel preview deployment for homepage code commit `0784fc4` reached READY.
+- Vercel build log confirms `vite build` succeeded: 27 modules transformed; JS 190.33 kB (59.51 kB gzip), CSS 48.46 kB (10.65 kB gzip), HTML 0.88 kB.
+- Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
 - Vercel production-mode build completed successfully on the development branch.
 - Latest deployment state: READY.
 - Vite output: 186.01 kB JavaScript (58.35 kB gzip), 32.49 kB CSS (7.65 kB gzip), HTML 0.88 kB.
 - Reduced-motion and responsive CSS rules are present.
+- Browser-based visual, interaction and physical-device checks have not yet been completed in this session.
 - No production deployment was made.
 
 ## Known blockers and limitations
