@@ -175,7 +175,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .brand-story-ribbon{display:flex;align-items:center;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:8px;letter-spacing:.16em}
 .brand-story-ribbon i{width:4px;height:4px;border-radius:50%;background:var(--orange)}
 .story-section{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:7%;padding:0 9% 100px;position:relative;background:var(--panel);border-block:1px solid var(--line)}
-.story-stage-wrap{position:relative;min-width:0}
+.story-stage-wrap{position:relative;min-width:0;height:calc(62vh + 3 * 66vh)}
 .story-stage{position:sticky;top:100px;height:min(680px,calc(100svh - 140px));min-height:440px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .story-stage-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:42px 42px;mask-image:radial-gradient(ellipse,black,transparent 78%)}
 .story-stage-art{position:relative;width:min(82%,520px);aspect-ratio:1;perspective:900px;transform-style:preserve-3d}
@@ -242,7 +242,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
  .brand-story-grid{grid-template-columns:1fr;gap:28px;padding:45px 0}.brand-story-grid h2{font-size:clamp(48px,13vw,72px)}.brand-story-side{font-size:7px}
  .brand-story-ribbon{flex-wrap:wrap;justify-content:flex-start;row-gap:12px;font-size:7px}.brand-story-ribbon i{margin-inline:4px}
  .story-section{display:block;padding:0 6% 65px}
- .story-stage-wrap{height:54svh;min-height:360px}
+ .story-stage-wrap{height:calc(48vh + 3 * 48vh);min-height:0}
  .story-stage{position:sticky;top:70px;height:calc(54svh - 12px);min-height:340px}
  .story-stage-art{width:min(75%,330px)}
  .story-steps{padding-top:20px}
