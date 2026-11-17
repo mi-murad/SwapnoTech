@@ -3,11 +3,14 @@
 Last updated: 17 November 2026  
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
-Preview: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
+Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
+Latest verified deployment: https://swapnotech-gfhvpr3u5-swapno3.vercel.app
 
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
 - Added responsive abstract 3D-style composition, sticky scroll-story stage, active-step transitions and reduced-motion fallbacks.
+- Refined the homepage parallax map to target the actual Apex-inspired hero, brand story, sticky story stage, service rows, work visuals, process, packages, team, insights and CTA layers.
+- Repaired desktop pointer response: it now targets the live abstract hero artwork core rather than legacy `.hero` / `.planet-main` selectors that are not present in the Apex homepage.
 - Added homepage packages, team story and newsletter-information sections while retaining existing service, work and product components.
 - Added the missing `WEBSITE_SPEC.md` to this branch and updated it to state that planetary imagery is intro-only.
 - Phase 2 cinematic intro integrated with first-visit handling, mobile fallback, skip, reduced-motion bypass and chapter labels.
@@ -21,8 +24,9 @@ Preview: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 - Added route-specific document titles and meta descriptions.\n- Completed day/night theme token and component contrast overrides, plus visible keyboard focus states.\n- No new runtime dependencies added.
 
 ## Verification completed
-- Vercel preview deployment for homepage code commit `0784fc4` reached READY.
-- Vercel build log confirms `vite build` succeeded: 27 modules transformed; JS 190.33 kB (59.51 kB gzip), CSS 48.46 kB (10.65 kB gzip), HTML 0.88 kB.
+- Latest Vercel preview deployment for commit `c0aa6dbac7faaa54b1fedc5ed6c87f959847fbec` reached READY.
+- Vercel build log confirms `vite build` succeeded: 27 modules transformed; JS 190.53 kB (59.53 kB gzip), CSS 48.89 kB (10.70 kB gzip), HTML 0.88 kB.
+- No new runtime dependencies or backend/external integrations were added.
 - Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
 - Vercel production-mode build completed successfully on the development branch.
 - Latest deployment state: READY.
