@@ -44,3 +44,62 @@
 @media(prefers-reduced-motion:reduce){
   .hero-content,.hero-content .eyebrow,.hero-content h1,.hero-content .hero-copy,.hero-content .hero-actions,.hero-foot{animation:none}
 }
+
+
+/* Phase 2B — shared cinematic motion system */
+.reveal-ready{
+  opacity:0;
+  transform:translate3d(0,34px,0) scale(.988);
+  filter:blur(5px);
+  transition:opacity .9s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1),filter .9s cubic-bezier(.19,1,.22,1);
+}
+.reveal-ready.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}
+.section,.intro-band,.process-band,.final-cta,.page-hero,.footer{isolation:isolate}
+.section:before,.intro-band:before,.process-band:before,.final-cta:before,.page-hero:before{
+  transition:opacity .9s ease,transform 1.2s cubic-bezier(.19,1,.22,1);
+}
+[data-motion-depth]{translate:0 var(--motion-y,0px);will-change:translate}
+.destination-card,.work-card,.product-card,.article-card,.process-steps>div,.package-card,.founder-groups article{
+  transition:transform .65s cubic-bezier(.2,.7,.2,1),border-color .4s,opacity .7s cubic-bezier(.2,.7,.2,1);
+}
+.reveal-ready .destination-card,.reveal-ready .work-card,.reveal-ready .product-card,.reveal-ready .article-card,.reveal-ready .process-steps>div{
+  opacity:0;transform:translate3d(0,26px,0);
+}
+.reveal-ready.is-visible .destination-card,.reveal-ready.is-visible .work-card,.reveal-ready.is-visible .product-card,.reveal-ready.is-visible .article-card,.reveal-ready.is-visible .process-steps>div{
+  opacity:1;transform:translate3d(0,0,0);
+}
+.reveal-ready.is-visible .destination-card:nth-child(2),.reveal-ready.is-visible .work-card:nth-child(2),.reveal-ready.is-visible .product-card:nth-child(2),.reveal-ready.is-visible .article-card:nth-child(2),.reveal-ready.is-visible .process-steps>div:nth-child(2){transition-delay:.1s}
+.reveal-ready.is-visible .destination-card:nth-child(3),.reveal-ready.is-visible .work-card:nth-child(3),.reveal-ready.is-visible .product-card:nth-child(3),.reveal-ready.is-visible .article-card:nth-child(3),.reveal-ready.is-visible .process-steps>div:nth-child(3){transition-delay:.18s}
+.reveal-ready.is-visible .process-steps>div:nth-child(4){transition-delay:.25s}
+.hero{--pointer-x:0px;--pointer-y:0px}
+.hero-art{translate:var(--pointer-x) var(--pointer-y)}
+.planet-main{
+  transform:translateZ(24px) rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg));
+  transition:transform .45s cubic-bezier(.2,.7,.2,1),filter 1s ease;
+  transform-style:preserve-3d;
+}
+.sphere,.visual-shape,.product-orbit,.cta-orbit{transform-style:preserve-3d;backface-visibility:hidden}
+.destination-card .sphere{transition:filter .7s ease,scale .8s cubic-bezier(.2,.7,.2,1)}
+.destination-card:hover .sphere{scale:1.07;filter:saturate(1.12) brightness(1.08)}
+.work-card .work-visual{perspective:900px}
+.work-card .visual-shape{transition:transform .8s cubic-bezier(.2,.7,.2,1),box-shadow .8s ease}
+.work-card:hover .visual-shape{transform:rotateY(-12deg) rotateX(7deg) scale(1.045);box-shadow:0 35px 90px rgba(0,0,0,.48)}
+.product-card:hover .product-icon{transform:translate3d(0,-5px,0) rotate(-7deg);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.service-row{position:relative}
+.service-row:after{content:'';position:absolute;left:0;bottom:-1px;width:100%;height:1px;background:linear-gradient(90deg,var(--orange),transparent 75%);transform:scaleX(0);transform-origin:left;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+.service-row:hover:after{transform:scaleX(1)}
+.footer{position:relative}
+@media(max-width:760px){
+  [data-motion-depth]{translate:0 calc(var(--motion-y,0px)*.55);will-change:auto}
+  .hero-art{translate:var(--pointer-x,0px) var(--pointer-y,0px)}
+  .planet-main{transform:translateZ(0) rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg))}
+  .reveal-ready{filter:none;transform:translate3d(0,20px,0)}
+  .reveal-ready.is-visible{transform:none}
+  .reveal-ready .destination-card,.reveal-ready .work-card,.reveal-ready .product-card,.reveal-ready .article-card,.reveal-ready .process-steps>div{transform:translate3d(0,14px,0)}
+  .reveal-ready.is-visible .destination-card,.reveal-ready.is-visible .work-card,.reveal-ready.is-visible .product-card,.reveal-ready.is-visible .article-card,.reveal-ready.is-visible .process-steps>div{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal-ready,.reveal-ready.is-visible,.reveal-ready .destination-card,.reveal-ready .work-card,.reveal-ready .product-card,.reveal-ready .article-card,.reveal-ready .process-steps>div{opacity:1;filter:none;transform:none;transition:none}
+  [data-motion-depth]{translate:none;will-change:auto}
+  .planet-main{transform:none;transition:none}
+}
