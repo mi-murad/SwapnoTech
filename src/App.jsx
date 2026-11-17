@@ -88,31 +88,38 @@ function IntroGate() {
   const [visible,setVisible] = useState(false);
   useEffect(() => {
     if (window.location.pathname !== '/') return;
-    // Keep the intro visible on every homepage load while it is being tested.
-    // Do not use a first-visit localStorage flag: it can hide the intro after an
-    // interrupted preview or after a browser has cached an earlier attempt.
+    const forcePreview = new URLSearchParams(window.location.search).get('intro') === '1';
+    const storageKey = 'swapno-intro-seen-v1';
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) return;
+    try {
+      if (!forcePreview && window.localStorage.getItem(storageKey) === '1') return;
+    } catch {}
     setVisible(true);
     let finished = false;
     let revealTimer;
     const finish = () => {
       if (finished) return;
       finished = true;
-      // Let the intro's final fade complete before revealing the homepage.
+      try { window.localStorage.setItem(storageKey,'1'); } catch {}
       revealTimer = window.setTimeout(() => setVisible(false), 420);
     };
     const onMessage = event => {
       if (event.origin === window.location.origin && event.data?.type === 'SWAPNO_INTRO_DONE') finish();
     };
     window.addEventListener('message',onMessage);
-    const fallback = window.setTimeout(() => setVisible(false),15000);
-    return () => { window.removeEventListener('message',onMessage); window.clearTimeout(fallback); window.clearTimeout(revealTimer); };
+    const fallback = window.setTimeout(finish,9000);
+    return () => {
+      window.removeEventListener('message',onMessage);
+      window.clearTimeout(fallback);
+      window.clearTimeout(revealTimer);
+    };
   },[]);
   if (!visible) return null;
   return <div style={{position:'fixed',inset:0,zIndex:2000,background:'#050505'}}>
-    <iframe title="Swapno Tech introduction" src="/intro.html" style={{width:'100%',height:'100%',border:0,display:'block'}} />
+    <iframe title="Swapno Tech cinematic introduction" src="/intro.html" style={{width:'100%',height:'100%',border:0,display:'block'}} />
   </div>;
 }
-
 export default function App() {
   const [theme,setTheme]=useState(()=>{try{return localStorage.getItem('swapno-theme')||'dark'}catch{return 'dark'}});
   const [lang,setLang]=useState('EN');
