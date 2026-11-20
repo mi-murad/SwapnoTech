@@ -1,29 +1,44 @@
 # Design System & References
 
 ## Primary reference
-Apex Motions Studio — https://www.apexmotions.studio/ — closest overall match for cinematic storytelling, hero, transitions, 3D portfolio and integrated motion.
+Apex Motion Studio — https://www.apexmotions.studio/ — reference for cinematic storytelling, integrated motion, scroll-aligned transitions, 3D depth and clear editorial hierarchy. Study its principles; do not copy its brand, exact layouts or assets.
 
-## Approved supporting references
+## Supporting references
 Locomotive https://locomotive.ca/; Active Theory https://activetheory.net/; Resn https://resn.co.nz/; Unseen Studio https://unseen.co/; Fantik Studio https://fantik.studio/; Contra https://contra.com/; Behance https://www.behance.net/; Shopify https://www.shopify.com/; Apple https://www.apple.com/; Awwwards https://www.awwwards.com/; Dribbble https://dribbble.com/.
 Use for study, not direct copying.
 
-## Brand
+## Brand identity
 Canva source: https://www.canva.com/d/vybbw3TXrdHsiyx
-Use latest official logo artwork. Never redraw, stretch, rotate or recolour. Known colours: #FFF7CE warm light and #FF6300 orange. Verify variants, clear space and typography from the brand source.
+Use the latest official logo artwork. Never redraw, stretch, rotate or recolour the official logo. The official brand identity remains authoritative for logo usage; the website interface has its own approved UI palette below.
 
-## Visual language
-Futuristic, premium, minimal and human. Complete day/night themes. Strong display typography and legible body text. Structured grids, consistent alignment and negative space. Selective glass surfaces, orange for meaningful emphasis. Realistic futuristic mascot used selectively, not constantly. Each theme needs its own surfaces, borders, shadows, contrast and focus states.
+## Approved website palette
+**Graphite / Porcelain / Signal Orange** is the approved website UI direction. It replaces the previous cream-heavy website surfaces while retaining orange as a restrained brand accent.
+
+| Token | Dark theme | Light theme |
+|---|---|---|
+| Background | `#0B0F14` | `#F4F6F8` |
+| Surface | `#151C24` | `#FFFFFF` |
+| Raised surface | `#202A35` | `#E8EDF2` |
+| Text | `#F4F6F8` | `#111820` |
+| Muted text | `#AAB4C0` | `#56616D` |
+| Accent | `#FF6300` | `#FF6300` |
+| Soft neutral | `#E8EDF2` | `#E8EDF2` |
+
+Orange is reserved for primary actions, active states, focus accents and small details. Avoid large cream blocks, excessive gradients and orange-heavy backgrounds. Both themes must preserve readable contrast, visible focus and distinct surface hierarchy.
+
+## Visual language and mascot
+Futuristic, premium, minimal and human. Use strong display typography, legible body text, structured grids, consistent alignment and negative space. The approved hero character is **Swapno Explorer**: a premium astronaut engineer with subtle robotic/technical details, graphite and titanium suit surfaces, a reflective visor and restrained orange signals. It is a recurring brand anchor, not a decorative character repeated in every section. Keep the character composition consistent between intro and homepage hero.
 
 ## Intro and motion
-Adapt supplied planet-jumping.html. Preserve full-screen opening, loading indicator, floating logo, logo docking, layered scenes, portal, canvas mask/transition and subtle pointer response. Replace unrelated brand assets. Target maximum 8 seconds; skippable, mobile-aware, reduced-motion-aware and never waiting for heavy assets. Hero is the next scene, not a disconnected template.
+Adapt the supplied `planet-jumping.html` mechanics: full-screen opening, loading indicator, floating brand mark, logo docking, layered planetary video scenes, portal/canvas mask and subtle pointer response. Replace unrelated brand assets. The Swapno intro is Mars → Earth → Venus, with a maximum duration of 8 seconds, skip control, mobile fallback, reduced-motion bypass and a reliable fallback if remote video is unavailable.
 
-Mars/Earth/Venus are meaningful narrative destinations. Map their meanings to verified services; do not invent statistics or claims.
+The intro is a separate opening narrative; planetary imagery must not be repeated as homepage section content. Its final mascot frame must match the homepage hero's mascot scale, position, frame and lighting, then crossfade directly into the real hero without a black flash or duplicated scene.
 
 ## Homepage sequence
-Intro → Hero → brand introduction → three expertise destinations → Services → portfolio categories → featured 3D gallery → process timeline → packages → minimal product previews → team stories → insights → newsletter → final CTA/footer.
+Intro → Hero → brand introduction → connected approach/story → Services → selected work → process → packages → three core products → team → insights → newsletter → final CTA/footer.
 
-## Motion/performance
-Use controlled parallax, scroll reveals and shared transitions. Prefer transforms/opacity. Avoid scroll hijacking, excessive continuous motion, heavy WebGL on mobile and blur-heavy effects. Defer 3D and below-fold media, optimize responsive images/video, code-split heavy modules and provide static fallbacks. Measure Core Web Vitals on mobile.
+## Motion and performance
+Use controlled parallax, scroll reveals and shared transitions. Prefer transforms and opacity. Avoid scroll hijacking, excessive continuous motion, heavy WebGL on mobile and blur-heavy effects. Defer below-fold media, optimize responsive images/video, code-split heavy modules and provide static fallbacks. Measure Core Web Vitals on mobile. Motion should connect adjacent sections rather than animate each card independently.
 
-## UX/accessibility/language
-Readable contrast, keyboard access, visible focus, semantic structure, labeled forms, reduced motion and no hover-only controls. English and Bangla are separately authored and reviewed; Bangla must be natural, meaningful, approachable and professional.
+## UX, accessibility and language
+Readable contrast, keyboard access, visible focus, semantic structure, labeled forms, reduced motion and no hover-only controls. Day/night theme and English/Bangla language controls must work across every public page, form, validation message and metadata. English and Bangla are separately authored and reviewed; Bangla must be natural, meaningful, approachable and professional. Do not mark localization complete until every route is translated and reviewed.
