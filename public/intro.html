@@ -25,7 +25,16 @@
 .scene-caption{position:absolute;z-index:7;left:50%;bottom:clamp(76px,11vh,112px);transform:translateX(-50%);width:min(560px,86vw);text-align:center;text-shadow:0 2px 22px #000;opacity:0;transition:opacity .45s ease;pointer-events:none}.scene-caption.visible{opacity:1}.scene-caption small{display:block;color:#ffb36f;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px}.scene-caption strong{display:block;font-size:clamp(20px,3.2vw,34px);font-weight:600;letter-spacing:-.035em}.stage.mobile-mode{background:radial-gradient(ellipse at 50% 44%,#743b20 0%,#21130f 34%,#050505 74%)}.stage.mobile-mode .scene,.stage.mobile-mode .preloader,.stage.mobile-mode .portal{display:none}.stage.mobile-mode .brand{font-size:clamp(20px,6vw,28px)}.stage.mobile-mode .brand span{font-size:10px}.stage.mobile-mode .progress{display:none}.stage.mobile-mode .scene-caption{bottom:calc(50% - 94px);opacity:1}.stage.mobile-mode .brand{top:50%;}
 @media(max-width:640px){.skip{top:14px;right:14px;padding:9px 13px}.brand.docked{left:5vw;top:19px}}
 @media(prefers-reduced-motion:reduce){.scene,.preloader,.brand{transition:none!important}}
-\n.mascot-reveal{position:absolute;z-index:9;right:8vw;top:50%;width:min(35vw,420px);aspect-ratio:520/620;transform:translate3d(10%,-44%,0) scale(.82);opacity:0;filter:blur(10px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1),filter .85s}\n.mascot-reveal svg{width:100%;height:100%;filter:drop-shadow(0 28px 36px #0008)}\n.stage.handoff{background:radial-gradient(ellipse at 76% 48%,rgba(255,99,0,.12),transparent 34%),#0B0F14}\n.stage.handoff .scene,.stage.handoff .preloader,.stage.handoff .portal,.stage.handoff .shade,.stage.handoff .progress,.stage.handoff .scene-caption{opacity:0!important}\n.stage.handoff .mascot-reveal{opacity:1;transform:translate3d(0,-44%,0) scale(1);filter:blur(0)}\n.stage.handoff .brand{left:5.5vw;top:28px;transform:none}\n@media(max-width:760px){.mascot-reveal{right:-4vw;top:60%;width:62vw;opacity:0;transform:translate3d(0,-40%,0) scale(.9)}.stage.mobile-mode .mascot-reveal{opacity:1;transform:translate3d(0,-40%,0) scale(1)}.stage.mobile-mode .scene-caption{bottom:calc(50% + 50px)}.stage.mobile-mode .brand{top:calc(50% - 70px)}}\n@media(prefers-reduced-motion:reduce){.mascot-reveal{transition:none!important}}\n</style>
+
+.mascot-reveal{position:absolute;z-index:9;right:8vw;top:50%;width:min(35vw,420px);aspect-ratio:520/620;transform:translate3d(10%,-44%,0) scale(.82);opacity:0;filter:blur(10px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1),filter .85s}
+.mascot-reveal svg{width:100%;height:100%;filter:drop-shadow(0 28px 36px #0008)}
+.stage.handoff{background:radial-gradient(ellipse at 76% 48%,rgba(255,99,0,.12),transparent 34%),#0B0F14}
+.stage.handoff .scene,.stage.handoff .preloader,.stage.handoff .portal,.stage.handoff .shade,.stage.handoff .progress,.stage.handoff .scene-caption{opacity:0!important}
+.stage.handoff .mascot-reveal{opacity:1;transform:translate3d(0,-44%,0) scale(1);filter:blur(0)}
+.stage.handoff .brand{left:5.5vw;top:28px;transform:none}
+@media(max-width:760px){.mascot-reveal{right:-4vw;top:60%;width:62vw;opacity:0;transform:translate3d(0,-40%,0) scale(.9)}.stage.mobile-mode .mascot-reveal{opacity:1;transform:translate3d(0,-40%,0) scale(1)}.stage.mobile-mode .scene-caption{bottom:calc(50% + 50px)}.stage.mobile-mode .brand{top:calc(50% - 70px)}}
+@media(prefers-reduced-motion:reduce){.mascot-reveal{transition:none!important}}
+</style>
 </head>
 <body>
 <div class="stage" id="stage">
@@ -85,7 +94,8 @@ async function start(){
  await new Promise(function(r){setTimeout(r,80)});
  await portalTransition(2);
  if(done)return;
- setChapter(2);scenes[2].play().catch(function(){});\n  stage.classList.add('handoff');
+ setChapter(2);scenes[2].play().catch(function(){});
+  stage.classList.add('handoff');
  await new Promise(function(r){setTimeout(r,1050)});
  finish();
 }
