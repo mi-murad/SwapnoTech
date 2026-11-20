@@ -219,7 +219,7 @@ function IntroGate() {
       if (finished) return;
       finished = true;
       try { window.localStorage.setItem(storageKey,'1'); } catch {}
-      revealTimer = window.setTimeout(() => setVisible(false), 420);
+      revealTimer = window.setTimeout(() => setVisible(false), 600);
     };
     const onMessage = event => {
       if (event.origin === window.location.origin && event.data?.type === 'SWAPNO_INTRO_DONE') finish();
