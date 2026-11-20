@@ -69,7 +69,7 @@ function Header({theme,setTheme,lang,setLang}) {
       {routes.map(([name,path])=><a key={path} href={path} onClick={()=>setOpen(false)}>{name}</a>)}
       <a href="/founders" className="nav-founders" onClick={()=>setOpen(false)}>Founders ↗</a>
     </nav>
-    <div className="nav-actions"><button type="button" className="text-control language-toggle" aria-label={lang==='EN'?'Switch to Bangla':'Switch to English'} onClick={()=>setLang(lang==='EN'?'BN':'EN')}>{lang==='EN'?'বাংলা':'EN'}</button><button className="theme-toggle" aria-label="Toggle colour theme" onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?'☼':'◐'}</button><a className="button button-small button-orange nav-cta" href="/contact">{bn?'প্রজেক্ট শুরু করুন':'Start a project'} <Arrow diagonal /></a><button className="menu-toggle" aria-label="Toggle menu" onClick={()=>setOpen(!open)}>{open?'✕':'☰'}</button></div>
+    <div className="nav-actions"><button type="button" className="text-control language-toggle" aria-label={lang==='EN'?'Switch to Bangla':'Switch to English'} onClick={()=>setLang(lang==='EN'?'BN':'EN')}>{lang==='EN'?'বাংলা':'EN'}</button><button className="theme-toggle" aria-label="Toggle colour theme" onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?'☼':'◐'}</button><a className="button button-small button-orange nav-cta" href="/contact">{lang==='BN'?'প্রজেক্ট শুরু করুন':'Start a project'} <Arrow diagonal /></a><button className="menu-toggle" aria-label="Toggle menu" onClick={()=>setOpen(!open)}>{open?'✕':'☰'}</button></div>
   </div></header>;
 }
 function Footer({lang='EN'}) {\n  const bn=lang==='BN';
@@ -119,7 +119,7 @@ function Home({lang='EN'}) {\n  const bn = lang === 'BN';
         <h1>{bn?<>সম্ভাবনা থেকে<br/><em>অগ্রযাত্রা।</em></>:<>Possibilities<br />into <em>progress.</em></>}</h1>
         <p>{bn?'আমরা কৌশল, সৃজনশীল চিন্তা ও প্রযুক্তিকে একত্র করে ব্যবসাকে এগিয়ে নিতে সাহায্য করি।':'We connect strategy, creative thinking and technology to help businesses build what comes next.'}</p>
         <div className="hero-actions">
-          <a className="button button-orange" href="/contact">Start a project <Arrow diagonal /></a>
+          <a className="button button-orange" href="/contact">{bn?'প্রজেক্ট শুরু করুন':'Start a project'} <Arrow diagonal /></a>
           <a className="button button-ghost" href="#story">{bn?'আমাদের কাজের ধরন দেখুন':'Explore our approach'} <Arrow /></a>
         </div>
       </div>
@@ -242,7 +242,7 @@ export default function App() {
   const [lang,setLang]=useState(()=>{try{return localStorage.getItem('swapno-lang')||'EN'}catch{return 'EN'}});
   const path=window.location.pathname.replace(/\/$/,'')||'/';
   useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);\n  useEffect(()=>{document.documentElement.lang=lang==='BN'?'bn':'en';try{localStorage.setItem('swapno-lang',lang)}catch{}},[lang]);
-  useEffect(()=>{const title=pageCopy[path]?.[0]||serviceDetails[path]?.[0]||articleDetails[path]?.[0]||'Build what comes next';const description=pageCopy[path]?.[1]||serviceDetails[path]?.[2]||articleDetails[path]?.[2]||'Swapno Tech — creative technology and digital business solutions.';document.title=title+' — Swapno Tech';document.documentElement.lang='en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path]);
+  useEffect(()=>{const title=pageCopy[path]?.[0]||serviceDetails[path]?.[0]||articleDetails[path]?.[0]||'Build what comes next';const description=pageCopy[path]?.[1]||serviceDetails[path]?.[2]||articleDetails[path]?.[2]||'Swapno Tech — creative technology and digital business solutions.';document.title=title+' — Swapno Tech';document.documentElement.lang=lang==='BN'?'bn':'en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path,lang]);
   useEffect(()=>{
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero, .footer')];
