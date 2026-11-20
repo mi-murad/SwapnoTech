@@ -72,7 +72,8 @@ function Header({theme,setTheme,lang,setLang}) {
     <div className="nav-actions"><button type="button" className="text-control language-toggle" aria-label={lang==='EN'?'Switch to Bangla':'Switch to English'} onClick={()=>setLang(lang==='EN'?'BN':'EN')}>{lang==='EN'?'বাংলা':'EN'}</button><button className="theme-toggle" aria-label="Toggle colour theme" onClick={()=>setTheme(theme==='dark'?'light':'dark')}>{theme==='dark'?'☼':'◐'}</button><a className="button button-small button-orange nav-cta" href="/contact">{lang==='BN'?'প্রজেক্ট শুরু করুন':'Start a project'} <Arrow diagonal /></a><button className="menu-toggle" aria-label="Toggle menu" onClick={()=>setOpen(!open)}>{open?'✕':'☰'}</button></div>
   </div></header>;
 }
-function Footer({lang='EN'}) {\n  const bn=lang==='BN';
+function Footer({lang='EN'}) {
+  const bn=lang==='BN';
   return <footer className="footer"><div className="footer-top"><div><Brand light/><p className="footer-note">{bn?<>সম্ভাবনা থেকে অগ্রযাত্রা।<br/>বর্ধনশীল ভাবনার জন্য সৃজনশীল প্রযুক্তি।</>:<>Possibilities into progress.<br/>Creative technology for growing ideas.</>}</p></div><div className="footer-links"><div><b>Explore</b><a href="/services">Services</a><a href="/portfolio">Work</a><a href="/blog">Insights</a><a href="/about">About</a></div><div><b>Products</b><a href="/products/website-solution">Website Solution</a><a href="/products/creator-platform">Creator Platform</a><a href="/products/hosting">Hosting</a><a href="/founders">Swapno Founders</a></div><div><b>Connect</b><a href="/contact">Start a conversation</a><a href="/contact">Contact us</a><a href="/login">Account</a></div></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Swapno Tech</span><span>Built around possibility.</span><div><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/community-guidelines">Community</a></div></div></footer>;
 }
 function SectionHeading({eyebrow,title,copy}) { return <div className="section-heading"><span className="eyebrow">{eyebrow}</span><h2>{title}</h2>{copy&&<p>{copy}</p>}</div>; }
@@ -89,7 +90,8 @@ function WorkGallery({featured=false}) {
  </div>;
 }
 function CollaborationSection(){return <section className="section collaboration-section"><div className="section-split"><SectionHeading eyebrow="09 / HOW WE COLLABORATE" title="A team around the work." copy="The right people, skills and learning paths come together around each project—without pretending every project needs the same team."/></div><div className="collaboration-grid"><article><span>01 / ALIGN</span><h3>Shared direction</h3><p>Agree on the goal, audience, responsibilities and definition of done before production begins.</p></article><article><span>02 / CONTRIBUTE</span><h3>Skills in action</h3><p>Bring skilled contributors and learners into clearly scoped tasks with review and support.</p></article><article><span>03 / IMPROVE</span><h3>Learn as we build</h3><p>Review progress, share feedback and document what the next person needs to know.</p></article></div></section>}
-function Home({lang='EN'}) {\n  const bn = lang === 'BN';
+function Home({lang='EN'}) {
+  const bn = lang === 'BN';
   const [storyActive, setStoryActive] = useState(0);
 
   useEffect(() => {
@@ -241,7 +243,8 @@ export default function App() {
   const [theme,setTheme]=useState(()=>{try{return localStorage.getItem('swapno-theme')||'dark'}catch{return 'dark'}});
   const [lang,setLang]=useState(()=>{try{return localStorage.getItem('swapno-lang')||'EN'}catch{return 'EN'}});
   const path=window.location.pathname.replace(/\/$/,'')||'/';
-  useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);\n  useEffect(()=>{document.documentElement.lang=lang==='BN'?'bn':'en';try{localStorage.setItem('swapno-lang',lang)}catch{}},[lang]);
+  useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);
+  useEffect(()=>{document.documentElement.lang=lang==='BN'?'bn':'en';try{localStorage.setItem('swapno-lang',lang)}catch{}},[lang]);
   useEffect(()=>{const title=pageCopy[path]?.[0]||serviceDetails[path]?.[0]||articleDetails[path]?.[0]||'Build what comes next';const description=pageCopy[path]?.[1]||serviceDetails[path]?.[2]||articleDetails[path]?.[2]||'Swapno Tech — creative technology and digital business solutions.';document.title=title+' — Swapno Tech';document.documentElement.lang=lang==='BN'?'bn':'en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path,lang]);
   useEffect(()=>{
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
