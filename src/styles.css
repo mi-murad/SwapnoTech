@@ -278,3 +278,22 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   [data-motion-depth]{translate:none!important;will-change:auto!important}
   .hero-art-core{transform:translateZ(0) rotate(8deg)!important;will-change:auto}
 }
+
+/* Approved Swapno Tech palette: Graphite / Porcelain / Signal Orange. */
+:root{--bg:#0B0F14;--panel:#151C24;--panel2:#202A35;--text:#F4F6F8;--muted:#AAB4C0;--line:rgba(224,234,242,.14);--orange:#FF6300;--cream:#E8EDF2;color:var(--text);background:var(--bg)}
+[data-theme="light"]{--bg:#F4F6F8;--panel:#FFFFFF;--panel2:#E8EDF2;--text:#111820;--muted:#56616D;--line:rgba(17,24,32,.14);--cream:#E8EDF2;color:var(--text)}
+[data-theme="light"] .header{background:rgba(244,246,248,.9)}
+[data-theme="light"] .services-preview,[data-theme="light"] .insight-preview,[data-theme="light"] .process-band{background:#E8EDF2}
+[data-theme="light"] .team-story{background:#E8EDF2;color:#111820}
+[data-theme="light"] .team-story .eyebrow,[data-theme="light"] .final-cta .eyebrow{color:#B64A00}
+[data-theme="light"] .team-story-copy p{color:#45515D}
+[data-theme="light"] .team-story .text-link{color:#111820}
+[data-theme="light"] .team-story-mark{color:rgba(17,24,32,.06)}
+[data-theme="light"] .team-story-mark span{color:rgba(255,99,0,.14)}
+[data-theme="light"] .final-cta{background:#E8EDF2;color:#111820}
+[data-theme="light"] .footer{background:#0B0F14}
+[data-theme="light"] .page-hero{background:radial-gradient(circle at 80% 45%,rgba(255,99,0,.09),transparent 32%),linear-gradient(120deg,#E8EDF2,#F4F6F8 65%)}
+.brand-mark{color:var(--text)}
+.nav .nav-founders{color:var(--text)}
+.language-toggle{font-size:11px;font-weight:700;padding:5px 2px}
+.intro-gate{background:transparent!important}
