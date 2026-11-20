@@ -25,7 +25,7 @@
 .scene-caption{position:absolute;z-index:7;left:50%;bottom:clamp(76px,11vh,112px);transform:translateX(-50%);width:min(560px,86vw);text-align:center;text-shadow:0 2px 22px #000;opacity:0;transition:opacity .45s ease;pointer-events:none}.scene-caption.visible{opacity:1}.scene-caption small{display:block;color:#ffb36f;font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;margin-bottom:10px}.scene-caption strong{display:block;font-size:clamp(20px,3.2vw,34px);font-weight:600;letter-spacing:-.035em}.stage.mobile-mode{background:radial-gradient(ellipse at 50% 44%,#743b20 0%,#21130f 34%,#050505 74%)}.stage.mobile-mode .scene,.stage.mobile-mode .preloader,.stage.mobile-mode .portal{display:none}.stage.mobile-mode .brand{font-size:clamp(20px,6vw,28px)}.stage.mobile-mode .brand span{font-size:10px}.stage.mobile-mode .progress{display:none}.stage.mobile-mode .scene-caption{bottom:calc(50% - 94px);opacity:1}.stage.mobile-mode .brand{top:50%;}
 @media(max-width:640px){.skip{top:14px;right:14px;padding:9px 13px}.brand.docked{left:5vw;top:19px}}
 @media(prefers-reduced-motion:reduce){.scene,.preloader,.brand{transition:none!important}}
-</style>
+\n.mascot-reveal{position:absolute;z-index:9;right:8vw;top:50%;width:min(35vw,420px);aspect-ratio:520/620;transform:translate3d(10%,-44%,0) scale(.82);opacity:0;filter:blur(10px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1),filter .85s}\n.mascot-reveal svg{width:100%;height:100%;filter:drop-shadow(0 28px 36px #0008)}\n.stage.handoff{background:radial-gradient(ellipse at 76% 48%,rgba(255,99,0,.12),transparent 34%),#0B0F14}\n.stage.handoff .scene,.stage.handoff .preloader,.stage.handoff .portal,.stage.handoff .shade,.stage.handoff .progress,.stage.handoff .scene-caption{opacity:0!important}\n.stage.handoff .mascot-reveal{opacity:1;transform:translate3d(0,-44%,0) scale(1);filter:blur(0)}\n.stage.handoff .brand{left:5.5vw;top:28px;transform:none}\n@media(max-width:760px){.mascot-reveal{right:-4vw;top:60%;width:62vw;opacity:0;transform:translate3d(0,-40%,0) scale(.9)}.stage.mobile-mode .mascot-reveal{opacity:1;transform:translate3d(0,-40%,0) scale(1)}.stage.mobile-mode .scene-caption{bottom:calc(50% + 50px)}.stage.mobile-mode .brand{top:calc(50% - 70px)}}\n@media(prefers-reduced-motion:reduce){.mascot-reveal{transition:none!important}}\n</style>
 </head>
 <body>
 <div class="stage" id="stage">
@@ -34,7 +34,7 @@
 <video class="scene" id="venus" muted playsinline preload="none" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/b30f64d9-1637-477a-83df-d0fc6461a422.mp4"></video>
 <video class="preloader" id="preloader" muted playsinline preload="metadata" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/5fc5651c-3b5d-4171-b507-87f7e635d1b4.mp4"></video>
 <canvas class="portal" id="portal"></canvas>
-<div class="shade"></div>
+<div class="shade"></div><div class="mascot-reveal" aria-hidden="true"><svg class="swapno-mascot" viewBox="0 0 520 620" ><defs><linearGradient id="suit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#F4F6F8"/><stop offset=".48" stop-color="#8795A4"/><stop offset="1" stop-color="#263442"/></linearGradient><linearGradient id="visor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9BCAD8"/><stop offset=".42" stop-color="#294052"/><stop offset="1" stop-color="#101923"/></linearGradient></defs><ellipse cx="260" cy="586" rx="168" ry="18" fill="#000" opacity=".24"/><path d="M105 605c9-105 60-164 155-176 96 12 147 71 155 176H105Z" fill="url(#suit)" stroke="#E8EDF2" stroke-width="3"/><path d="M150 605c12-72 48-115 110-125 62 10 98 53 110 125" fill="#202B37" stroke="#FF6300" stroke-width="5"/><path d="M211 446h98l27 94-76 48-76-48 27-94Z" fill="#344352" stroke="#B8C4CF" stroke-width="3"/><path d="M231 472h58l18 47-47 29-47-29 18-47Z" fill="#101A24" stroke="#FF6300" stroke-width="3"/><circle cx="260" cy="499" r="12" fill="#FF6300"/><path d="M194 103c15-51 53-79 105-79 54 0 93 32 105 86l8 94c4 76-53 139-130 139s-134-63-130-139l8-101Z" fill="url(#suit)" stroke="#E8EDF2" stroke-width="5"/><path d="M174 164c9-61 44-96 100-102 63-6 109 29 122 89l-6 63c-7 57-51 98-113 98-61 0-104-41-111-98l8-50Z" fill="url(#visor)" stroke="#FF8738" stroke-width="7"/><path d="M191 158c25-43 58-65 102-69 37-4 69 8 90 34-41 7-75 26-103 58-25 28-54 42-89 43v-66Z" fill="#D9F2FA" opacity=".16"/><path d="M190 225c42-4 79-24 112-59 22-23 45-38 72-46" fill="none" stroke="#A6D8E6" stroke-opacity=".6" stroke-width="5" stroke-linecap="round"/><circle cx="168" cy="199" r="16" fill="#344352" stroke="#FF6300" stroke-width="4"/><circle cx="352" cy="199" r="16" fill="#344352" stroke="#FF6300" stroke-width="4"/><path d="M183 101c25-38 61-57 108-57 47 0 84 22 107 64" fill="none" stroke="#FFF" stroke-opacity=".65" stroke-width="5"/><path d="M144 391c-4 27 3 49 24 66l40 26 24-38-31-36-57-18Zm232 0c4 27-3 49-24 66l-40 26-24-38 31-36 57-18Z" fill="#536272" stroke="#C4CED7" stroke-width="3"/><path d="M135 421l35 15m215-15-35 15" stroke="#FF6300" stroke-width="8" stroke-linecap="round"/></svg></div>
 <div class="scene-caption" id="sceneCaption" aria-live="polite"><small id="sceneKicker">CREATIVE / 01</small><strong id="sceneTitle">Make it matter.</strong></div>
 <div class="brand" id="brand">SWAPNO<span>TECH</span></div>
 <div class="progress" id="progress">0<small>%</small></div>
@@ -45,7 +45,7 @@
 'use strict';
 var done=false,stage=document.getElementById('stage'),pre=document.getElementById('preloader'),brand=document.getElementById('brand'),progress=document.getElementById('progress'),caption=document.getElementById('sceneCaption'),captionKicker=document.getElementById('sceneKicker'),captionTitle=document.getElementById('sceneTitle'),canvas=document.getElementById('portal'),ctx=canvas.getContext('2d');
 var scenes=[document.getElementById('mars'),document.getElementById('earth'),document.getElementById('venus')],w=0,h=0,dpr=1,active=0,raf=0;
-function finish(){if(done)return;done=true;cancelAnimationFrame(raf);stage.style.transition='opacity .38s ease';stage.style.opacity='0';try{parent.postMessage({type:'SWAPNO_INTRO_DONE'},location.origin)}catch(e){}}
+function finish(){if(done)return;done=true;cancelAnimationFrame(raf);stage.style.transition='opacity .55s cubic-bezier(.16,1,.3,1)';stage.classList.add('handoff');requestAnimationFrame(function(){stage.style.opacity='0'});try{parent.postMessage({type:'SWAPNO_INTRO_DONE'},location.origin)}catch(e){}}
 document.getElementById('skip').addEventListener('click',finish);
 function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
 addEventListener('resize',resize);resize();
@@ -54,9 +54,9 @@ function roundedRectPoints(w,h,r){r=Math.max(0,Math.min(r,w/2,h/2));var corners=
 function rounded(x,y,rw,rh,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+rw,y,x+rw,y+rh,r);ctx.arcTo(x+rw,y+rh,x,y+rh,r);ctx.arcTo(x,y+rh,x,y,r);ctx.arcTo(x,y,x+rw,y,r);ctx.closePath()}
 function portalTransition(nextIndex){
  return new Promise(function(resolve){
-  var outgoing=scenes[active],incoming=scenes[nextIndex],start=performance.now(),duration=850,videoReady=false;
+  var outgoing=scenes[active],incoming=scenes[nextIndex],start=performance.now(),duration=700,videoReady=false;
   incoming.pause();incoming.currentTime=0;incoming.playbackRate=2.1;incoming.load();
-  var settle=setTimeout(function(){videoReady=true;incoming.play().catch(function(){});},120);
+  var settle=setTimeout(function(){videoReady=true;incoming.play().catch(function(){});},80);
   function frame(now){
    if(done){clearTimeout(settle);resolve();return}
    var t=Math.min(1,(now-start)/duration),e=1-Math.pow(1-t,3);
@@ -78,25 +78,25 @@ async function start(){
  if(done)return;
  pre.classList.add('done');brand.classList.add('docked');setChapter(0);
  scenes[0].play().catch(function(){});
- await new Promise(function(r){setTimeout(r,220)});
+ await new Promise(function(r){setTimeout(r,120)});
  await portalTransition(1);
  if(done)return;
  setChapter(1);scenes[1].play().catch(function(){});
- await new Promise(function(r){setTimeout(r,100)});
+ await new Promise(function(r){setTimeout(r,80)});
  await portalTransition(2);
  if(done)return;
  setChapter(2);scenes[2].play().catch(function(){});
- await new Promise(function(r){setTimeout(r,320)});
+ await new Promise(function(r){setTimeout(r,1050)});
  finish();
 }
 var began=false;
-function begin(){if(began||done)return;began=true;var duration=pre.duration||6;pre.playbackRate=Math.max(1.8,duration/2.35);pre.play().catch(function(){});var startAt=performance.now();function count(){if(done)return;var p=Math.min(100,Math.round((performance.now()-startAt)/2350*100));progress.innerHTML=p+'<small>%</small>';if(p<100)requestAnimationFrame(count)}requestAnimationFrame(count);setTimeout(start,2450)}
+function begin(){if(began||done)return;began=true;var duration=pre.duration||6;pre.playbackRate=Math.max(2.2,duration/1.1);pre.play().catch(function(){});var startAt=performance.now();function count(){if(done)return;var p=Math.min(100,Math.round((performance.now()-startAt)/1100*100));progress.innerHTML=p+'<small>%</small>';if(p<100)requestAnimationFrame(count)}requestAnimationFrame(count);setTimeout(start,1150)}
 var isSmall=window.matchMedia('(max-width: 760px)').matches;
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(reduced){finish();return;}
-if(isSmall){stage.classList.add('mobile-mode');caption.classList.add('visible');captionKicker.textContent='CREATIVE TECHNOLOGY';captionTitle.textContent='Possibilities into progress.';setTimeout(function(){brand.classList.add('docked');},180);setTimeout(finish,2100);}
+if(isSmall){stage.classList.add('mobile-mode');caption.classList.add('visible');captionKicker.textContent='CREATIVE TECHNOLOGY';captionTitle.textContent='Possibilities into progress.';setTimeout(function(){brand.classList.add('docked');},180);setTimeout(finish,1900);}
 else{if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}}
-setTimeout(finish,8200);
+setTimeout(finish,7600);
 })();
 </script>
 </body>
