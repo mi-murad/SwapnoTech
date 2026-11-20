@@ -297,7 +297,7 @@ export const BN_COPY = {
   "This page is being prepared. Contact us if you need information in the meantime.": "এই পেজটি প্রস্তুত করা হচ্ছে। এর মধ্যে তথ্য প্রয়োজন হলে যোগাযোগ করুন।",
   "Contact Swapno Tech": "Swapno Tech-এর সঙ্গে যোগাযোগ করুন",
   "More ways to move forward.": "এগিয়ে যাওয়ার আরও পথ",
-  "Explore": "ঘুরে দেখুন",
+  "Explore": "দেখুন",
   "Page coming into focus": "পেজটি প্রস্তুত হচ্ছে",
   "We are shaping this experience with the same care as the rest of the Swapno ecosystem.": "Swapno ইকোসিস্টেমের অন্য অংশগুলোর মতো যত্ন নিয়ে এই অভিজ্ঞতাটি তৈরি করা হচ্ছে।",
   "SWAPNO PRODUCT / ": "SWAPNO পণ্য / ",
@@ -349,5 +349,9 @@ export const BN_COPY = {
   "Start with one message per asset. Build hierarchy around the most important idea, support it with evidence or context, and make the next action obvious. Consistency across formats helps people recognize the brand without making every post look identical.": "প্রতিটি অ্যাসেটে একটি মূল বার্তা রাখুন। সবচেয়ে গুরুত্বপূর্ণ ভাবনাকে কেন্দ্র করে ভিজ্যুয়াল অগ্রাধিকার সাজান, প্রমাণ বা প্রেক্ষাপট দিয়ে সমর্থন করুন এবং পরবর্তী পদক্ষেপ স্পষ্ট করুন। বিভিন্ন ফরম্যাটে ধারাবাহিকতা ব্র্যান্ডকে চেনাতে সাহায্য করে—সব পোস্টকে একই রকম না করেই।",
   "The best first version solves one real problem clearly instead of trying to do everything at once.": "প্রথম সংস্করণে একসঙ্গে সবকিছু করার চেষ্টা না করে একটি বাস্তব সমস্যার স্পষ্ট সমাধান করাই ভালো।",
   "Write down the user, the problem and the outcome. Sketch the shortest workflow that delivers that outcome. Test it with real people, learn where they get stuck, and add complexity only when it removes a proven obstacle.": "ব্যবহারকারী, সমস্যা ও কাঙ্ক্ষিত ফলাফল লিখে নিন। ফলাফল দিতে পারে এমন সবচেয়ে সংক্ষিপ্ত ওয়ার্কফ্লো আঁকুন। বাস্তব মানুষের সঙ্গে পরীক্ষা করুন, কোথায় তারা আটকে যায় তা বুঝুন এবং প্রমাণিত বাধা দূর করলেই কেবল জটিলতা বাড়ান।",
-  "Use this as a working principle: make the next step clear, test it with real people and improve from evidence rather than assumption.": "এটিকে কাজের নীতি হিসেবে নিন: পরবর্তী পদক্ষেপ স্পষ্ট করুন, বাস্তব মানুষের সঙ্গে পরীক্ষা করুন এবং অনুমানের বদলে প্রমাণের ভিত্তিতে উন্নয়ন করুন।"
+  "Use this as a working principle: make the next step clear, test it with real people and improve from evidence rather than assumption.": "এটিকে কাজের নীতি হিসেবে নিন: পরবর্তী পদক্ষেপ স্পষ্ট করুন, বাস্তব মানুষের সঙ্গে পরীক্ষা করুন এবং অনুমানের বদলে প্রমাণের ভিত্তিতে উন্নয়ন করুন।",
+  "Toggle menu": "মেনু খুলুন বা বন্ধ করুন",
+  "Swapno Tech home": "Swapno Tech-এর হোমপেজ",
+  "Founders ↗": "উদ্যোক্তা কমিউনিটি ↗",
+  "Something else": "অন্য কিছু"
 };
