@@ -4,10 +4,11 @@ import { BN_COPY } from './translations.js';
 
 function tx(lang, value) {
   if (lang !== 'BN' || typeof value !== 'string') return value;
-  const leading = value.match(/^\\s*/)?.[0] || '';
-  const trailing = value.match(/\\s*$/)?.[0] || '';
-  const key = value.slice(leading.length, value.length - trailing.length || undefined);
-  return Object.prototype.hasOwnProperty.call(BN_COPY, key) ? leading + BN_COPY[key] + trailing : value;
+  const key = value.trim();
+  if (!Object.prototype.hasOwnProperty.call(BN_COPY, key)) return value;
+  const leadingLength = value.length - value.trimStart().length;
+  const trailingLength = value.length - value.trimEnd().length;
+  return value.slice(0, leadingLength) + BN_COPY[key] + (trailingLength ? value.slice(-trailingLength) : '');
 }
 function Localize({ lang = 'EN', children }) {
   if (lang !== 'BN') return children;
