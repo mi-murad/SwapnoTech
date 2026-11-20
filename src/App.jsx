@@ -228,7 +228,7 @@ function GenericPage({path,lang='EN'}) {
 }
 function PageHero({eyebrow,title,desc,lang='EN'}) { return <Localize lang={lang}><section className="page-hero"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{desc}</p><div className="page-hero-mark">S<span>.</span></div></section></Localize>; }
 function ProductStrip({lang='EN'}) { return <Localize lang={lang}><section className="section products-preview"><SectionHeading lang={lang} eyebrow="THE ECOSYSTEM" title="More ways to move forward."/><div className="product-grid">{products.map(p=><a href={p.href} className="product-card" key={p.number}><span className="product-no">{p.number}</span><h3>{tx(lang,p.name)}</h3><p>{tx(lang,p.desc)}</p><span className="card-link">Explore <Arrow diagonal/></span></a>)}</div></section></Localize>; }
-function IntroGate() {
+function IntroGate({lang='EN'}) {
   const [visible,setVisible] = useState(false);
   useEffect(() => {
     if (window.location.pathname !== '/') return;
@@ -261,7 +261,7 @@ function IntroGate() {
   },[]);
   if (!visible) return null;
   return <div className="intro-gate" style={{position:'fixed',inset:0,zIndex:2000,background:'transparent',transition:'opacity .55s ease'}}>
-    <iframe title="Swapno Tech cinematic introduction" src="/intro.html" style={{width:'100%',height:'100%',border:0,display:'block'}} />
+    <iframe title="Swapno Tech cinematic introduction" src={'/intro.html?lang='+lang} style={{width:'100%',height:'100%',border:0,display:'block'}} />
   </div>;
 }
 export default function App() {
@@ -363,5 +363,5 @@ export default function App() {
       }
     };
   },[path]);
-  return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><IntroGate/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home lang={lang}/>:<GenericPage path={path} lang={lang}/>}<Footer lang={lang}/></div>;
+  return <div className="app-shell"><div className="scroll-progress" aria-hidden="true"/><IntroGate lang={lang}/><Header theme={theme} setTheme={setTheme} lang={lang} setLang={setLang}/>{path==='/'?<Home lang={lang}/>:<GenericPage path={path} lang={lang}/>}<Footer lang={lang}/></div>;
 }
