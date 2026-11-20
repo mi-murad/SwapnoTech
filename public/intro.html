@@ -57,9 +57,12 @@
 <script>
 (function(){
 'use strict';
+var lang=new URLSearchParams(location.search).get('lang')==='BN'?'BN':'EN';
+document.documentElement.lang=lang==='BN'?'bn':'en';
 var done=false,stage=document.getElementById('stage'),pre=document.getElementById('preloader'),brand=document.getElementById('brand'),progress=document.getElementById('progress'),caption=document.getElementById('sceneCaption'),captionKicker=document.getElementById('sceneKicker'),captionTitle=document.getElementById('sceneTitle'),canvas=document.getElementById('portal'),ctx=canvas.getContext('2d');
 var scenes=[document.getElementById('mars'),document.getElementById('earth'),document.getElementById('venus')],w=0,h=0,dpr=1,active=0,raf=0;
 function finish(){if(done)return;done=true;cancelAnimationFrame(raf);stage.style.transition='opacity .55s cubic-bezier(.16,1,.3,1)';stage.classList.add('handoff');requestAnimationFrame(function(){stage.style.opacity='0'});try{parent.postMessage({type:'SWAPNO_INTRO_DONE'},location.origin)}catch(e){}}
+document.getElementById('skip').textContent=lang==='BN'?'ইন্ট্রো এড়িয়ে যান ↗':'Skip intro ↗';
 document.getElementById('skip').addEventListener('click',finish);
 function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
 addEventListener('resize',resize);resize();
@@ -87,7 +90,7 @@ function portalTransition(nextIndex){
   canvas.style.opacity='1';requestAnimationFrame(frame);
  });
 }
-function setChapter(index){var chapters=[['CREATIVE / 01','Make it matter.'],['TECHNOLOGY / 02','Build for tomorrow.'],['GROWTH / 03','Move with purpose.']];var item=chapters[index]||chapters[0];captionKicker.textContent=item[0];captionTitle.textContent=item[1];caption.classList.add('visible');}
+function setChapter(index){var chapters=lang==='BN'?[['সৃজনশীলতা / ০১','কাজকে অর্থবহ করুন।'],['প্রযুক্তি / ০২','আগামীর জন্য তৈরি করুন।'],['প্রবৃদ্ধি / ০৩','উদ্দেশ্য নিয়ে এগিয়ে চলুন।']]:[['CREATIVE / 01','Make it matter.'],['TECHNOLOGY / 02','Build for tomorrow.'],['GROWTH / 03','Move with purpose.']];var item=chapters[index]||chapters[0];captionKicker.textContent=item[0];captionTitle.textContent=item[1];caption.classList.add('visible');}
 async function start(){
  if(done)return;
  pre.classList.add('done');brand.classList.add('docked');setChapter(0);
@@ -109,7 +112,7 @@ function begin(){if(began||done)return;began=true;var duration=pre.duration||6;p
 var isSmall=window.matchMedia('(max-width: 760px)').matches;
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(reduced){finish();return;}
-if(isSmall){stage.classList.add('mobile-mode');caption.classList.add('visible');captionKicker.textContent='CREATIVE TECHNOLOGY';captionTitle.textContent='Possibilities into progress.';setTimeout(function(){brand.classList.add('docked');},180);setTimeout(finish,1900);}
+if(isSmall){stage.classList.add('mobile-mode');caption.classList.add('visible');captionKicker.textContent=lang==='BN'?'সৃজনশীল প্রযুক্তি':'CREATIVE TECHNOLOGY';captionTitle.textContent=lang==='BN'?'সম্ভাবনা থেকে অগ্রযাত্রা।':'Possibilities into progress.';setTimeout(function(){brand.classList.add('docked');},180);setTimeout(finish,1900);}
 else{if(pre.readyState>=1)begin();else{pre.addEventListener('loadedmetadata',begin,{once:true});pre.addEventListener('error',begin,{once:true});setTimeout(begin,1000)}}
 setTimeout(finish,7600);
 })();
