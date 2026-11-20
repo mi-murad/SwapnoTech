@@ -4,7 +4,7 @@ Last updated: 20 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest verified preview: https://swapnotech-k21guxjqs-swapno3.vercel.app
+Latest verified preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
@@ -30,15 +30,16 @@ Latest verified preview: https://swapnotech-k21guxjqs-swapno3.vercel.app
 - Added the custom SVG Swapno Explorer astronaut-engineer character to the homepage hero, with restrained float and pointer/parallax depth.
 - Updated the intro to use the same hero character composition for the final reveal. Desktop Mars → Earth → Venus portal transitions are shortened; the intro now targets roughly 4 seconds under normal media playback and retains a 7.6-second safety timeout. Skip, first-visit handling and reduced-motion bypass remain.
 - Added a lighter mobile intro fallback with the mascot and headline rather than forcing the full desktop video sequence.
-- Added a persistent EN/BN selector with a reusable translation layer and a separate Bangla copy module (`src/translations.js`, 351 reviewed phrase entries at this stage).
+- Added a persistent EN/BN selector with a reusable translation layer and a separate Bangla copy module (`src/translations.js`, 355 initial phrase entries; native-language review is still pending).
 - Extended Bangla switching across the navigation, homepage storytelling and service sections, work filters/cards, packages, products, team, insights, footer, inner-page routes, contact form labels/placeholders/status, and route metadata.
 - The contact form's prepared enquiry text now follows the selected language. It still only prepares/copies the enquiry; it does not send or store it.
 - The selected language is passed into the cinematic intro. Intro chapter captions, mobile headline and skip control now support Bangla.
+- Added Noto Sans Bengali for the site and intro, with Bengali-specific heading spacing and line-height rules.
 - This is an implementation pass, not final localization sign-off. Bangla wording, terminology and line wrapping still need native-language review and visual QA.
 - The intro's mascot frame is aligned to the homepage hero frame in source. Actual browser/device visual confirmation is still outstanding.
 
 ## Verification completed
-- Latest Vercel preview deployment `dpl_FkAzUZfUBfPYR5n3u6GMPUQTmoUZ` for commit `a4a5865dbf7015cfef8d198398f7d57504398ecf` reached READY at `https://swapnotech-k21guxjqs-swapno3.vercel.app`.
+- Latest Vercel preview deployment `dpl_Gy1dYAWEJ4WCUmP3jNzk6b4vBzfS` for commit `7cd29751071bd94311542925ff3f5ab9944d525a` reached READY at `https://swapnotech-mhlyklnve-swapno3.vercel.app`.
 - Vercel confirms the current preview deployment reached READY. This confirms deployment/build completion, not visual browser QA.
 - No new runtime dependencies or backend/external integrations were added.
 - Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
