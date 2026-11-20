@@ -1,10 +1,10 @@
 # Swapno Tech — Implementation Status
 
-Last updated: 17 November 2026  
+Last updated: 20 November 2026  
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest verified deployment: https://swapnotech-gfhvpr3u5-swapno3.vercel.app
+Latest verified deployment: https://swapnotech-ndwfw7p3f-swapno3.vercel.app
 
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
@@ -21,10 +21,20 @@ Latest verified deployment: https://swapnotech-gfhvpr3u5-swapno3.vercel.app
 - Added policy and community-guideline draft pages.
 - Added account access placeholders that explicitly remain inactive.
 - Contact form now validates and prepares/copies an enquiry draft; it does not submit to a server.
-- Added route-specific document titles and meta descriptions.\n- Completed day/night theme token and component contrast overrides, plus visible keyboard focus states.\n- No new runtime dependencies added.
+- Added route-specific document titles and meta descriptions.
+- Completed day/night theme token and component contrast overrides, plus visible keyboard focus states.
+- No new runtime dependencies added.
+
+## Creative direction implementation — 20 November 2026
+- Applied the approved Graphite / Porcelain / Signal Orange website palette to the shared dark and light theme tokens. Official logo artwork and brand identity rules remain separate from UI surface colours.
+- Added the custom SVG Swapno Explorer astronaut-engineer character to the homepage hero, with restrained float and pointer/parallax depth.
+- Updated the intro to use the same hero character composition for the final reveal. Desktop Mars → Earth → Venus portal transitions are shortened; the intro now targets roughly 4 seconds under normal media playback and retains a 7.6-second safety timeout. Skip, first-visit handling and reduced-motion bypass remain.
+- Added a lighter mobile intro fallback with the mascot and headline rather than forcing the full desktop video sequence.
+- Added a persistent EN/BN selector. Current localization is partial: the homepage hero headline/copy/actions and footer tagline switch, but navigation labels, most homepage sections, inner pages, forms, validation and metadata still need Bangla copy and review.
+- The intro's mascot frame has been aligned to the homepage hero frame in source. Actual browser/device visual confirmation is still outstanding.
 
 ## Verification completed
-- Latest Vercel preview deployment for commit `c0aa6dbac7faaa54b1fedc5ed6c87f959847fbec` reached READY.
+- Latest Vercel preview deployment for commit `982814844c68543fb09f260cacfa336db83c879c` reached READY.
 - Vercel build log confirms `vite build` succeeded: 27 modules transformed; JS 190.53 kB (59.53 kB gzip), CSS 48.89 kB (10.70 kB gzip), HTML 0.88 kB.
 - No new runtime dependencies or backend/external integrations were added.
 - Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
