@@ -85,7 +85,7 @@ async function start(){
  await new Promise(function(r){setTimeout(r,80)});
  await portalTransition(2);
  if(done)return;
- setChapter(2);scenes[2].play().catch(function(){});
+ setChapter(2);scenes[2].play().catch(function(){});\n  stage.classList.add('handoff');
  await new Promise(function(r){setTimeout(r,1050)});
  finish();
 }
