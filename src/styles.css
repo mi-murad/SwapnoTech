@@ -306,3 +306,9 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .hero-art-frame:after{inset:20% 0;border-color:rgba(180,198,214,.16);transform:rotate(22deg) scaleX(1.12)}
 @keyframes explorer-float{from{translate:0 -7px}to{translate:0 9px}}
 @media(prefers-reduced-motion:reduce){.hero-art-core{animation:none!important}}
+
+/* Bengali typography: use a native Bengali family and remove Latin-style tight tracking. */
+html[lang="bn"] body{font-family:'Noto Sans Bengali','DM Sans',sans-serif}
+html[lang="bn"] .app-shell h1,html[lang="bn"] .app-shell h2,html[lang="bn"] .app-shell h3,html[lang="bn"] .app-shell h4{font-family:'Noto Sans Bengali','Manrope',sans-serif;letter-spacing:0;line-height:1.2}
+html[lang="bn"] .app-shell .eyebrow,html[lang="bn"] .app-shell .article-index,html[lang="bn"] .app-shell .visual-caption,html[lang="bn"] .app-shell .visual-category{font-family:'Noto Sans Bengali','DM Sans',sans-serif;letter-spacing:0;text-transform:none}
+html[lang="bn"] .app-shell .button,html[lang="bn"] .app-shell .nav a,html[lang="bn"] .app-shell .text-link,html[lang="bn"] .app-shell .filter-chip{font-family:'Noto Sans Bengali','DM Sans',sans-serif;letter-spacing:0}
