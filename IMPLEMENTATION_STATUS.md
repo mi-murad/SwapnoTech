@@ -6,6 +6,14 @@ Working branch: `swapnotech-site-build`
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 Latest verified preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
+## Phase 1 — Routing repair (21 November 2026)
+- Added `vercel.json` with a Vercel SPA fallback rewrite to `/index.html`, so existing client-side routes can load on direct URL requests and refreshes instead of depending on first visiting the homepage.
+- Aligned primary navigation and footer links with the canonical `/work`, `/insights` and `/community/founders` paths while preserving legacy route compatibility.
+- Added route aliases for the approved service paths and the three existing insight article slugs.
+- Preview deployment for commit `c4caeeabc4ef8afb0d432c412987df94f86233fa` reached Vercel `READY` at `https://swapnotech-1l5kr2swd-swapno3.vercel.app`. This confirms deployment/build completion only.
+- Browser-based direct-route, navigation, refresh and visual checks remain outstanding; the connected browser session was unavailable and the public web inspection could not access the preview.
+- This is not yet completion of the full page map. Work category subpages, case-study detail routes, page-specific storytelling layouts and several canonical page experiences still need to be built/reviewed. The current legacy page renderer still has a generic fallback for unknown paths.
+
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
 - Added responsive abstract 3D-style composition, sticky scroll-story stage, active-step transitions and reduced-motion fallbacks.
