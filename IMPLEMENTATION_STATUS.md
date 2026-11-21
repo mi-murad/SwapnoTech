@@ -119,3 +119,14 @@ Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel
 - Complete accessibility, SEO, responsive, browser and constrained-network testing.
 - Confirm domain, production environment, backups and monitoring.
 - Obtain explicit owner approval for production release.
+
+
+## Phase 5 — Contact & Lead Capture (21 November 2026)
+- Created dedicated Supabase project `Swapno Tech` (`djpceifjuzymqlhiakkn`) in `ap-south-1`; status verified as `ACTIVE_HEALTHY`. The project creation quote was $0/month.
+- Applied database migrations for `public.contact_leads`, private hashed-IP rate-limit storage and a service-role-only rate-limit RPC.
+- Verified both tables have RLS enabled, anonymous execution of the rate-limit RPC is denied, and the service role can execute it. Synthetic rate-limit probe was removed after testing.
+- Deployed Edge Function `submit-contact-enquiry` (active, JWT verification disabled because it is a public form endpoint; handler validates origin, fields, consent, honeypot and rate limit).
+- Connected the React contact form to the Edge Function. The form now reports success only after a confirmed backend response; it includes consent and a honeypot.
+- Security advisor currently reports only informational `RLS enabled, no policy` findings for the server-only tables; this is intentional because no browser role should access them directly.
+- End-to-end browser submission, current preview deployment, production-origin allowlisting, email notifications and authenticated staff inbox are not yet verified/implemented.
+- No changes were made to the Swapno AI project or production website.
