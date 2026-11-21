@@ -4,8 +4,8 @@ Last updated: 21 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest preview deployment: https://swapnotech-6khnz8rxc-swapno3.vercel.app
-Latest preview deployment ID: `dpl_4EsDQxSvpvnJS4jEUN4q4dyqqLKp`
+Latest preview deployment: https://swapnotech-h68foxdwu-swapno3.vercel.app
+Latest preview deployment ID: `dpl_97zHF5hw524wX8LYB5AGx2G3wjev`
 Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Phase 1 — Route registry and canonical URL repair (21 November 2026)
