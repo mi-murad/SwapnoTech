@@ -225,7 +225,7 @@ function WorkCategoryPage({category,lang='EN'}) {
   <PageHero lang={lang} eyebrow={detail.eyebrow} title={detail.title} desc={detail.description}/>
   <section className="section work-chapter-section"><div className="work-chapter-visual"><span className="eyebrow">{category.toUpperCase()} / SWAPNO TECH</span><div className="work-chapter-mark">{category==='Video'?'▶':category==='Branding'?'S.':category==='Websites & Technology'?'[ ]':category==='Graphics & Posters'?'Aa':'01'}</div><span className="work-chapter-caption">{detail.chapter}</span></div><div className="work-chapter-copy"><span className="eyebrow">THE CREATIVE INTENT</span><h2>{detail.chapter}</h2><p>{detail.story}</p><ul>{detail.focus.map(item=><li key={item}>{item}</li>)}</ul></div></section>
   <section className="section work-category-gallery"><div className="section-split"><SectionHeading lang={lang} eyebrow="SELECTED EXPLORATIONS" title={category==='Case Studies'?'Evidence before embellishment.':'Explore the visual direction.'} copy={category==='Case Studies'?'Real project stories require accurate context, approved assets and verified outcomes.':detail.description}/></div><WorkGallery lang={lang} initialCategory={category}/></section>
-  {category==='Case Studies'&&<CaseStudyFramework lang={lang}/ >}
+  {category==='Case Studies'&&<CaseStudyFramework lang={lang} />}
   <section className="section work-related-section"><span className="eyebrow">KEEP EXPLORING</span><div className="work-related-links">{other.map(item=><a href={paths[item]} key={item}>{item}<Arrow diagonal/></a>)}</div><a className="button button-orange" href="/contact">Discuss a project <Arrow diagonal/></a></section>
  </main></Localize>;
 }
