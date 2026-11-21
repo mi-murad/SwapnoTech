@@ -56,8 +56,8 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Before backend work: identify/create the correct Swapno Tech Supabase project, confirm environments, schema, roles, RLS, storage and data ownership. Any paid project, schema migration or production integration requires explicit approval.
 
 ## Phase 6 — Quality assurance
-**Status: Services & About preview build reached READY; browser/device QA pending.**
-- Latest Vercel preview build completed successfully for the Services and About milestone; browser-based visual and interaction checks are still outstanding.
+**Status: Packages & Engagement preview build reached READY; browser/device QA pending.**
+- Latest Vercel preview build completed successfully for the Packages and Engagement milestone; browser-based visual and interaction checks are still outstanding.
 - Latest measured build output: JS 186.01 kB (58.35 kB gzip); CSS 32.49 kB (7.65 kB gzip).
 - Responsive and reduced-motion rules are present in source.
 - Still required: real phone/desktop review, route and interaction checks, accessibility review, SEO metadata audit, media/network testing and browser console review.
