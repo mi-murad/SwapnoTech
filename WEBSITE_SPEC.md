@@ -68,8 +68,8 @@ Each service detail page needs: a direct offer statement, who it is for, what is
 | /work/graphics | Graphic design and campaign portfolio | Discuss Design Work |
 | /work/branding | Brand identity portfolio | Discuss Branding |
 | /work/websites | Website and technology portfolio | Discuss a Website |
-| /insights | Published articles and categories | Read an Article |
-| /insights/:slug | One editorial article, related reading and share metadata | Explore More |
+| /insights | Published articles, category filters, keyword search and featured editorial | Read an Article |
+| /insights/:slug | Structured editorial article with contents navigation, key takeaways, related and previous/next reading | Explore More |
 | /contact | Project enquiry form, scope guidance and verified contact details | Send Enquiry |
 | /products/website-solution | Builder concept, workflow, capabilities and add-ons | Build Your Website |
 | /products/creator-platform | Professional discovery, profiles and creator value | Explore Creators |
