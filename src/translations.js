@@ -353,5 +353,8 @@ export const BN_COPY = {
   "Toggle menu": "মেনু খুলুন বা বন্ধ করুন",
   "Swapno Tech home": "Swapno Tech-এর হোমপেজ",
   "Founders ↗": "উদ্যোক্তা কমিউনিটি ↗",
+  "Focused project": "নির্দিষ্ট প্রজেক্ট",
+  "Ongoing partnership": "নিয়মিত সহযোগিতা",
+  "Custom engagement": "কাস্টম সহযোগিতা",
   "Something else": "অন্য কিছু"
 };
