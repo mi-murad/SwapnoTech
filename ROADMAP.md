@@ -92,3 +92,14 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Do not invent prices, clients, testimonials, team credentials, metrics or provider claims.
 - Do not expose secrets or service-role keys in browser code.
 - Ask before major architecture changes, paid services, external integrations, security-sensitive changes, destructive operations, material database migrations and production releases.
+
+
+## Phase 5 — Contact & Lead Capture
+**Status: Backend foundation deployed; frontend connected in source; preview and end-to-end browser QA pending.**
+- Created a separate Swapno Tech Supabase project in Mumbai; quoted project creation cost was $0/month. Swapno AI was not modified.
+- Added `public.contact_leads` with validation constraints, consent timestamp, locale, source path and status tracking.
+- Added private hashed-IP rate-limit storage and a server-only RPC. Both tables have RLS enabled; no anonymous policies or access are granted.
+- Deployed `submit-contact-enquiry` Edge Function. It validates origin, payload, consent and honeypot; rate-limits to five requests per ten minutes per IP hash; and inserts leads server-side.
+- Replaced the clipboard-only contact form with a real POST submission, pending/success/error states, consent checkbox and honeypot.
+- The function currently accepts matching Swapno Tech Vercel preview hosts. Configure `CONTACT_ALLOWED_ORIGINS` with the verified production origin before production use.
+- Email notifications, admin lead inbox and end-to-end browser QA remain outstanding. Do not claim live end-to-end delivery until a real preview submission has been verified.
