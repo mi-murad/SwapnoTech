@@ -4,7 +4,8 @@ Last updated: 21 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest verified preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
+Latest preview deployment: https://swapnotech-gr6j0jt64-swapno3.vercel.app
+Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Phase 1 — Route registry and canonical URL repair (21 November 2026)
 - Added `src/routes.js` as the central source of truth for approved canonical routes, legacy aliases and published dynamic slugs.
