@@ -74,7 +74,7 @@ export function resolveRoute(pathname = '/') {
     canonicalPath,
     renderPath,
     isKnown,
-    isAlias: requestedPath !== canonicalPath,
+    isAlias: pathname !== requestedPath || requestedPath !== canonicalPath,
     routeType: insightIsPublished ? 'insight-detail' : caseStudyIsPublished ? 'case-study-detail' : 'page',
   };
 }
