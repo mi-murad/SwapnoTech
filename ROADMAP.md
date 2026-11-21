@@ -20,12 +20,12 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Concept studies are clearly labelled; no invented client results or testimonials.
 
 ## Phase 4 — Complete public website
-**Status: Route registry, branded 404, editorial Work pages, four dedicated service families and About storytelling implemented; approved case-study publication and visual QA remain pending.**
+**Status: Route registry, branded 404, editorial Work pages, four dedicated service families, About, Packages and Insights experiences implemented; approved case-study publication and visual QA remain pending.**
 - Added `src/routes.js` as the central canonical route registry, with the approved public page map and an explicit allowlist for published insight and case-study slugs.
 - Legacy paths now normalize to canonical URLs (including trailing-slash cleanup) while preserving query strings and fragments.
 - Added dedicated filtered work routes for Video, Graphics, Branding and Websites; unknown or unpublished slugs render a branded 404 instead of the generic “page being prepared” fallback.
 - Vercel SPA rewrite remains in place for direct route loads and refreshes. Browser-level direct-load, navigation and visual QA are still pending.
-- Home, About, Services, four service-family detail pages and Packages now have page-specific storytelling and bilingual content; Work, Insights and Contact retain their existing experiences.
+- Home, About, Services, four service-family detail pages, Packages and Insights now have page-specific storytelling and bilingual content; Work and Contact retain their current frontend experiences.
 - Website Solution, Creator Platform, Hosting and Swapno Founders.
 - Privacy, Terms and Community Guidelines draft pages.
 - Login and Registration remain clearly marked as inactive until backend and privacy workflows exist.
@@ -46,6 +46,17 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Added enquiry form choices so a visitor can preselect the engagement type from a Packages CTA.
 - Kept pricing unpublished. Scope, deliverables, timeline, responsibilities and fees must be proposed and approved before work starts.
 - No new dependencies, backend integrations, fabricated deliverables, guarantees or production changes. Preview build and browser QA pending.
+
+
+## Phase 4 — Insights and editorial experience (21 November 2026)
+- Added `src/insights-content.js` as the structured bilingual source for three editorial articles across Strategy, Creative and Technology.
+- Rebuilt `/insights` with an editorial feature, category filters, keyword search, reading-time estimates, article cards and a clear note distinguishing editorial perspectives from client case studies.
+- Rebuilt individual article pages with structured sections, a linked table of contents, key takeaways, related reading and previous/next navigation.
+- Added bilingual article copy, responsive layouts, light/dark theme support, accessible filter/search controls and reduced-motion-safe styling.
+- Updated route-specific page title and description metadata from the editorial content.
+- Preserved the existing canonical insight slugs and legacy `/blog` aliases. No routing library or new runtime dependency was added.
+- Vercel preview deployment `dpl_4EsDQxSvpvnJS4jEUN4q4dyqqLKp` reached `READY` for commit `97c48347f96cfbce1872ff3c722bf6822bb1beee` at `https://swapnotech-6khnz8rxc-swapno3.vercel.app`; Vite transformed 33 modules and completed the production build in 1.47s. This verifies build/deployment, not browser visual QA.
+- Article content is practical editorial guidance, not sourced research, client case studies or claims of measured outcomes. Editorial review and live browser/device checks remain pending.
 
 ## Phase 5 — Functional implementation
 **Status: Frontend interactions added; backend blocked pending correct project.**
