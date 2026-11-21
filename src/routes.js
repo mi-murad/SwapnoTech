@@ -5,7 +5,7 @@ export const canonicalRoutes = [
   '/services/content-production',
   '/services/social-media-marketing',
   '/services/web-technology',
-  '/packages', '/work',
+  '/packages', '/work', '/work/case-studies',
   '/work/video', '/work/graphics', '/work/branding', '/work/websites',
   '/insights', '/contact',
   '/products/website-solution', '/products/creator-platform', '/products/hosting',
