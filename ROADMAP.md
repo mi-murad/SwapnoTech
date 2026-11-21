@@ -20,7 +20,7 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Concept studies are clearly labelled; no invented client results or testimonials.
 
 ## Phase 4 — Complete public website
-**Status: Canonical route registry and branded 404 implemented; page-specific content/design review remains in progress.**
+**Status: Route registry, branded 404, editorial Work index and discipline pages implemented; approved case-study publication and visual QA remain pending.**
 - Added `src/routes.js` as the central canonical route registry, with the approved public page map and an explicit allowlist for published insight and case-study slugs.
 - Legacy paths now normalize to canonical URLs (including trailing-slash cleanup) while preserving query strings and fragments.
 - Added dedicated filtered work routes for Video, Graphics, Branding and Websites; unknown or unpublished slugs render a branded 404 instead of the generic “page being prepared” fallback.
