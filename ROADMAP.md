@@ -20,19 +20,19 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Concept studies are clearly labelled; no invented client results or testimonials.
 
 ## Phase 4 — Complete public website
-**Status: Route registry, branded 404, editorial Work index and discipline pages implemented; approved case-study publication and visual QA remain pending.**
+**Status: Route registry, branded 404, editorial Work pages, four dedicated service families and About storytelling implemented; approved case-study publication and visual QA remain pending.**
 - Added `src/routes.js` as the central canonical route registry, with the approved public page map and an explicit allowlist for published insight and case-study slugs.
 - Legacy paths now normalize to canonical URLs (including trailing-slash cleanup) while preserving query strings and fragments.
 - Added dedicated filtered work routes for Video, Graphics, Branding and Websites; unknown or unpublished slugs render a branded 404 instead of the generic “page being prepared” fallback.
 - Vercel SPA rewrite remains in place for direct route loads and refreshes. Browser-level direct-load, navigation and visual QA are still pending.
-- Home, About, Services and service details, Packages, Portfolio, Blog and article pages, Contact.
+- Home, About, Services and four service-family detail pages now have page-specific storytelling and bilingual content; Packages, Work, Insights and Contact retain their existing experiences.
 - Website Solution, Creator Platform, Hosting and Swapno Founders.
 - Privacy, Terms and Community Guidelines draft pages.
 - Login and Registration remain clearly marked as inactive until backend and privacy workflows exist.
-- English is the current published UI. Natural Bangla edition and editorial review remain outstanding.
+- English and Bangla copy are available across the Services and About pages; full-site language completeness and native Bangla editorial review remain outstanding.
 - Final team profiles, approved logo artwork, real portfolio assets and approved published case studies remain content dependencies.
 
-## Phase 5 — Functional implementation
+### Services & About storytelling milestone (21 November 2026)\n- Replaced the six loosely grouped legacy service links with four customer-facing service families: Brand & Design, Content & Production, Social Media & Digital Marketing, and Web & Technology.\n- Added a bilingual content model in `src/service-content.js` for audience fit, deliverables, expected outputs, process stages and related capabilities.\n- Built a distinct Services overview with discipline cards, a connected delivery journey and a transparent scope statement.\n- Built four dedicated service detail pages with page-specific copy, scope, outputs, process and related-service navigation.\n- Rebuilt About around Swapno's belief, audience, contributor collaboration model, principles and clear limits on outcome promises.\n- No new dependencies, backend integrations, pricing, client claims or guaranteed results were introduced. Build and browser QA are pending for this milestone.\n\n## Phase 5 — Functional implementation
 **Status: Frontend interactions added; backend blocked pending correct project.**
 - Portfolio category filters and article/service navigation are interactive.
 - Contact form validates and prepares/copies an enquiry; it does not transmit or store a lead.
