@@ -4,7 +4,7 @@ Last updated: 21 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest preview deployment: https://swapnotech-gr6j0jt64-swapno3.vercel.app
+Latest preview deployment: https://swapnotech-5g8h3radx-swapno3.vercel.app
 Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Phase 1 — Route registry and canonical URL repair (21 November 2026)
@@ -69,7 +69,7 @@ Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel
 - The intro's mascot frame is aligned to the homepage hero frame in source. Actual browser/device visual confirmation is still outstanding.
 
 ## Verification completed
-- Latest Vercel preview deployment `dpl_Gy1dYAWEJ4WCUmP3jNzk6b4vBzfS` for commit `7cd29751071bd94311542925ff3f5ab9944d525a` reached READY at `https://swapnotech-mhlyklnve-swapno3.vercel.app`.
+- Latest Services and About Vercel preview deployment `dpl_27dDBht9EsmbbeDArogswYTxZqAM` for commit `8b123c1cc7b0b1823b9d4d2d8482e75d9f586ed2` reached READY at `https://swapnotech-5g8h3radx-swapno3.vercel.app`.
 - Vercel confirms the current preview deployment reached READY. This confirms deployment/build completion, not visual browser QA.
 - No new runtime dependencies or backend/external integrations were added.
 - Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
