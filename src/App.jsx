@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BN_COPY } from './translations.js';
 import { resolveRoute } from './routes.js';
-import { projects, workCategories, workCategoryDetails } from './work-content.js';
+import { projects, workCategories, workCategoryDetails, caseStudyTemplateSections } from './work-content.js';
 
 
 function tx(lang, value) {
@@ -214,6 +214,9 @@ function WorkIndexPage({lang='EN'}) {
   <section className="work-cta-band"><span className="eyebrow">HAVE A CHALLENGE IN MIND?</span><h2>Let’s make the<br/><em>right thing next.</em></h2><p>Tell us what you are trying to achieve. We’ll help shape a practical creative or technology approach.</p><a className="button button-orange" href="/contact">Start a project <Arrow diagonal/></a></section>
  </main></Localize>;
 }
+function CaseStudyFramework({lang='EN'}) {
+ return <section className="section case-study-framework"><div className="section-split"><SectionHeading lang={lang} eyebrow="THE CASE STUDY STANDARD" title="Show the work. Explain the why. Prove the outcome." copy="Every published case study should be useful, accurate and permission-safe. This is the structure we will use when approved project material is ready."/></div><div className="case-study-steps">{caseStudyTemplateSections.map((item,index)=><article key={item}><span>0{index+1}</span><h3>{item}</h3></article>)}</div><p className="note">Outcome claims must include a verified source and timeframe. Client names, assets, quotations and identifying details require publication approval.</p></section>;
+}
 function WorkCategoryPage({category,lang='EN'}) {
  const detail=workCategoryDetails[category];
  const other=workCategories.filter(item=>item!=='All'&&item!==category);
@@ -222,6 +225,7 @@ function WorkCategoryPage({category,lang='EN'}) {
   <PageHero lang={lang} eyebrow={detail.eyebrow} title={detail.title} desc={detail.description}/>
   <section className="section work-chapter-section"><div className="work-chapter-visual"><span className="eyebrow">{category.toUpperCase()} / SWAPNO TECH</span><div className="work-chapter-mark">{category==='Video'?'▶':category==='Branding'?'S.':category==='Websites & Technology'?'[ ]':category==='Graphics & Posters'?'Aa':'01'}</div><span className="work-chapter-caption">{detail.chapter}</span></div><div className="work-chapter-copy"><span className="eyebrow">THE CREATIVE INTENT</span><h2>{detail.chapter}</h2><p>{detail.story}</p><ul>{detail.focus.map(item=><li key={item}>{item}</li>)}</ul></div></section>
   <section className="section work-category-gallery"><div className="section-split"><SectionHeading lang={lang} eyebrow="SELECTED EXPLORATIONS" title={category==='Case Studies'?'Evidence before embellishment.':'Explore the visual direction.'} copy={category==='Case Studies'?'Real project stories require accurate context, approved assets and verified outcomes.':detail.description}/></div><WorkGallery lang={lang} initialCategory={category}/></section>
+  {category==='Case Studies'&&<CaseStudyFramework lang={lang}/ >}
   <section className="section work-related-section"><span className="eyebrow">KEEP EXPLORING</span><div className="work-related-links">{other.map(item=><a href={paths[item]} key={item}>{item}<Arrow diagonal/></a>)}</div><a className="button button-orange" href="/contact">Discuss a project <Arrow diagonal/></a></section>
  </main></Localize>;
 }
