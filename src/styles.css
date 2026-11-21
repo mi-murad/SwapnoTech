@@ -374,3 +374,10 @@ html[lang="bn"] .app-shell .button,html[lang="bn"] .app-shell .nav a,html[lang="
 @media(max-width:900px){.work-category-grid{grid-template-columns:1fr 1fr}.work-chapter-section{gap:5%}.work-chapter-visual{min-height:330px}}
 @media(max-width:760px){.work-intro-section,.work-chapter-section{grid-template-columns:1fr;gap:30px}.work-index-aside{padding:18px 0 0;border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:14px}.work-index-aside span{grid-column:1/-1}.work-category-grid,.work-related-links{grid-template-columns:1fr}.work-category-card{min-height:340px}.work-chapter-visual{min-height:280px}.work-cta-band{padding:75px 7%}.work-cta-band h2{font-size:clamp(45px,13vw,68px)}.work-empty{padding:26px}.work-category-card:hover{transform:none}}
 @media(prefers-reduced-motion:reduce){.work-category-card,.work-chapter-visual{transition:none}}
+
+.case-study-framework{padding-top:25px;border-top:1px solid var(--line)}
+.case-study-steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;border-top:1px solid var(--line)}
+.case-study-steps article{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;padding:22px 0;border-bottom:1px solid var(--line)}
+.case-study-steps article>span{font-size:10px;color:var(--orange);letter-spacing:.12em}
+.case-study-steps h3{font:600 16px/1.4 var(--display);margin:0;max-width:420px}
+@media(max-width:760px){.case-study-steps{grid-template-columns:1fr}.work-category-page .page-hero{padding-top:95px}}
