@@ -4,8 +4,8 @@ Last updated: 21 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest preview deployment: https://swapnotech-2yab5t7l7-swapno3.vercel.app
-Latest preview deployment ID: `dpl_BhAZxbDkCUE3s8EnPJksTHGxo5Lg`
+Latest preview deployment: https://swapnotech-6khnz8rxc-swapno3.vercel.app
+Latest preview deployment ID: `dpl_4EsDQxSvpvnJS4jEUN4q4dyqqLKp`
 Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Phase 1 — Route registry and canonical URL repair (21 November 2026)
@@ -46,6 +46,16 @@ Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel
 - No client names, confidential details, fabricated metrics, testimonials or results were added.
 - Build preview was triggered after the initial Work page commits; final preview build for the latest branch HEAD is still being checked. Browser visual testing remains unavailable in this environment.
 - This phase completes the Work information architecture and visual page foundation, not the final portfolio content or case-study detail publication.
+
+
+## Phase 4 — Insights and editorial experience (21 November 2026)
+- Added a structured bilingual editorial content module for three topics: Strategy, Creative and Technology.
+- Rebuilt the Insights index with a featured article, category filters, keyword search, reading-time estimates, editorial cards and an empty-search state.
+- Rebuilt article details with a linked table of contents, sectioned long-form copy, key takeaways, related articles and previous/next navigation.
+- Added responsive and light/dark theme styles, reduced-motion-safe transitions and article-specific title/description metadata.
+- Preserved canonical `/insights` routes and the existing legacy `/blog` aliases. No new dependencies or backend/CMS integrations.
+- Preview deployment `dpl_4EsDQxSvpvnJS4jEUN4q4dyqqLKp` reached `READY` at `https://swapnotech-6khnz8rxc-swapno3.vercel.app` for commit `97c48347f96cfbce1872ff3c722bf6822bb1beee`. Vite transformed 33 modules; production build completed in 1.47s.
+- This confirms build/deployment only. Browser visual, interaction and physical-device QA remain outstanding. Article copy needs editorial review before promotion.
 
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
