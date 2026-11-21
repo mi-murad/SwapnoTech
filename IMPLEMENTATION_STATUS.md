@@ -25,6 +25,16 @@ Latest verified preview alias: https://swapnotech-git-swapnotech-site-build-swap
 - Browser-based direct-route, navigation, refresh and visual checks remain outstanding; the connected browser session was unavailable and the public web inspection could not access the preview.
 - This is not yet completion of the full page map. Work category subpages, case-study detail routes, page-specific storytelling layouts and several canonical page experiences still need to be built/reviewed. The current legacy page renderer still has a generic fallback for unknown paths.
 
+## Phase 2 — Work and case-study experience (21 November 2026)
+- Rebuilt the canonical Work index with an editorial opening, connected creative/technology positioning, five discipline entry points, a selected concept-study gallery and a project CTA.
+- Added distinct category pages for Case Studies, Video, Graphics & Posters, Branding and Websites & Technology. Each page has a category-specific story, visual chapter, focus points, filtered gallery and links to related disciplines.
+- Added /work/case-studies to the canonical route registry. The page clearly explains the publication standard and shows the planned case-study structure.
+- Moved Work content into src/work-content.js; four current gallery items remain concept studies, not client project claims.
+- Case-study detail routes remain unpublished because there is no approved project content/asset/permission bundle yet. The existing dynamic slug allowlist remains empty intentionally.
+- No client names, confidential details, fabricated metrics, testimonials or results were added.
+- Build preview was triggered after the initial Work page commits; final preview build for the latest branch HEAD is still being checked. Browser visual testing remains unavailable in this environment.
+- This phase completes the Work information architecture and visual page foundation, not the final portfolio content or case-study detail publication.
+
 ## Delivered in this build
 - Reworked homepage hero and storytelling sequence on `swapnotech-site-build`; Mars/Earth/Venus remains intro-only.
 - Added responsive abstract 3D-style composition, sticky scroll-story stage, active-step transitions and reduced-motion fallbacks.
