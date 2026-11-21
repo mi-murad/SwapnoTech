@@ -4,7 +4,8 @@ Last updated: 21 November 2026
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
-Latest preview deployment: https://swapnotech-5g8h3radx-swapno3.vercel.app
+Latest preview deployment: https://swapnotech-2yab5t7l7-swapno3.vercel.app
+Latest preview deployment ID: `dpl_BhAZxbDkCUE3s8EnPJksTHGxo5Lg`
 Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
 ## Phase 1 — Route registry and canonical URL repair (21 November 2026)
@@ -33,7 +34,8 @@ Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel
 - Added three engagement choices to the contact enquiry form and connected package CTAs to preselect the relevant choice.
 - Added package-specific page title and description metadata.
 - Prices remain unpublished; final deliverables, capacity, timing, responsibilities and fees must be confirmed in a written proposal.
-- No new dependencies, backend integrations, guaranteed outcomes or production changes. Preview build and browser QA pending.
+- No new dependencies, backend integrations, guaranteed outcomes or production changes.
+- Vercel preview deployment `dpl_BhAZxbDkCUE3s8EnPJksTHGxo5Lg` reached `READY` for commit `7a7d19ce95a20474cedbf23834bae142f5543416` at `https://swapnotech-2yab5t7l7-swapno3.vercel.app`. Vite transformed 32 modules and completed the production build in 1.18s. This confirms build/deployment completion only; browser/device QA remains pending.
 
 ## Phase 2 — Work and case-study experience (21 November 2026)
 - Rebuilt the canonical Work index with an editorial opening, connected creative/technology positioning, five discipline entry points, a selected concept-study gallery and a project CTA.
@@ -78,7 +80,7 @@ Latest branch alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel
 - The intro's mascot frame is aligned to the homepage hero frame in source. Actual browser/device visual confirmation is still outstanding.
 
 ## Verification completed
-- Latest Services and About Vercel preview deployment `dpl_27dDBht9EsmbbeDArogswYTxZqAM` for commit `8b123c1cc7b0b1823b9d4d2d8482e75d9f586ed2` reached READY at `https://swapnotech-5g8h3radx-swapno3.vercel.app`.
+- Latest Packages and Engagement Vercel preview deployment `dpl_BhAZxbDkCUE3s8EnPJksTHGxo5Lg` for commit `7a7d19ce95a20474cedbf23834bae142f5543416` reached READY at `https://swapnotech-2yab5t7l7-swapno3.vercel.app`.
 - Vercel confirms the current preview deployment reached READY. This confirms deployment/build completion, not visual browser QA.
 - No new runtime dependencies or backend/external integrations were added.
 - Source check confirms the homepage component contains no Mars/Earth/Venus references; the intro remains in `public/intro.html`.
