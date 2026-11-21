@@ -20,7 +20,11 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Concept studies are clearly labelled; no invented client results or testimonials.
 
 ## Phase 4 — Complete public website
-**Status: Core page routes implemented; content/design review pending.**
+**Status: Canonical route registry and branded 404 implemented; page-specific content/design review remains in progress.**
+- Added `src/routes.js` as the central canonical route registry, with the approved public page map and an explicit allowlist for published insight and case-study slugs.
+- Legacy paths now normalize to canonical URLs (including trailing-slash cleanup) while preserving query strings and fragments.
+- Added dedicated filtered work routes for Video, Graphics, Branding and Websites; unknown or unpublished slugs render a branded 404 instead of the generic “page being prepared” fallback.
+- Vercel SPA rewrite remains in place for direct route loads and refreshes. Browser-level direct-load, navigation and visual QA are still pending.
 - Home, About, Services and service details, Packages, Portfolio, Blog and article pages, Contact.
 - Website Solution, Creator Platform, Hosting and Swapno Founders.
 - Privacy, Terms and Community Guidelines draft pages.
@@ -37,7 +41,7 @@ This roadmap follows the owner-approved delivery sequence for the current websit
 - Before backend work: identify/create the correct Swapno Tech Supabase project, confirm environments, schema, roles, RLS, storage and data ownership. Any paid project, schema migration or production integration requires explicit approval.
 
 ## Phase 6 — Quality assurance
-**Status: Build verified; full visual and device QA pending.**
+**Status: Latest route-registry preview deployment reached READY; browser/device QA pending.**
 - Latest Vercel preview build completed successfully.
 - Latest measured build output: JS 186.01 kB (58.35 kB gzip); CSS 32.49 kB (7.65 kB gzip).
 - Responsive and reduced-motion rules are present in source.
