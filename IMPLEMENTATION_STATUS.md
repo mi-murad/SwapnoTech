@@ -1,12 +1,23 @@
 # Swapno Tech — Implementation Status
 
-Last updated: 20 November 2026  
+Last updated: 21 November 2026  
 Repository: `mi-murad/SwapnoTech`  
 Working branch: `swapnotech-site-build`  
 Preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 Latest verified preview alias: https://swapnotech-git-swapnotech-site-build-swapno3.vercel.app
 
-## Phase 1 — Routing repair (21 November 2026)
+## Phase 1 — Route registry and canonical URL repair (21 November 2026)
+- Added `src/routes.js` as the central source of truth for approved canonical routes, legacy aliases and published dynamic slugs.
+- Canonical routes cover the public page map in `WEBSITE_SPEC.md`, including the four Work category pages and the three published Insights articles.
+- Legacy paths (including `/portfolio`, `/blog`, `/founders`, previous service slugs and old article URLs) are replaced with their canonical paths while preserving query strings and fragments. Trailing slashes are normalized too.
+- Added route-specific filtered views for `/work/video`, `/work/graphics`, `/work/branding` and `/work/websites`.
+- Added a branded bilingual in-app 404 for unknown paths and unpublished dynamic slugs. Case-study detail slugs remain unpublished until approved case-study content exists.
+- Kept the Vercel SPA fallback rewrite so direct route requests and refreshes are served by the React app.
+- Preview deployment `dpl_2zUKpahfRqfMREc5VwGpDPs9ZyWH` reached `READY` for commit `a983e3d728a112c6ada4d2dd29661a3e0a5ccf89`; the subsequent trailing-slash normalization is in commit `b52c8223f1e31620b26e86beb260271d0c2bd42f` and is awaiting its preview build.
+- Browser-based direct-route, alias, refresh, navigation and visual checks remain outstanding because the connected browser context is unavailable and the preview cannot be inspected through the web viewer.
+- This milestone changes route resolution only; it does not complete missing case-study content, backend features or the full public page map.
+
+
 - Added `vercel.json` with a Vercel SPA fallback rewrite to `/index.html`, so existing client-side routes can load on direct URL requests and refreshes instead of depending on first visiting the homepage.
 - Aligned primary navigation and footer links with the canonical `/work`, `/insights` and `/community/founders` paths while preserving legacy route compatibility.
 - Added route aliases for the approved service paths and the three existing insight article slugs.
