@@ -4,6 +4,7 @@ import { resolveRoute } from './routes.js';
 import { projects, workCategories, workCategoryDetails, caseStudyTemplateSections } from './work-content.js';
 import { serviceFamilies, aboutContent } from './service-content.js';
 import { engagementOptions, engagementPrinciples, engagementFaqs } from './package-content.js';
+import { insights, insightCategories, insightReadingTime } from './insights-content.js';
 
 
 function tx(lang, value) {
@@ -56,16 +57,6 @@ const serviceDetails={
  '/services/creative-production':['Creative production','Turn ideas into engaging content.','Graphic design, video editing, animation, product visuals and digital-first creative assets.'],
  '/services/business-technology':['Business technology','Make everyday workflows more useful.','Automation planning, integrations, CRM workflows and custom technology coordination.']
 };
-const articleDetails={
- '/blog/clearer-digital-foundation':['A clearer digital foundation','Strategy','A practical digital foundation starts with clarity: who you serve, what they need, and what action should happen next.','Before choosing tools, map the customer journey. Identify the questions people ask, the information they need to trust you, and the simplest path to enquire or buy. Then select only the channels and features that support that journey.'],
- '/blog/design-that-earns-attention':['Design that earns attention','Creative','A strong visual earns attention, but a clear message gives that attention somewhere useful to go.','Start with one message per asset. Build hierarchy around the most important idea, support it with evidence or context, and make the next action obvious. Consistency across formats helps people recognize the brand without making every post look identical.'],
- '/blog/from-idea-to-useful-product':['From idea to useful product','Technology','The best first version solves one real problem clearly instead of trying to do everything at once.','Write down the user, the problem and the outcome. Sketch the shortest workflow that delivers that outcome. Test it with real people, learn where they get stuck, and add complexity only when it removes a proven obstacle.']
-};
-const articles = [
-  ['A clearer digital foundation','Strategy','A practical starting point for businesses building their online presence.'],
-  ['Design that earns attention','Creative','Why a visual idea needs a clear message and a useful next step.'],
-  ['From idea to useful product','Technology','How to turn a business need into a focused digital experience.']
-];
 const pageCopy = {
   '/about':['A team for what comes next','We bring creative thinking and practical technology together to help ideas become useful, visible and ready to grow.'],
   '/services':['Make the next move meaningful','A connected set of creative, digital and growth services—planned around the real needs of your business.'],
@@ -329,6 +320,94 @@ function PackagesPage({lang='EN'}) {
   </main>;
 }
 
+
+function InsightsPage({lang='EN'}) {
+  const bn = lang === 'BN';
+  const [activeCategory,setActiveCategory] = useState('all');
+  const [search,setSearch] = useState('');
+  const t = value => value?.[bn?'bn':'en'] || '';
+  const query = search.trim().toLocaleLowerCase();
+  const filtered = insights.filter(item => {
+    const categoryMatch = activeCategory === 'all' || item.categoryId === activeCategory;
+    const searchable = [t(item.title),t(item.summary),t(item.category)].join(' ').toLocaleLowerCase();
+    return categoryMatch && (!query || searchable.includes(query));
+  });
+  const featured = insights[0];
+  const showFeatured = activeCategory === 'all' && !query;
+  const listing = showFeatured ? filtered.filter(item=>item.slug!==featured.slug) : filtered;
+  return <main className="inner-page insights-page">
+    <PageHero lang={lang} eyebrow={bn?'INSIGHTS / ভাবনা ও ব্যবহারিক দিকনির্দেশনা':'INSIGHTS / IDEAS INTO PRACTICE'} title={bn?'ভাবনা, যা কাজে এগিয়ে নেয়।':'Ideas for building forward.'} desc={bn?'ব্যবসা, সৃজনশীলতা ও প্রযুক্তি নিয়ে বাস্তবভিত্তিক দৃষ্টিভঙ্গি—যা পরবর্তী সিদ্ধান্তকে আরও স্পষ্ট করতে সাহায্য করে।':'Practical perspectives on business, creative work and technology—made to bring more clarity to the decisions that move work forward.'}/>
+    <section className="section inner-section insights-feature-section">
+      <div className="insights-section-heading"><div><span className="eyebrow">{bn?'সম্পাদকের পছন্দ':'EDITOR’S PICK'}</span><h2>{bn?'শুরু করুন সঠিক প্রশ্ন দিয়ে।':'Start with a better question.'}</h2></div><p>{bn?'প্রতিটি ভালো সিদ্ধান্তের আগে প্রয়োজন সমস্যাটি বোঝা। এই লেখাগুলো সেই বোঝাপড়ার জন্য তৈরি।':'Good decisions begin with understanding the problem. These field notes are here to help make that thinking more deliberate.'}</p></div>
+      {showFeatured && <a className="insight-featured" href={'/insights/'+featured.slug}>
+        <div className="insight-featured-art" aria-hidden="true"><span>01</span><i/><b>{bn?'স্পষ্টতা':'CLARITY'}</b></div>
+        <div className="insight-featured-copy"><span className="article-index">{t(featured.category).toUpperCase()} / {insightReadingTime(featured,lang)}</span><h3>{t(featured.title)}</h3><p>{t(featured.summary)}</p><span className="card-link">{bn?'ফিচার্ড লেখা পড়ুন':'Read the featured insight'} <Arrow diagonal/></span><small>{t(featured.featuredNote)}</small></div>
+      </a>}
+    </section>
+    <section className="section inner-section insights-library">
+      <div className="insights-section-heading"><div><span className="eyebrow">{bn?'লাইব্রেরি':'THE LIBRARY'}</span><h2>{bn?'আপনার প্রয়োজনীয় বিষয় খুঁজুন।':'Explore the thinking.'}</h2></div><p>{bn?'কৌশল, সৃজনশীলতা ও প্রযুক্তি—বিষয় অনুযায়ী লেখা বেছে নিন অথবা সরাসরি খুঁজুন।':'Browse by discipline or search for a topic. Each article is designed to be useful on its own.'}</p></div>
+      <div className="insights-controls">
+        <div className="insight-category-list" aria-label={bn?'লেখার বিভাগ':'Insight categories'}>
+          {insightCategories.map(category=><button type="button" key={category.id} className={'filter-chip'+(activeCategory===category.id?' is-active':'')} aria-pressed={activeCategory===category.id} onClick={()=>setActiveCategory(category.id)}>{t(category.label)}</button>)}
+        </div>
+        <label className="insight-search"><span className="sr-only">{bn?'লেখা খুঁজুন':'Search insights'}</span><input type="search" value={search} onChange={event=>setSearch(event.target.value)} placeholder={bn?'বিষয় বা শব্দ দিয়ে খুঁজুন':'Search by topic or keyword'}/><span aria-hidden="true">⌕</span></label>
+      </div>
+      <p className="insights-result-count" aria-live="polite">{bn?`${filtered.length}টি লেখা পাওয়া গেছে`:`${filtered.length} insights`}</p>
+      {listing.length ? <div className="insight-library-grid">{listing.map((item,index)=><a className="insight-library-card" href={'/insights/'+item.slug} key={item.slug}>
+        <div className="insight-card-top"><span>{String(index+1).padStart(2,'0')}</span><span>{t(item.category)}</span></div>
+        <div className="insight-card-mark" aria-hidden="true"><i/><b>{item.categoryId==='strategy'?'01':item.categoryId==='creative'?'02':'03'}</b></div>
+        <h3>{t(item.title)}</h3><p>{t(item.summary)}</p>
+        <div className="insight-card-bottom"><span>{insightReadingTime(item,lang)}</span><span>{bn?'পড়ুন':'Read insight'} <Arrow diagonal/></span></div>
+      </a>)}</div> : <div className="insights-empty"><h3>{bn?'এই খোঁজে কোনো লেখা পাওয়া যায়নি':'No insights found'}</h3><p>{bn?'অন্য শব্দ দিয়ে খুঁজুন অথবা সব বিভাগ দেখুন।':'Try another keyword or return to all categories.'}</p><button type="button" className="button button-ghost" onClick={()=>{setSearch('');setActiveCategory('all')}}>{bn?'সব লেখা দেখুন':'Show all insights'}</button></div>}
+    </section>
+    <section className="section insights-editorial-note"><span className="eyebrow">{bn?'আমাদের দৃষ্টিভঙ্গি':'A NOTE ON OUR APPROACH'}</span><h2>{bn?'কম জটিলতা। বেশি স্পষ্টতা।':'Less noise. More useful thinking.'}</h2><p>{bn?'এই লেখাগুলো সাধারণ নির্দেশনা ও কাজের অভিজ্ঞতাভিত্তিক দৃষ্টিভঙ্গি। এগুলো কোনো নির্দিষ্ট ফলাফলের নিশ্চয়তা বা ক্লায়েন্ট কেস স্টাডি নয়।':'These articles are practical editorial perspectives, not guarantees of outcomes or substitutes for project-specific advice. We will publish client case studies separately, with approved context and verified details.'}</p><a className="text-link" href="/contact">{bn?'আপনার চ্যালেঞ্জ নিয়ে কথা বলুন':'Discuss a challenge with us'} <Arrow diagonal/></a></section>
+  </main>;
+}
+
+function InsightArticlePage({article,lang='EN'}) {
+  const bn = lang === 'BN';
+  const t = value => value?.[bn?'bn':'en'] || '';
+  const index = insights.findIndex(item=>item.slug===article.slug);
+  const previous = index>0 ? insights[index-1] : null;
+  const next = index<insights.length-1 ? insights[index+1] : null;
+  const related = (article.related||[]).map(slug=>insights.find(item=>item.slug===slug)).filter(Boolean);
+  const sectionId = number => 'insight-section-'+number;
+  return <main className="inner-page insight-article-page">
+    <PageHero lang={lang} eyebrow={bn?'ভাবনা ও ব্যবহারিক দিকনির্দেশনা / '+t(article.category):'FIELD NOTES / '+t(article.category).toUpperCase()} title={t(article.title)} desc={t(article.summary)}/>
+    <div className="insight-article-meta"><a href="/insights">← {bn?'সব লেখা':'All insights'}</a><span>{t(article.category)}</span><span>{insightReadingTime(article,lang)}</span></div>
+    <section className="section inner-section insight-reading-layout">
+      <aside className="insight-reading-aside">
+        <span className="eyebrow">{bn?'এই লেখায়':'IN THIS ARTICLE'}</span>
+        <nav aria-label={bn?'লেখার বিষয়সূচি':'Article contents'}>
+          {article.sections.map((section,i)=><a href={'#'+sectionId(i)} key={sectionId(i)}>{String(i+1).padStart(2,'0')} <span>{t(section.heading)}</span></a>)}
+          <a href="#insight-takeaways">{bn?'মূল বিষয়':'Key takeaways'}</a>
+        </nav>
+        <div className="insight-aside-note"><span className="eyebrow">{bn?'মূল ভাবনা':'THE IDEA'}</span><p>{t(article.featuredNote)}</p></div>
+      </aside>
+      <article className="insight-prose">
+        <p className="insight-lead">{t(article.summary)}</p>
+        {article.sections.map((section,i)=><section className="insight-prose-section" id={sectionId(i)} key={sectionId(i)}>
+          <span className="insight-section-number">{String(i+1).padStart(2,'0')} / {String(article.sections.length).padStart(2,'0')}</span>
+          <h2>{t(section.heading)}</h2>
+          {section.paragraphs.map((paragraph,j)=><p key={j}>{t(paragraph)}</p>)}
+          {section.bullets?.length>0&&<ul>{section.bullets.map((item,j)=><li key={j}>{t(item)}</li>)}</ul>}
+        </section>)}
+        <section className="insight-takeaways" id="insight-takeaways"><span className="eyebrow">{bn?'মনে রাখুন':'TAKE IT WITH YOU'}</span><h2>{t(article.takeaway.heading)}</h2><ul>{article.takeaway.items.map((item,i)=><li key={i}><span>0{i+1}</span>{t(item)}</li>)}</ul></section>
+      </article>
+    </section>
+    <section className="section insight-related-section">
+      <div className="insights-section-heading"><div><span className="eyebrow">{bn?'আরও পড়ুন':'KEEP EXPLORING'}</span><h2>{bn?'সম্পর্কিত আরও ভাবনা।':'More ideas worth exploring.'}</h2></div><a className="text-link" href="/insights">{bn?'সব লেখা':'All insights'} <Arrow diagonal/></a></div>
+      <div className="insight-related-grid">{related.map(item=><a className="insight-related-card" href={'/insights/'+item.slug} key={item.slug}><span className="article-index">{t(item.category).toUpperCase()} / {insightReadingTime(item,lang)}</span><h3>{t(item.title)}</h3><p>{t(item.summary)}</p><span className="card-link">{bn?'পড়ুন':'Read insight'} <Arrow diagonal/></span></a>)}</div>
+      <div className="insight-sequence-nav">
+        {previous?<a href={'/insights/'+previous.slug}><span>← {bn?'আগের লেখা':'PREVIOUS'}</span><b>{t(previous.title)}</b></a>:<span/>}
+        {next?<a href={'/insights/'+next.slug}><span>{bn?'পরের লেখা':'NEXT'} →</span><b>{t(next.title)}</b></a>:<span/>}
+      </div>
+    </section>
+    <section className="section insight-article-cta"><span className="eyebrow">{bn?'আপনার পরবর্তী পদক্ষেপ':'YOUR NEXT STEP'}</span><h2>{bn?'এখন যে ভাবনাটি কাজে লাগাতে চান, সেটি নিয়ে কথা বলি।':'Have a challenge you want to put into motion?'}</h2><p>{bn?'আপনার ব্যবসা বা ডিজিটাল অভিজ্ঞতার প্রয়োজনটি জানান। আমরা বাস্তবসম্মত পরবর্তী পদক্ষেপ খুঁজে নিতে সাহায্য করব।':'Tell us what you are working through. We can help shape a practical next step around your business and digital needs.'}</p><a className="button button-orange" href="/contact">{bn?'আলোচনা শুরু করুন':'Start a conversation'} <Arrow diagonal/></a>
+    </section>
+  </main>;
+}
+
 function GenericPage({path,lang='EN'}) {
   const [title,desc]=(pageCopy[path]||['Page coming into focus','We are shaping this experience with the same care as the rest of the Swapno ecosystem.']).map(v=>tx(lang,v));
   const [sent,setSent]=useState(''); const [draft,setDraft]=useState('');
@@ -339,8 +418,9 @@ function GenericPage({path,lang='EN'}) {
   if(path==='/portfolio') return <WorkIndexPage lang={lang}/>;
   const workCategoryRoutes={'/work/case-studies':'Case Studies','/work/video':'Video','/work/graphics':'Graphics & Posters','/work/branding':'Branding','/work/websites':'Websites & Technology'};
   if(workCategoryRoutes[path]) return <WorkCategoryPage category={workCategoryRoutes[path]} lang={lang}/>;
-    if(path==='/blog') return <Localize lang={lang}><main className="inner-page"><PageHero lang={lang} eyebrow="INSIGHTS" title={title} desc={desc}/><section className="section inner-section"><div className="article-grid article-grid-page">{articles.map((a,i)=><a className="article-card" href={['/blog/clearer-digital-foundation','/blog/design-that-earns-attention','/blog/from-idea-to-useful-product'][i]} key={tx(lang,a[0])}><span className="article-index">0{i+1} / {tx(lang,a[1])}</span><h3>{a[0]}</h3><p>{tx(lang,a[2])}</p><span className="card-link">Read insight <Arrow diagonal/></span></a>)}</div><p className="note">These are editorial starter articles and should be reviewed by the Swapno Tech team before public promotion.</p></section></main></Localize>;
-  if(articleDetails[path]) { const [articleTitle,category,summary,body]=articleDetails[path].map(v=>tx(lang,v)); return <Localize lang={lang}><main className="inner-page"><PageHero lang={lang} eyebrow={'FIELD NOTES / '+category.toUpperCase()} title={articleTitle} desc={summary}/><article className="section inner-section article-detail"><p>{body}</p><p>Use this as a working principle: make the next step clear, test it with real people and improve from evidence rather than assumption.</p><a className="text-link" href="/insights">← Back to insights</a></article></main></Localize>; }
+  if(path==='/blog') return <InsightsPage lang={lang}/>;
+  const insightArticle=insights.find(item=>path==='/blog/'+item.slug);
+  if(insightArticle) return <InsightArticlePage article={insightArticle} lang={lang}/>;
     if(path==='/contact') return <Localize lang={lang}><main className="inner-page"><PageHero lang={lang} eyebrow="START A CONVERSATION" title={title} desc={desc}/><section className="section inner-section contact-layout"><div><span className="eyebrow">A GOOD PLACE TO BEGIN</span><h2>Tell us a little<br/>about the idea.</h2><p>Share what you want to achieve, what is getting in the way and what kind of support you are looking for.</p><a className="text-link" href="#enquiry-form">Use the enquiry form <Arrow diagonal/></a></div><form id="enquiry-form" className="contact-form" onSubmit={async e=>{e.preventDefault();const data=new FormData(e.currentTarget);const service=tx(lang,data.get('service')||'');const text=lang==='BN'?'SWAPNO TECH যোগাযোগ\nনাম: '+data.get('name')+'\nইমেইল: '+data.get('email')+'\nবিষয়: '+service+'\nপ্রকল্প: '+data.get('message'):'SWAPNO TECH ENQUIRY\nName: '+data.get('name')+'\nEmail: '+data.get('email')+'\nArea: '+service+'\nProject: '+data.get('message');setDraft(text);try{await navigator.clipboard.writeText(text);setSent('Enquiry copied. Paste it into your preferred contact channel to send it.');}catch{setSent('Your enquiry is prepared below. Select and copy it to send through your preferred contact channel.');}}}><label>Your name<input required name="name" placeholder="How should we address you?"/></label><label>Email address<input required type="email" name="email" placeholder="you@example.com"/></label><label>What do you need help with?<select name="service" defaultValue={new URLSearchParams(window.location.search).get('service')||''}><option value="" disabled>Select an area</option><option>Brand & identity</option><option>Content & campaigns</option><option>Websites & platforms</option><option>Growth & marketing</option><option>Creative production</option><option>Business technology</option><option>Website Solution</option><option>Creator Platform</option><option>Hosting</option><option>Focused project</option><option>Ongoing partnership</option><option>Custom engagement</option><option>Something else</option></select></label><label>Tell us about your project<textarea required rows="4" name="message" placeholder="A little context helps us give you a useful response."/></label><button className="button button-orange" type="submit">Copy enquiry <Arrow diagonal/></button>{sent&&<p className="form-feedback" role="status">{sent}</p>}{draft&&!sent.startsWith('Enquiry copied')&&<textarea className="enquiry-draft" readOnly rows="6" value={draft} aria-label="Prepared enquiry text"/>}</form></section></main></Localize>;
   if(path==='/about') return <AboutPage lang={lang}/>;
   if(path.startsWith('/products/')) { const item=products.find(p=>p.href===path); return <Localize lang={lang}><main className="inner-page"><PageHero lang={lang} eyebrow={"SWAPNO PRODUCT / " + (item?.number || '')} title={title} desc={desc}/><section className="section inner-section product-detail"><div className="product-detail-visual"><span className="eyebrow">DESIGNED TO MAKE THE NEXT STEP EASIER</span><div className="product-orbit"><span>{item?.number}</span></div></div><div><span className="eyebrow">HOW IT WORKS</span><div className="detail-steps">{(path.includes('website')?[['Choose a foundation','Start with a template and page structure.'],['Shape your pages','Edit content and reorder supported sections.'],['Preview & publish','Check the responsive result before going live.']]:path.includes('creator')?[['Create a profile','Introduce your skills, focus and experience.'],['Show your work','Organize projects into a clear portfolio.'],['Get discovered','Be found through relevant categories and search.']]:[['Explore verified options','Review available plans and key terms.'],['Share your requirements','Tell us about your site, traffic and support needs.'],['Coordinate setup','Get help with the next steps and provider coordination.']]).map((s,i)=><div className="detail-step" key={s[0]}><b>0{i+1}</b><div><h3>{tx(lang,s[0])}</h3><p>{tx(lang,s[1])}</p></div></div>)}</div><a className="button button-orange" href="/contact">Enquire about {item?.name||'this product'} <Arrow diagonal/></a><p className="note">Product preview and enquiry journey. Account, publishing, creator discovery and provider integrations are not connected in this first frontend milestone.</p></div></section></main></Localize>; }
@@ -410,7 +490,7 @@ export default function App() {
   useEffect(()=>{if(route.isAlias){const next=route.canonicalPath+window.location.search+window.location.hash;window.history.replaceState(null,'',next);}},[route.canonicalPath,route.isAlias]);
   useEffect(()=>{document.documentElement.dataset.theme=theme;try{localStorage.setItem('swapno-theme',theme)}catch{}},[theme]);
   useEffect(()=>{document.documentElement.lang=lang==='BN'?'bn':'en';try{localStorage.setItem('swapno-lang',lang)}catch{}},[lang]);
-  useEffect(()=>{const serviceMeta=serviceFamilies.find(item=>item.renderPath===path);const aboutMeta=path==='/about'?aboutContent.hero:null;const serviceOverviewMeta=path==='/services'?{title:{en:'The right work for the need in front of you.',bn:'ব্যবসার প্রয়োজন থেকে সঠিক কাজ।'},description:{en:'We connect brand, content, marketing and technology around your business priorities.',bn:'আপনার ব্যবসার অগ্রাধিকার অনুযায়ী ব্র্যান্ড, কনটেন্ট, মার্কেটিং ও প্রযুক্তিকে একত্র করি।'}}:null;const packageMeta=path==='/packages'?{title:{en:'Choose the way of working that fits your need.',bn:'আপনার প্রয়োজন থেকে কাজের পরিধি ঠিক করি।'},description:{en:'Focused projects, ongoing partnerships and custom engagements with agreed scope, timing and fees.',bn:'নির্দিষ্ট প্রজেক্ট, নিয়মিত সহযোগিতা ও কাস্টম কাজ—সম্মত পরিধি, সময় ও ফিসহ।'}}:null;const title=route.isKnown?(serviceMeta?bilingual(lang,serviceMeta.title):aboutMeta?bilingual(lang,aboutMeta.title):serviceOverviewMeta?bilingual(lang,serviceOverviewMeta.title):packageMeta?bilingual(lang,packageMeta.title):tx(lang,pageCopy[path]?.[0]||serviceDetails[path]?.[0]||articleDetails[path]?.[0]||workCategoryDetails[path]?.title||'Build what comes next')):(lang==='BN'?'পৃষ্ঠাটি পাওয়া যায়নি':'Page not found');const description=route.isKnown?(serviceMeta?bilingual(lang,serviceMeta.summary):aboutMeta?bilingual(lang,aboutMeta.description):serviceOverviewMeta?bilingual(lang,serviceOverviewMeta.description):packageMeta?bilingual(lang,packageMeta.description):tx(lang,pageCopy[path]?.[1]||serviceDetails[path]?.[2]||articleDetails[path]?.[2]||workCategoryDetails[path]?.description||'Swapno Tech — creative technology and digital business solutions.')):(lang==='BN'?'অনুরোধ করা পৃষ্ঠাটি পাওয়া যায়নি।':'The requested page could not be found.');document.title=title+' — Swapno Tech';document.documentElement.lang=lang==='BN'?'bn':'en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path,lang,route.isKnown]);
+  useEffect(()=>{const serviceMeta=serviceFamilies.find(item=>item.renderPath===path);const aboutMeta=path==='/about'?aboutContent.hero:null;const serviceOverviewMeta=path==='/services'?{title:{en:'The right work for the need in front of you.',bn:'ব্যবসার প্রয়োজন থেকে সঠিক কাজ।'},description:{en:'We connect brand, content, marketing and technology around your business priorities.',bn:'আপনার ব্যবসার অগ্রাধিকার অনুযায়ী ব্র্যান্ড, কনটেন্ট, মার্কেটিং ও প্রযুক্তিকে একত্র করি।'}}:null;const packageMeta=path==='/packages'?{title:{en:'Choose the way of working that fits your need.',bn:'আপনার প্রয়োজন থেকে কাজের পরিধি ঠিক করি।'},description:{en:'Focused projects, ongoing partnerships and custom engagements with agreed scope, timing and fees.',bn:'নির্দিষ্ট প্রজেক্ট, নিয়মিত সহযোগিতা ও কাস্টম কাজ—সম্মত পরিধি, সময় ও ফিসহ।'}}:null;const insightMeta=path==='/blog'?{title:{en:'Ideas for building forward.',bn:'ভাবনা, যা কাজে এগিয়ে নেয়।'},description:{en:'Practical perspectives on business, creative work and technology from Swapno Tech.',bn:'ব্যবসা, সৃজনশীলতা ও প্রযুক্তি নিয়ে Swapno Tech-এর বাস্তবভিত্তিক দৃষ্টিভঙ্গি।'}}:insights.find(item=>path==='/blog/'+item.slug);const title=route.isKnown?(serviceMeta?bilingual(lang,serviceMeta.title):aboutMeta?bilingual(lang,aboutMeta.title):serviceOverviewMeta?bilingual(lang,serviceOverviewMeta.title):packageMeta?bilingual(lang,packageMeta.title):insightMeta?bilingual(lang,insightMeta.title):tx(lang,pageCopy[path]?.[0]||serviceDetails[path]?.[0]||workCategoryDetails[path]?.title||'Build what comes next')):(lang==='BN'?'পৃষ্ঠাটি পাওয়া যায়নি':'Page not found');const description=route.isKnown?(serviceMeta?bilingual(lang,serviceMeta.summary):aboutMeta?bilingual(lang,aboutMeta.description):serviceOverviewMeta?bilingual(lang,serviceOverviewMeta.description):packageMeta?bilingual(lang,packageMeta.description):insightMeta?bilingual(lang,insightMeta.summary):tx(lang,pageCopy[path]?.[1]||serviceDetails[path]?.[2]||workCategoryDetails[path]?.description||'Swapno Tech — creative technology and digital business solutions.')):(lang==='BN'?'অনুরোধ করা পৃষ্ঠাটি পাওয়া যায়নি।':'The requested page could not be found.');document.title=title+' — Swapno Tech';document.documentElement.lang=lang==='BN'?'bn':'en';const meta=document.querySelector('meta[name="description"]');if(meta)meta.setAttribute('content',description);window.scrollTo(0,0)},[path,lang,route.isKnown]);
   useEffect(()=>{
     const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const targets=[...document.querySelectorAll('.section, .intro-band, .process-band, .final-cta, .page-hero, .footer')];
